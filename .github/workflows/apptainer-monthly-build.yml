@@ -7,7 +7,7 @@ on:
   pull_request:
     paths:
       - 'apptainer.ref'
-      - 'Environments/environment.yml'
+      #- 'Environments/environment.yml'
   workflow_dispatch:
 
 jobs:

@@ -4,21 +4,37 @@ project:
 website:
   title: "Course Template"
   navbar:
-    logo: img/logo.png
     left:
       - href: index.qmd
         text: Introduction
-      - href: people.qmd
-        text: People
-      - href: Notebooks/jupyter_example.ipynb
-        text: Jupyter example
+      - text: "Notebooks"
+        menu:
+          - text: "Explore GWAS sumstats"
+            href: 00_explore_gwas_sumstats.ipynb
+          - text: "Fine-mapping"
+            href: 01_finemapping.ipynb
+          - text: "Magma prepare input"
+            href: 02_magma_prepare_input.ipynb
+          - text: "magma_snp_annotation"
+            href: 03_magma_snp_annotation.ipynb
+          - text: "magma_gene_analysis"
+            href: 04_magma_gene_analysis.ipynb
+          - text: "magma_geneset_analysis"
+            href: 05_magma_geneset_analysis.ipynb
+          - text: "FLAMES"
+            href: 06_flames.ipynb
+          - text: "Run scdrs"
+            href: 07_run_scdrs.ipynb
+          - text: "analyse results scdrs"
+            href: 08_analyse_results_scdrs.ipynb
+          - text: "SNP based heritability"
+            href: 09_SNP_based_heritability.ipynb
+          - text: "genetic correlation"
+            href: 10_genetic_correlation.ipynb
     right: 
       - icon: github
-        href: https://github.com/hds-sandbox
+        href: https://github.com/SamueleSoraggi/post-gwas-phd-course
         aria-label: GitHub
-      - icon: linkedin
-        href: https://www.linkedin.com/company/ucph-heads/
-        aria-label: LinkedIn
       
 
 format:
