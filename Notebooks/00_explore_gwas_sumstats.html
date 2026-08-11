@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Intro Exercise. Explore GWAS Summary Statistics – Course Template</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a9715c2d8f60b3a98396ecba141d0106.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8a591ff59271d21f6a5d1e80b3747fb5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-a9715c2d8f60b3a98396ecba141d0106.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Course Template</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notebooks" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Notebooks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
+        <li>
+    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+ <span class="dropdown-text">Explore GWAS sumstats</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../01_finemapping.ipynb">
+ <span class="dropdown-text">Fine-mapping</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+ <span class="dropdown-text">Magma prepare input</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+ <span class="dropdown-text">magma_snp_annotation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+ <span class="dropdown-text">magma_gene_analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+ <span class="dropdown-text">magma_geneset_analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../06_flames.ipynb">
+ <span class="dropdown-text">FLAMES</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+ <span class="dropdown-text">Run scdrs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+ <span class="dropdown-text">analyse results scdrs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+ <span class="dropdown-text">SNP based heritability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+ <span class="dropdown-text">genetic correlation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/SamueleSoraggi/post-gwas-phd-course"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
+  <li><a href="#what-is-in-a-gwas-summary-statistics-file" id="toc-what-is-in-a-gwas-summary-statistics-file" class="nav-link" data-scroll-target="#what-is-in-a-gwas-summary-statistics-file"><span class="header-section-number">2</span> What is in a GWAS summary-statistics file?</a></li>
+  <li><a href="#basic-structure-checks" id="toc-basic-structure-checks" class="nav-link" data-scroll-target="#basic-structure-checks"><span class="header-section-number">3</span> Basic structure checks</a></li>
+  <li><a href="#quality-control-filters" id="toc-quality-control-filters" class="nav-link" data-scroll-target="#quality-control-filters"><span class="header-section-number">4</span> Quality control filters</a></li>
+  <li><a href="#genomic-inflation" id="toc-genomic-inflation" class="nav-link" data-scroll-target="#genomic-inflation"><span class="header-section-number">5</span> Genomic inflation</a></li>
+  <li><a href="#genome-wide-significant-hits" id="toc-genome-wide-significant-hits" class="nav-link" data-scroll-target="#genome-wide-significant-hits"><span class="header-section-number">6</span> Genome-wide significant hits</a></li>
+  <li><a href="#visual-checks" id="toc-visual-checks" class="nav-link" data-scroll-target="#visual-checks"><span class="header-section-number">7</span> Visual checks</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">8</span> Wrap-up</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Intro Exercise. Explore GWAS Summary Statistics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Overview</h1>
+<p>This notebook turns the original exploration script into a guided practical. You will load a large GWAS summary-statistics table, inspect its structure, apply simple quality-control filters, and generate the standard first-pass plots used in downstream interpretation.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Learning goals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>By the end of this notebook, you should be able to: - describe the key columns in a GWAS summary-statistics file - justify basic INFO and minor-allele-frequency filtering - interpret Manhattan, QQ, and p-value distribution plots - connect SNP-level results to later gene and pathway analyses</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Before you run anything
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This notebook assumes you are running from the <code>repo/notebooks</code> directory. The ADHD summary-statistics file should be available at <code>input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Study Questions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use these questions to frame the analysis before you start:</p>
+<ol type="1">
+<li>Which columns are essential if you want to run gene-level analyses later?</li>
+<li>Why are INFO and MAF filters usually applied before visualisation or downstream modelling?</li>
+<li>What would you expect a healthy null-like p-value distribution to look like?</li>
+<li>Why can a very large GWAS show some QQ-plot inflation even when the analysis is not obviously flawed?</li>
+</ol>
+</div>
+</div>
+<div id="8ec0813d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(vroom, dplyr, ggplot2, scales, qqman)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sumstats_path <span class="ot">&lt;-</span> <span class="st">"input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>figures_dir <span class="ot">&lt;-</span> <span class="st">"figures"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(figures_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="what-is-in-a-gwas-summary-statistics-file" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> What is in a GWAS summary-statistics file?</h1>
+<p>Each row represents one tested variant. The file does not contain individual-level genotype data; instead, it stores per-variant summaries such as association strength, uncertainty, allele frequency, and genomic position.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Column guide
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Typical columns in this dataset include: - <code>CHR</code>: chromosome number - <code>SNP</code>: variant identifier - <code>BP</code>: base-pair position - <code>A1</code> and <code>A2</code>: the two alleles - <code>FRQ_A_38691</code>: frequency of the effect allele in cases - <code>INFO</code>: imputation quality - <code>OR</code>: odds ratio - <code>SE</code>: standard error of the effect estimate - <code>P</code>: p-value - <code>Nca</code> and <code>Nco</code>: case and control counts</p>
+</div>
+</div>
+<div id="c27c7da0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Loading GWAS summary statistics...</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> <span class="fu">vroom</span>(sumstats_path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Loaded %s SNPs and %d columns.</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">nrow</span>(sumstats), <span class="at">big.mark =</span> <span class="st">","</span>), <span class="fu">ncol</span>(sumstats)))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sumstats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loading GWAS summary statistics...
+Loaded 6,774,224 SNPs and 14 columns.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A spec_tbl_df: 6 × 14</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">SNP</th>
+<th data-quarto-table-cell-role="th" scope="col">BP</th>
+<th data-quarto-table-cell-role="th" scope="col">A1</th>
+<th data-quarto-table-cell-role="th" scope="col">A2</th>
+<th data-quarto-table-cell-role="th" scope="col">FRQ_A_38691</th>
+<th data-quarto-table-cell-role="th" scope="col">FRQ_U_186843</th>
+<th data-quarto-table-cell-role="th" scope="col">INFO</th>
+<th data-quarto-table-cell-role="th" scope="col">OR</th>
+<th data-quarto-table-cell-role="th" scope="col">SE</th>
+<th data-quarto-table-cell-role="th" scope="col">P</th>
+<th data-quarto-table-cell-role="th" scope="col">Direction</th>
+<th data-quarto-table-cell-role="th" scope="col">Nca</th>
+<th data-quarto-table-cell-role="th" scope="col">Nco</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8</td>
+<td>rs62513865</td>
+<td>101592213</td>
+<td>C</td>
+<td>T</td>
+<td>0.925</td>
+<td>0.937</td>
+<td>0.981</td>
+<td>0.99631</td>
+<td>0.0175</td>
+<td>0.8325</td>
+<td>+---+++0-++-+</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>rs79643588</td>
+<td>106973048</td>
+<td>G</td>
+<td>A</td>
+<td>0.910</td>
+<td>0.917</td>
+<td>1.000</td>
+<td>1.00411</td>
+<td>0.0159</td>
+<td>0.7967</td>
+<td>++--++-+-+-++</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>rs17396518</td>
+<td>108690829</td>
+<td>T</td>
+<td>G</td>
+<td>0.561</td>
+<td>0.577</td>
+<td>0.998</td>
+<td>0.99611</td>
+<td>0.0096</td>
+<td>0.6876</td>
+<td>--++-++??-+--</td>
+<td>37367</td>
+<td>184388</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>rs983166</td>
+<td>108681675</td>
+<td>A</td>
+<td>C</td>
+<td>0.570</td>
+<td>0.586</td>
+<td>0.996</td>
+<td>0.99491</td>
+<td>0.0096</td>
+<td>0.5956</td>
+<td>--++-++++-+--</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>rs28842593</td>
+<td>103044620</td>
+<td>T</td>
+<td>C</td>
+<td>0.839</td>
+<td>0.836</td>
+<td>0.982</td>
+<td>0.98314</td>
+<td>0.0135</td>
+<td>0.2081</td>
+<td>----++0+??--+</td>
+<td>37504</td>
+<td>184525</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>rs7014597</td>
+<td>104152280</td>
+<td>G</td>
+<td>C</td>
+<td>0.824</td>
+<td>0.824</td>
+<td>0.997</td>
+<td>0.99950</td>
+<td>0.0122</td>
+<td>0.9679</td>
+<td>+-++-+++++---</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="3e5a2354" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sumstats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre>Rows: 6,774,224
+
+Columns: 14
+
+$ CHR          <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>8<span class="ansi-bright-black-fg">, </span>…
+
+$ SNP          <span style="font-style:italic" class="ansi-bright-black-fg">&lt;chr&gt;</span> "rs62513865"<span class="ansi-bright-black-fg">, </span>"rs79643588"<span class="ansi-bright-black-fg">, </span>"rs17396518"<span class="ansi-bright-black-fg">, </span>"rs983166"<span class="ansi-bright-black-fg">, </span>"rs…
+
+$ BP           <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 101592213<span class="ansi-bright-black-fg">, </span>106973048<span class="ansi-bright-black-fg">, </span>108690829<span class="ansi-bright-black-fg">, </span>108681675<span class="ansi-bright-black-fg">, </span>103044620<span class="ansi-bright-black-fg">, </span>10…
+
+$ A1           <span style="font-style:italic" class="ansi-bright-black-fg">&lt;chr&gt;</span> "C"<span class="ansi-bright-black-fg">, </span>"G"<span class="ansi-bright-black-fg">, </span>"T"<span class="ansi-bright-black-fg">, </span>"A"<span class="ansi-bright-black-fg">, </span>"T"<span class="ansi-bright-black-fg">, </span>"G"<span class="ansi-bright-black-fg">, </span>"T"<span class="ansi-bright-black-fg">, </span>"A"<span class="ansi-bright-black-fg">, </span>"A"<span class="ansi-bright-black-fg">, </span>"C"<span class="ansi-bright-black-fg">, </span>"G"<span class="ansi-bright-black-fg">, </span>"C…
+
+$ A2           <span style="font-style:italic" class="ansi-bright-black-fg">&lt;chr&gt;</span> "T"<span class="ansi-bright-black-fg">, </span>"A"<span class="ansi-bright-black-fg">, </span>"G"<span class="ansi-bright-black-fg">, </span>"C"<span class="ansi-bright-black-fg">, </span>"C"<span class="ansi-bright-black-fg">, </span>"C"<span class="ansi-bright-black-fg">, </span>"C"<span class="ansi-bright-black-fg">, </span>"C"<span class="ansi-bright-black-fg">, </span>"T"<span class="ansi-bright-black-fg">, </span>"T"<span class="ansi-bright-black-fg">, </span>"A"<span class="ansi-bright-black-fg">, </span>"T…
+
+$ FRQ_A_38691  <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 0.925<span class="ansi-bright-black-fg">, </span>0.910<span class="ansi-bright-black-fg">, </span>0.561<span class="ansi-bright-black-fg">, </span>0.570<span class="ansi-bright-black-fg">, </span>0.839<span class="ansi-bright-black-fg">, </span>0.824<span class="ansi-bright-black-fg">, </span>0.841<span class="ansi-bright-black-fg">, </span>0.783<span class="ansi-bright-black-fg">, </span>0…
+
+$ FRQ_U_186843 <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 0.937<span class="ansi-bright-black-fg">, </span>0.917<span class="ansi-bright-black-fg">, </span>0.577<span class="ansi-bright-black-fg">, </span>0.586<span class="ansi-bright-black-fg">, </span>0.836<span class="ansi-bright-black-fg">, </span>0.824<span class="ansi-bright-black-fg">, </span>0.833<span class="ansi-bright-black-fg">, </span>0.790<span class="ansi-bright-black-fg">, </span>0…
+
+$ INFO         <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 0.981<span class="ansi-bright-black-fg">, </span>1.000<span class="ansi-bright-black-fg">, </span>0.998<span class="ansi-bright-black-fg">, </span>0.996<span class="ansi-bright-black-fg">, </span>0.982<span class="ansi-bright-black-fg">, </span>0.997<span class="ansi-bright-black-fg">, </span>0.997<span class="ansi-bright-black-fg">, </span>1.000<span class="ansi-bright-black-fg">, </span>0…
+
+$ OR           <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 0.99631<span class="ansi-bright-black-fg">, </span>1.00411<span class="ansi-bright-black-fg">, </span>0.99611<span class="ansi-bright-black-fg">, </span>0.99491<span class="ansi-bright-black-fg">, </span>0.98314<span class="ansi-bright-black-fg">, </span>0.99950<span class="ansi-bright-black-fg">, </span>0.9…
+
+$ SE           <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 0.0175<span class="ansi-bright-black-fg">, </span>0.0159<span class="ansi-bright-black-fg">, </span>0.0096<span class="ansi-bright-black-fg">, </span>0.0096<span class="ansi-bright-black-fg">, </span>0.0135<span class="ansi-bright-black-fg">, </span>0.0122<span class="ansi-bright-black-fg">, </span>0.0128<span class="ansi-bright-black-fg">, </span>0…
+
+$ P            <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 0.832500<span class="ansi-bright-black-fg">, </span>0.796700<span class="ansi-bright-black-fg">, </span>0.687600<span class="ansi-bright-black-fg">, </span>0.595600<span class="ansi-bright-black-fg">, </span>0.208100<span class="ansi-bright-black-fg">, </span>0.96790…
+
+$ Direction    <span style="font-style:italic" class="ansi-bright-black-fg">&lt;chr&gt;</span> "+---+++0-++-+"<span class="ansi-bright-black-fg">, </span>"++--++-+-+-++"<span class="ansi-bright-black-fg">, </span>"--++-++??-+--"<span class="ansi-bright-black-fg">, </span>"--++-…
+
+$ Nca          <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 38691<span class="ansi-bright-black-fg">, </span>38691<span class="ansi-bright-black-fg">, </span>37367<span class="ansi-bright-black-fg">, </span>38691<span class="ansi-bright-black-fg">, </span>37504<span class="ansi-bright-black-fg">, </span>38691<span class="ansi-bright-black-fg">, </span>38691<span class="ansi-bright-black-fg">, </span>38691<span class="ansi-bright-black-fg">, </span>3…
+
+$ Nco          <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span> 186843<span class="ansi-bright-black-fg">, </span>186843<span class="ansi-bright-black-fg">, </span>184388<span class="ansi-bright-black-fg">, </span>186843<span class="ansi-bright-black-fg">, </span>184525<span class="ansi-bright-black-fg">, </span>186843<span class="ansi-bright-black-fg">, </span>186843<span class="ansi-bright-black-fg">, </span>1…
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-structure-checks" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Basic structure checks</h1>
+<p>A first pass should answer three questions: how many variants are present, how they are distributed across chromosomes, and what the study sample size was. These checks catch obvious file-format problems early.</p>
+<p><strong>Question for students:</strong> if one chromosome had dramatically fewer variants than expected, what technical or biological explanations would you consider first?</p>
+<div id="eca6bc63" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>snps_per_chr <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(CHR, <span class="at">name =</span> <span class="st">"n_SNPs"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(CHR)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>n_cases <span class="ot">&lt;-</span> sumstats<span class="sc">$</span>Nca[<span class="dv">1</span>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>n_controls <span class="ot">&lt;-</span> sumstats<span class="sc">$</span>Nco[<span class="dv">1</span>]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>snps_per_chr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A spec_tbl_df: 22 × 2</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">n_SNPs</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>522784</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>581259</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>494157</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>500139</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>447115</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>464544</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>396727</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>385938</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>289399</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>350255</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>337044</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>327978</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>258934</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>222755</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>190565</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>197087</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>164978</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>193985</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>127926</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>147600</td>
+</tr>
+<tr class="odd">
+<td>21</td>
+<td>89901</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>83154</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cfd3cfc0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Cases: %s</span><span class="sc">\n</span><span class="st">Controls: %s</span><span class="sc">\n</span><span class="st">Total N: %s</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_cases, <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_controls, <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_cases <span class="sc">+</span> n_controls, <span class="at">big.mark =</span> <span class="st">","</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cases: 38,691
+Controls: 186,843
+Total N: 225,534</code></pre>
+</div>
+</div>
+</section>
+<section id="quality-control-filters" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Quality control filters</h1>
+<p>This practical uses two simple filters: - <code>INFO &gt;= 0.8</code> to keep well-imputed variants - <code>MAF &gt;= 0.01</code> to remove very rare variants with unstable estimates</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These are teaching defaults, not universal rules. The right thresholds depend on study design, imputation quality, ancestry composition, and downstream method assumptions.</p>
+</div>
+</div>
+<p><strong>Question for students:</strong> what do you lose, scientifically, when you remove low-frequency variants? What do you gain?</p>
+<div id="927aa6cf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MAF =</span> <span class="fu">pmin</span>(FRQ_A_38691, <span class="dv">1</span> <span class="sc">-</span> FRQ_A_38691))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sumstats_qc <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(INFO <span class="sc">&gt;=</span> <span class="fl">0.8</span>, MAF <span class="sc">&gt;=</span> <span class="fl">0.01</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>n_removed_info <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sumstats) <span class="sc">-</span> <span class="fu">nrow</span>(<span class="fu">filter</span>(sumstats, INFO <span class="sc">&gt;=</span> <span class="fl">0.8</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>n_removed_maf <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sumstats) <span class="sc">-</span> <span class="fu">nrow</span>(<span class="fu">filter</span>(sumstats, MAF <span class="sc">&gt;=</span> <span class="fl">0.01</span>))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>qc_summary <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="fu">c</span>(<span class="st">"Total SNPs before QC"</span>, <span class="st">"Removed: INFO &lt; 0.8"</span>, <span class="st">"Removed: MAF &lt; 0.01"</span>, <span class="st">"SNPs after QC"</span>),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(sumstats), n_removed_info, n_removed_maf, <span class="fu">nrow</span>(sumstats_qc))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>qc_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A tibble: 4 × 2</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">metric</th>
+<th data-quarto-table-cell-role="th" scope="col">value</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total SNPs before QC</td>
+<td>6774224</td>
+</tr>
+<tr class="even">
+<td>Removed: INFO &lt; 0.8</td>
+<td><span style="white-space:pre-wrap"> 0</span></td>
+</tr>
+<tr class="odd">
+<td>Removed: MAF &lt; 0.01</td>
+<td><span style="white-space:pre-wrap"> 99</span></td>
+</tr>
+<tr class="even">
+<td>SNPs after QC</td>
+<td>6774125</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="f824741e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sumstats_qc <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(P, OR, SE, INFO, MAF) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>       P                OR               SE               INFO       
+ Min.   :0.0000   Min.   :0.8127   Min.   :0.00800   Min.   :0.8020  
+ 1st Qu.:0.1826   1st Qu.:0.9884   1st Qu.:0.01030   1st Qu.:0.9870  
+ Median :0.4381   Median :0.9999   Median :0.01340   Median :0.9950  
+ Mean   :0.4549   Mean   :1.0001   Mean   :0.01776   Mean   :0.9893  
+ 3rd Qu.:0.7159   3rd Qu.:1.0114   3rd Qu.:0.02180   3rd Qu.:0.9980  
+ Max.   :1.0000   Max.   :1.3148   Max.   :0.08480   Max.   :1.0200  
+      MAF        
+ Min.   :0.0100  
+ 1st Qu.:0.0520  
+ Median :0.1490  
+ Mean   :0.1864  
+ 3rd Qu.:0.3050  
+ Max.   :0.5000  </code></pre>
+</div>
+</div>
+</section>
+<section id="genomic-inflation" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Genomic inflation</h1>
+<p>The genomic inflation factor <span class="math inline">\(\lambda\)</span> compares the observed median association statistic with the value expected under the null. Values near 1 suggest little global inflation. In large highly polygenic studies, modest inflation can reflect real signal rather than poor calibration.</p>
+<p><span class="math display">\[
+\lambda = \frac{\mathrm{median}(\chi^2_{obs})}{\chi^2_{0.5, df=1}}
+\]</span></p>
+<p><strong>Question for students:</strong> why is a rescaled measure such as <span class="math inline">\(\lambda_{1000}\)</span> useful when comparing studies with very different sample sizes?</p>
+<div id="6da7075b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>chisq_obs <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> sumstats_qc<span class="sc">$</span>P, <span class="at">df =</span> <span class="dv">1</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>lambda_gc <span class="ot">&lt;-</span> <span class="fu">median</span>(chisq_obs, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">qchisq</span>(<span class="fl">0.5</span>, <span class="at">df =</span> <span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>N_total <span class="ot">&lt;-</span> n_cases <span class="sc">+</span> n_controls</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>lambda1000 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> (lambda_gc <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1000</span> <span class="sc">/</span> N_total)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">metric =</span> <span class="fu">c</span>(<span class="st">"lambda_GC"</span>, <span class="st">"lambda_1000"</span>), <span class="at">value =</span> <span class="fu">c</span>(lambda_gc, lambda1000))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A tibble: 2 × 2</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">metric</th>
+<th data-quarto-table-cell-role="th" scope="col">value</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lambda_GC</td>
+<td>1.321622</td>
+</tr>
+<tr class="even">
+<td>lambda_1000</td>
+<td>1.001426</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="genome-wide-significant-hits" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Genome-wide significant hits</h1>
+<p>The conventional genome-wide threshold is <code>5e-8</code>. This is a rough Bonferroni-style standard for the large number of common-variant tests performed across the genome.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Finding significant SNPs is only the start. The rest of this course pipeline moves from SNPs to genes and then from genes to tissues or pathways.</p>
+</div>
+</div>
+<div id="aaac8cd1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>GW_THRESH <span class="ot">&lt;-</span> <span class="fl">5e-8</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> sumstats_qc <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(P <span class="sc">&lt;</span> GW_THRESH) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CHR, SNP, BP, A1, A2, MAF, OR, SE, P, INFO)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Genome-wide significant SNPs: %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(hits)))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hits, <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Genome-wide significant SNPs: 1428</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A spec_tbl_df: 20 × 10</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">SNP</th>
+<th data-quarto-table-cell-role="th" scope="col">BP</th>
+<th data-quarto-table-cell-role="th" scope="col">A1</th>
+<th data-quarto-table-cell-role="th" scope="col">A2</th>
+<th data-quarto-table-cell-role="th" scope="col">MAF</th>
+<th data-quarto-table-cell-role="th" scope="col">OR</th>
+<th data-quarto-table-cell-role="th" scope="col">SE</th>
+<th data-quarto-table-cell-role="th" scope="col">P</th>
+<th data-quarto-table-cell-role="th" scope="col">INFO</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>rs549845</td>
+<td>44076469</td>
+<td>G</td>
+<td>A</td>
+<td>0.321</td>
+<td>1.08199</td>
+<td>0.0102</td>
+<td>9.033e-15</td>
+<td>0.999</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>rs11210887</td>
+<td>44076019</td>
+<td>G</td>
+<td>A</td>
+<td>0.321</td>
+<td>1.08188</td>
+<td>0.0102</td>
+<td>9.195e-15</td>
+<td>0.999</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>rs4916723</td>
+<td>87854395</td>
+<td>A</td>
+<td>C</td>
+<td>0.447</td>
+<td>0.91824</td>
+<td>0.0110</td>
+<td>9.477e-15</td>
+<td>0.957</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>rs3001723</td>
+<td>44037685</td>
+<td>G</td>
+<td>A</td>
+<td>0.317</td>
+<td>0.92422</td>
+<td>0.0102</td>
+<td>9.899e-15</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>rs12653396</td>
+<td>87847273</td>
+<td>T</td>
+<td>A</td>
+<td>0.425</td>
+<td>0.92951</td>
+<td>0.0095</td>
+<td>1.293e-14</td>
+<td>0.993</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>rs631248</td>
+<td>44071221</td>
+<td>G</td>
+<td>A</td>
+<td>0.239</td>
+<td>1.09024</td>
+<td>0.0114</td>
+<td>2.781e-14</td>
+<td>0.999</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>rs2582895</td>
+<td>28602173</td>
+<td>C</td>
+<td>A</td>
+<td>0.366</td>
+<td>1.07519</td>
+<td>0.0096</td>
+<td>4.094e-14</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>rs3791138</td>
+<td>44050027</td>
+<td>A</td>
+<td>C</td>
+<td>0.232</td>
+<td>1.09013</td>
+<td>0.0114</td>
+<td>4.162e-14</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>rs2004899</td>
+<td>44045465</td>
+<td>A</td>
+<td>G</td>
+<td>0.232</td>
+<td>1.08992</td>
+<td>0.0114</td>
+<td>4.238e-14</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>rs2585817</td>
+<td>28602221</td>
+<td>A</td>
+<td>G</td>
+<td>0.366</td>
+<td>1.07509</td>
+<td>0.0096</td>
+<td>4.349e-14</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>rs3791137</td>
+<td>44050004</td>
+<td>G</td>
+<td>A</td>
+<td>0.232</td>
+<td>1.08992</td>
+<td>0.0114</td>
+<td>4.421e-14</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>rs10890261</td>
+<td>44052377</td>
+<td>T</td>
+<td>G</td>
+<td>0.232</td>
+<td>1.08981</td>
+<td>0.0114</td>
+<td>4.550e-14</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>rs4471400</td>
+<td>28650096</td>
+<td>C</td>
+<td>T</td>
+<td>0.358</td>
+<td>1.07562</td>
+<td>0.0097</td>
+<td>4.691e-14</td>
+<td>0.998</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>rs4923546</td>
+<td>28607774</td>
+<td>G</td>
+<td>A</td>
+<td>0.366</td>
+<td>1.07487</td>
+<td>0.0096</td>
+<td>5.019e-14</td>
+<td>0.999</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>rs7952220</td>
+<td>28607245</td>
+<td>T</td>
+<td>C</td>
+<td>0.366</td>
+<td>1.07487</td>
+<td>0.0096</td>
+<td>5.045e-14</td>
+<td>0.999</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>rs2819340</td>
+<td>44039710</td>
+<td>T</td>
+<td>C</td>
+<td>0.231</td>
+<td>1.08970</td>
+<td>0.0114</td>
+<td>5.257e-14</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>rs4378371</td>
+<td>28608730</td>
+<td>C</td>
+<td>G</td>
+<td>0.366</td>
+<td>1.07487</td>
+<td>0.0096</td>
+<td>5.276e-14</td>
+<td>0.999</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>rs10835360</td>
+<td>28606699</td>
+<td>T</td>
+<td>C</td>
+<td>0.366</td>
+<td>1.07487</td>
+<td>0.0096</td>
+<td>5.320e-14</td>
+<td>0.999</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>rs11030382</td>
+<td>28604477</td>
+<td>C</td>
+<td>T</td>
+<td>0.366</td>
+<td>1.07487</td>
+<td>0.0096</td>
+<td>5.328e-14</td>
+<td>0.999</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>rs4244537</td>
+<td>28617622</td>
+<td>C</td>
+<td>A</td>
+<td>0.366</td>
+<td>1.07466</td>
+<td>0.0096</td>
+<td>5.657e-14</td>
+<td>0.999</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="visual-checks" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Visual checks</h1>
+<p>The next cells reproduce the classic exploratory plots. Save them because they are often useful later in teaching slides, lab reports, and QC summaries.</p>
+<p><strong>Questions for students:</strong> 1. Which plot is best for spotting broad inflation? 2. Which plot is best for locating associated regions in the genome? 3. What is the practical difference between an excess of tiny p-values caused by true biology and one caused by confounding?</p>
+<div id="5f11f3af" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="15">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> P)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill =</span> <span class="st">"#4682B4"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_scientific</span>()) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of GWAS P-values"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Most SNPs should have large p-values;</span><span class="sc">\n</span><span class="st">a spike near zero suggests true signal"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"P-value"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of SNPs"</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.1_pvalue_histogram.png"</span>), p1, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-11-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="873147b7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="18">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.2_qqplot.png"</span>), <span class="at">width =</span> <span class="dv">700</span>, <span class="at">height =</span> <span class="dv">700</span>, <span class="at">res =</span> <span class="dv">120</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(sumstats_qc<span class="sc">$</span>P,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">main =</span> <span class="st">"QQ Plot - ADHD GWAS"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">col =</span> <span class="st">"#4682B4"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">cex =</span> <span class="fl">0.4</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">sub =</span> <span class="fu">sprintf</span>(<span class="st">"lambda = %.3f | lambda_1000 = %.3f"</span>, lambda_gc, lambda1000))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Saved QQ plot to figures/1.2_qqplot.png</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<strong>pdf:</strong> 2
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saved QQ plot to figures/1.2_qqplot.png</code></pre>
+</div>
+</div>
+<div id="5a26d4de" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="19">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>manhattan_data <span class="ot">&lt;-</span> sumstats_qc <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CHR <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CHR, BP, P, SNP)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.3_manhattan.png"</span>), <span class="at">width =</span> <span class="dv">1400</span>, <span class="at">height =</span> <span class="dv">600</span>, <span class="at">res =</span> <span class="dv">120</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  manhattan_data,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">chr =</span> <span class="st">"CHR"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">bp =</span> <span class="st">"BP"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="st">"P"</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">snp =</span> <span class="st">"SNP"</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Manhattan Plot - ADHD GWAS 2023"</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#4682B4"</span>, <span class="st">"#B0C4DE"</span>),</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">suggestiveline =</span> <span class="fl">1e-5</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">genomewideline =</span> <span class="fl">5e-8</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="fl">0.3</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex.axis =</span> <span class="fl">0.8</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Saved Manhattan plot to figures/1.3_manhattan.png</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<strong>pdf:</strong> 2
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saved Manhattan plot to figures/1.3_manhattan.png</code></pre>
+</div>
+</div>
+<div id="3a3432a3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> OR)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill =</span> <span class="st">"#E07B54"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.85</span>, <span class="fl">1.15</span>)) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of odds ratios"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Most common-variant effects in complex traits are very small"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Odds ratio"</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of SNPs"</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> MAF)) <span class="sc">+</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>, <span class="at">fill =</span> <span class="st">"#5BAD72"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Minor allele frequency distribution"</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Common-variant GWAS usually has broad coverage across the common-frequency range"</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Minor allele frequency"</span>,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of SNPs"</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(INFO <span class="sc">&lt;=</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> INFO)) <span class="sc">+</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">60</span>, <span class="at">fill =</span> <span class="st">"#9B59B6"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">0.77</span>, <span class="at">y =</span> <span class="cn">Inf</span>, <span class="at">label =</span> <span class="st">"QC cut-off (0.8)"</span>, <span class="at">vjust =</span> <span class="dv">2</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"INFO score distribution"</span>,</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Variants below 0.8 are removed in this teaching workflow"</span>,</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"INFO score"</span>,</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of SNPs"</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.4_or_distribution.png"</span>), p4, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.5_maf_distribution.png"</span>), p5, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.6_info_distribution.png"</span>), p6, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>p4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre>Warning message:
+
+“Removed 1718 rows containing non-finite outside the scale range (`stat_bin()`).”
+
+Warning message:
+
+“Removed 2 rows containing missing values or values outside the scale range (`geom_bar()`).”
+
+Warning message:
+
+“Removed 1718 rows containing non-finite outside the scale range (`stat_bin()`).”
+
+Warning message:
+
+“Removed 2 rows containing missing values or values outside the scale range (`geom_bar()`).”
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-14-output-2.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="wrap-up" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Wrap-up</h1>
+<p>At this point you have an explored and lightly QC-filtered summary-statistics dataset. The next notebook converts these SNP-level results into the two MAGMA input files needed for annotation and gene analysis.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reflection prompts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Which of the generated plots would you include in a short QC report, and why?</li>
+<li>If lambda were much larger, what additional checks would you perform before trusting the signal?</li>
+<li>What information is still missing if your goal is biological interpretation rather than variant discovery?</li>
+</ol>
+</div>
+</div>
+<div id="788cf2c5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="21">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="fu">c</span>(<span class="st">"Total SNPs"</span>, <span class="st">"After QC"</span>, <span class="st">"Cases"</span>, <span class="st">"Controls"</span>, <span class="st">"Genome-wide significant SNPs"</span>, <span class="st">"lambda_GC"</span>, <span class="st">"lambda_1000"</span>),</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(sumstats), <span class="fu">nrow</span>(sumstats_qc), n_cases, n_controls, <span class="fu">nrow</span>(hits), lambda_gc, lambda1000)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>summary_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A tibble: 7 × 2</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">metric</th>
+<th data-quarto-table-cell-role="th" scope="col">value</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total SNPs</td>
+<td>6.774224e+06</td>
+</tr>
+<tr class="even">
+<td>After QC</td>
+<td>6.774125e+06</td>
+</tr>
+<tr class="odd">
+<td>Cases</td>
+<td>3.869100e+04</td>
+</tr>
+<tr class="even">
+<td>Controls</td>
+<td>1.868430e+05</td>
+</tr>
+<tr class="odd">
+<td>Genome-wide significant SNPs</td>
+<td>1.428000e+03</td>
+</tr>
+<tr class="even">
+<td>lambda_GC</td>
+<td>1.321622e+00</td>
+</tr>
+<tr class="odd">
+<td>lambda_1000</td>
+<td>1.001426e+00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/SamueleSoraggi\.github\.io\/post-gwas-analysis_course\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
