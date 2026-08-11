@@ -305,47 +305,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../01_finemapping.ipynb">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
  <span class="dropdown-text">Fine-mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
  <span class="dropdown-text">Magma prepare input</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
  <span class="dropdown-text">magma_snp_annotation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
  <span class="dropdown-text">magma_gene_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
  <span class="dropdown-text">magma_geneset_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../06_flames.ipynb">
+    <a class="dropdown-item" href="../Notebooks/06_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -483,7 +483,7 @@ Warning
 <p>A significant enrichment does not prove that the tissue is the unique site of action. Expression levels are correlated across tissues, and the test operates on average profiles rather than cell-state-specific mechanisms.</p>
 </div>
 </div>
-<div id="6c570c35" class="cell" data-execution_count="3">
+<div id="6c570c35" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_geneset()</span> <span class="kw">{</span></span>
@@ -507,7 +507,7 @@ Warning
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5ef3ebbb" class="cell" data-execution_count="4">
+<div id="5ef3ebbb" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_geneset</span> FULL <span class="va">${OUT_DIR}</span>/adhd_full.genes.raw <span class="va">${OUT_DIR}</span>/adhd_full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -526,7 +526,7 @@ Using flags:
     --gene-covar reference_data/gtex_v8_ts_avg_log2TPM.entrez.dedup.txt
     --out output/magma/adhd_full
 
-Start time is 14:25:55, Monday 03 Aug 2026
+Start time is 13:21:17, Tuesday 11 Aug 2026
 
 Reading file output/magma/adhd_full.genes.raw... 
     18112 genes read from file
@@ -555,10 +555,10 @@ Performing regression analysis...
     analysing single-variable models (number of models: 55)
     writing results to file output/magma/adhd_full.gsa.out                                                            
 
-End time is 14:26:02, Monday 03 Aug 2026 (elapsed: 00:00:07)</code></pre>
+End time is 13:21:24, Tuesday 11 Aug 2026 (elapsed: 00:00:07)</code></pre>
 </div>
 </div>
-<div id="87995aa5-11a8-4d6a-93cf-070011f16675" class="cell" data-execution_count="5">
+<div id="87995aa5-11a8-4d6a-93cf-070011f16675" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_geneset</span> DEMO <span class="va">${OUT_DIR}</span>/adhd_demo.genes.raw <span class="va">${OUT_DIR}</span>/adhd_demo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -577,7 +577,7 @@ Using flags:
     --gene-covar reference_data/gtex_v8_ts_avg_log2TPM.entrez.dedup.txt
     --out output/magma/adhd_demo
 
-Start time is 14:26:08, Monday 03 Aug 2026
+Start time is 13:21:24, Tuesday 11 Aug 2026
 
 Reading file output/magma/adhd_demo.genes.raw... 
     67 genes read from file
@@ -606,10 +606,10 @@ Performing regression analysis...
     analysing single-variable models (number of models: 55)
     writing results to file output/magma/adhd_demo.gsa.out                                                            
 
-End time is 14:26:08, Monday 03 Aug 2026 (elapsed: 00:00:00)</code></pre>
+End time is 13:21:24, Tuesday 11 Aug 2026 (elapsed: 00:00:00)</code></pre>
 </div>
 </div>
-<div id="1718161a" class="cell" data-execution_count="7">
+<div id="1718161a" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'Top gene-set results by p-value:'</span></span>

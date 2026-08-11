@@ -4247,47 +4247,47 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../01_finemapping.ipynb">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
  <span class="dropdown-text">Fine-mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
  <span class="dropdown-text">Magma prepare input</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
  <span class="dropdown-text">magma_snp_annotation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
  <span class="dropdown-text">magma_gene_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
  <span class="dropdown-text">magma_geneset_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../06_flames.ipynb">
+    <a class="dropdown-item" href="../Notebooks/06_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -4372,7 +4372,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </div>
 <section id="setup-and-helper-functions" class="level2">
 <h2 class="anchored" data-anchor-id="setup-and-helper-functions">Setup and helper functions</h2>
-<div id="d8f75d69" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
+<div id="d8f75d69" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="st">&quot;output/fm_out/&quot;</span></span>
@@ -4403,7 +4403,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <section id="block-1-fine-map-the-locus-matched-ld" class="level2">
 <h2 class="anchored" data-anchor-id="block-1-fine-map-the-locus-matched-ld">Block 1: Fine-map the locus, matched LD</h2>
 <p>We start with the <strong>SORCS3 locus</strong> (chr10 ~106.45 Mb). Its lead variant is <strong>rs11596214</strong>. ADHD is a case/control trait, so the sample size passed to SuSiE is the <strong>effective N</strong> (Neff ~ 51.6k). The LD here is the <strong>1000G EUR</strong> reference panel.</p>
-<div id="9f793cd0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
+<div id="9f793cd0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">file.path</span>(data_dir, <span class="st">&quot;locus1_clean&quot;</span>, <span class="st">&quot;sumstats.tsv&quot;</span>))</span>
@@ -4484,7 +4484,7 @@ LD matrix dim: 1461 1461 </code></pre>
 </div>
 </div>
 <p><strong>The locus before fine-mapping.</strong> First look at the raw association signal, this is the LocusZoom-style view you would see in any GWAS paper.</p>
-<div id="2a976468" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
+<div id="2a976468" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">locuszoom_plot</span>(sumstats, ld, <span class="at">title =</span> <span class="st">&quot;SORCS3 locus - raw GWAS signal (coloured by correlation to the lead snp)&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4507,7 +4507,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Before running SuSiE</strong>: study the plot above.</p>
+<p><strong>Before running SuSiE</strong>: study the plot above and answer to these <strong>Questions</strong>.</p>
 <ul>
 <li>The lead SNP (purple diamond) is the most associated, but a whole <em>peak</em> of SNPs around it is nearly as significant, and red/orange means they are in tight LD (high r²) with the lead.</li>
 <li>That is the fine-mapping problem: which of these correlated variants is causal? You cannot tell from association strength alone.</li>
@@ -4515,7 +4515,7 @@ Note
 </ul>
 </div>
 </div>
-<div id="dc6886ce" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="9">
+<div id="dc6886ce" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run susie_rss() on this locus.</span></span>
@@ -4558,7 +4558,7 @@ Note
 </div>
 </div>
 </div>
-<div id="1c9a9b47" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
+<div id="1c9a9b47" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot PIPs along the locus. susie_plot is the built-in view; pip_track() is the</span></span>
@@ -4592,7 +4592,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Interpret the output</strong></p>
+<p><strong>Questions: Interpret the output</strong></p>
 <ol type="1">
 <li>How many SNPs are in the lead 95% credible set? (<code>length(fit$sets$cs[[1]])</code>)</li>
 <li>What is the top PIP? Run <code>max(susie_get_pip(fit))</code>. Is there a single clear candidate, or is the posterior spread across a wide set?</li>
@@ -4604,7 +4604,7 @@ Note
 </blockquote>
 </div>
 </div>
-<div id="b1-inspect" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
+<div id="a2f7ac7c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the credible set and purity.</span></span>
@@ -4634,7 +4634,7 @@ L2        0.916         0.957           0.950</code></pre>
 <section id="block-2-mismatched-ld-panel" class="level2">
 <h2 class="anchored" data-anchor-id="block-2-mismatched-ld-panel">Block 2: Mismatched LD panel</h2>
 <p>Now rerun the <strong>same locus</strong> using <code>ld_mismatched.RDS</code> - the <strong>1000G EAS</strong> panel (East Asian, shorter LD blocks, different haplotype structure than the European GWAS). The Z-scores are identical, only the reference panel changes.</p>
-<div id="8120b499" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
+<div id="8120b499" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ld_mm <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(data_dir, <span class="st">&quot;locus1_clean&quot;</span>, <span class="st">&quot;ld_mismatched.RDS&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4673,7 +4673,7 @@ Warning message in susie_suff_stat(XtX = XtX, Xty = Xty, n = n, yty = (n - 1) * 
 <p><strong>Run the LD diagnostic</strong>, although susie already prints that something might be wrong</p>
 <pre><code># estimate_s_rss() measures global Z-score / LD inconsistency.
 # Rule of thumb: s_hat &lt; 0.05 fine, 0.05 to 0.10 marginal, &gt; 0.10 mismatch.</code></pre>
-<div id="6b5616a9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="15">
+<div id="6b5616a9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate_s_rss() measures global Z-score / LD inconsistency.</span></span>
@@ -4704,7 +4704,7 @@ s_hat (mismatched panel): 0.6087 </code></pre>
 </div>
 </div>
 <p><code>s_hat</code> is a single number. The <strong><code>kriging_rss</code></strong> diagnostic is the per-SNP version: for each SNP it compares the <em>observed</em> z to the value <em>expected</em> from its LD neighbours, and flags outliers (in red), variants whose z is inconsistent with the reference panel. Under a matched panel the points sit on the diagonal.</p>
-<div id="f7247779" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="16">
+<div id="f7247779" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run kriging_rss() for each panel and show its diagnostic plot.</span></span>
@@ -4763,7 +4763,7 @@ Warning message:
 </div>
 </div>
 </div>
-<div id="b2-compare" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="40c73dcc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare credible sets side by side.</span></span>

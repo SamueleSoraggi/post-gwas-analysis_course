@@ -305,47 +305,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../01_finemapping.ipynb">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
  <span class="dropdown-text">Fine-mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
  <span class="dropdown-text">Magma prepare input</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
  <span class="dropdown-text">magma_snp_annotation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
  <span class="dropdown-text">magma_gene_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
  <span class="dropdown-text">magma_geneset_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../06_flames.ipynb">
+    <a class="dropdown-item" href="../Notebooks/06_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -441,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </div>
 </div>
-<div id="cfa92dab" class="cell" data-execution_count="23">
+<div id="cfa92dab" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">REF_DIR</span><span class="op">=</span>reference_data</span>
@@ -452,13 +452,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">${OUT_DIR}</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-d</span> <span class="va">${REF_DIR}</span>/g1000_eur <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">curl</span> https://zenodo.org/records/14142263/files/g1000_eur.zip<span class="pp">?</span>download=1 <span class="at">-o</span> <span class="va">${REF_DIR}</span>/g1000_eur.zip</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unzip</span> <span class="va">${REF_DIR}</span>/g1000_eur.zip <span class="at">-d</span> <span class="va">${REF_DIR}</span>/g1000_eur</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Reference data already exists, skipping download and extraction."</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'Gene location file: %s\n'</span> <span class="st">"</span><span class="va">${GENE_LOC}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mkdir</span> <span class="at">-p</span> <span class="va">${REF_DIR}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">curl</span> https://zenodo.org/records/14142263/files/g1000_eur.zip<span class="pp">?</span>download=1 <span class="at">-o</span> <span class="va">${REF_DIR}</span>/g1000_eur.zip</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unzip</span> <span class="va">${REF_DIR}</span>/g1000_eur.zip <span class="at">-d</span> <span class="va">${REF_DIR}</span>/g1000_eur</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Reference data already exists, skipping download and extraction."</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">printf</span> <span class="st">'Gene location file: %s\n'</span> <span class="st">"</span><span class="va">${GENE_LOC}</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reference data already exists, skipping download and extraction.
@@ -482,7 +483,7 @@ Warning
 <p>A positional window does not capture all regulatory biology. Many causal variants act over longer distances or through chromatin interactions not represented here.</p>
 </div>
 </div>
-<div id="a4cb78df" class="cell" data-execution_count="24">
+<div id="a4cb78df" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_annotation()</span> <span class="kw">{</span></span>
@@ -507,28 +508,28 @@ Warning
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="796f2766" class="cell" data-execution_count="20">
+<div id="796f2766" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_annotation</span> FULL <span class="va">${INPUT_DIR}</span>/snp_loc_full.txt <span class="va">${OUT_DIR}</span>/adhd_full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_annotation</span> FULL <span class="va">${OUT_DIR}</span>/snp_loc_full.txt <span class="va">${OUT_DIR}</span>/adhd_full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ============================================================
 Running MAGMA SNP annotation: FULL
 ============================================================
-SNP location file: input/magma/snp_loc_full.txt
+SNP location file: output/magma/snp_loc_full.txt
 Gene location file: reference_data/NCBI37.3/NCBI37.3.gene.loc
 Window: 10,10 kb
 Output prefix: output/magma/adhd_full
 Welcome to MAGMA v1.10 (linux/s)
 Using flags:
     --annotate window=10,10
-    --snp-loc input/magma/snp_loc_full.txt
+    --snp-loc output/magma/snp_loc_full.txt
     --gene-loc reference_data/NCBI37.3/NCBI37.3.gene.loc
     --out output/magma/adhd_full
 
-Start time is 10:47:49, Tuesday 19 May 2026
+Start time is 13:07:22, Tuesday 11 Aug 2026
 
 Starting annotation...
 Reading gene locations from file reference_data/NCBI37.3/NCBI37.3.gene.loc... 
@@ -558,7 +559,7 @@ Reading gene locations from file reference_data/NCBI37.3/NCBI37.3.gene.loc...
     chromosome 22: 442 genes
     chromosome  X: 805 genes
     chromosome  Y: 47 genes
-Reading SNP locations from file input/magma/snp_loc_full.txt... 
+Reading SNP locations from file output/magma/snp_loc_full.txt... 
     WARNING: on line 1, chromosome code 'CHR' not recognised; skipping SNP (ID = SNP)
     6774125 SNP locations read from file                                                            
     of those, 3230552 (47.69%) mapped to at least one gene
@@ -589,31 +590,31 @@ Writing annotation to file output/magma/adhd_full.genes.annot
     at least one SNP mapped to each of a total of 18120 genes (out of 19427)
 
 
-End time is 10:47:58, Tuesday 19 May 2026 (elapsed: 00:00:09)</code></pre>
+End time is 13:07:32, Tuesday 11 Aug 2026 (elapsed: 00:00:10)</code></pre>
 </div>
 </div>
-<div id="2965ebdb-4cfa-47d7-8dec-0b0d3b48a9dc" class="cell" data-execution_count="25">
+<div id="2965ebdb-4cfa-47d7-8dec-0b0d3b48a9dc" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_annotation</span> DEMO <span class="va">${INPUT_DIR}</span>/snp_loc_demo.txt <span class="va">${OUT_DIR}</span>/adhd_demo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_annotation</span> DEMO <span class="va">${OUT_DIR}</span>/snp_loc_demo.txt <span class="va">${OUT_DIR}</span>/adhd_demo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ============================================================
 Running MAGMA SNP annotation: DEMO
 ============================================================
-SNP location file: input/magma/snp_loc_demo.txt
+SNP location file: output/magma/snp_loc_demo.txt
 Gene location file: reference_data/NCBI37.3/NCBI37.3.gene.loc
 Window: 10,10 kb
 Output prefix: output/magma/adhd_demo
 Welcome to MAGMA v1.10 (linux/s)
 Using flags:
     --annotate window=10,10
-    --snp-loc input/magma/snp_loc_demo.txt
+    --snp-loc output/magma/snp_loc_demo.txt
     --gene-loc reference_data/NCBI37.3/NCBI37.3.gene.loc
     --out output/magma/adhd_demo
 
-Start time is 10:50:02, Tuesday 19 May 2026
+Start time is 13:07:34, Tuesday 11 Aug 2026
 
 Starting annotation...
 Reading gene locations from file reference_data/NCBI37.3/NCBI37.3.gene.loc... 
@@ -643,7 +644,7 @@ Reading gene locations from file reference_data/NCBI37.3/NCBI37.3.gene.loc...
     chromosome 22: 442 genes
     chromosome  X: 805 genes
     chromosome  Y: 47 genes
-Reading SNP locations from file input/magma/snp_loc_demo.txt... 
+Reading SNP locations from file output/magma/snp_loc_demo.txt... 
     WARNING: on line 1, chromosome code 'CHR' not recognised; skipping SNP (ID = SNP)
     2422 SNP locations read from file                                                               
     of those, 1188 (49.05%) mapped to at least one gene
@@ -675,10 +676,10 @@ Writing annotation to file output/magma/adhd_demo.genes.annot
     at least one SNP mapped to each of a total of 67 genes (out of 19427)
 
 
-End time is 10:50:02, Tuesday 19 May 2026 (elapsed: 00:00:00)</code></pre>
+End time is 13:07:34, Tuesday 11 Aug 2026 (elapsed: 00:00:00)</code></pre>
 </div>
 </div>
-<div id="74e181ac" class="cell" data-execution_count="27">
+<div id="74e181ac" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'Produced annotation files:'</span></span>

@@ -4231,47 +4231,47 @@ vertical-align: -.125em;
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../01_finemapping.ipynb">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
  <span class="dropdown-text">Fine-mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
  <span class="dropdown-text">Magma prepare input</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
  <span class="dropdown-text">magma_snp_annotation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
  <span class="dropdown-text">magma_gene_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
  <span class="dropdown-text">magma_geneset_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../06_flames.ipynb">
+    <a class="dropdown-item" href="../Notebooks/06_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -4354,7 +4354,7 @@ vertical-align: -.125em;
 <p>By the end of this notebook, you should be able to: - assemble the inputs FLAMES needs for a locus-specific run - interpret the FLAMES ranking and score threshold - explain what the top-ranked gene is supported by and what FLAMES does not prove</p>
 </div>
 </div>
-<div id="setup" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
+<div id="24bd9668" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="st">&quot;output/fm_out/&quot;</span></span>
@@ -4364,14 +4364,7 @@ vertical-align: -.125em;
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Credible set you exported at the end of Exercise 1 (Block 4)</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cs_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="st">&quot;credible_sets_for_flames.tsv&quot;</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Example FLAMES output for the SORCS3 locus, used in Blocks 2 to 4</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Override with FLAMES_EXAMPLE_DIR to point at a real run</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>example_dir <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">&quot;FLAMES_EXAMPLE_DIR&quot;</span>, <span class="at">unset =</span> <span class="st">&quot;input/flames/example_output&quot;</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># FLAMES reference directory (Zenodo 12635505, about 10 GB)</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>flames_ref <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">&quot;FLAMES_REF&quot;</span>, <span class="at">unset =</span> <span class="st">&quot;input/flames/hrc_reference_genome&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cs_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="st">&quot;credible_sets_for_flames.tsv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="overview-1" class="level2">
@@ -4443,7 +4436,7 @@ Note
 <p><strong>Credible-set file format.</strong> FLAMES reads a per-locus file whose SNP column is <code>CHR:BP:A1:A2</code> (or <code>CHR:BP:A1_A2</code>) and a PIP column. Your Exercise 1 export already has <code>SNP</code> and <code>PIP</code> columns, so you point FLAMES at them with <code>-sc SNP -pc PIP</code>.</p>
 </div>
 </div>
-<div id="ad6b6843" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="ad6b6843" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(cs_file)) {</span>
@@ -4466,45 +4459,34 @@ Note
 6: 10:106559287:T:C 0.26531046 locus1_SORCS3</code></pre>
 </div>
 </div>
-<p>Now fill in the two FLAMES calls. The first <strong>annotates</strong> your credible-set SNPs against the reference, then the second <strong>scores</strong> the genes. (Genome build is GRCh37, the same build as the 1000G LD and sumstats in Exercise 1.)</p>
-<div id="0ad15bb0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;bash&quot;}}">
+<p>Now we run the two FLAMES calls. The first <strong>annotates</strong> your credible-set SNPs against the reference, then the second <strong>scores</strong> the genes. (Genome build is GRCh37, the same build as the 1000G LD and sumstats in Exercise 1.)</p>
+<div id="5ebfb866-7c5d-4c67-a259-dc1837b7b0f6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: annotate the credible set. Fill in the five inputs (-c -a -p -m -mt).</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>python FLAMES.py annotate \</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>c   ___ \ <span class="co">#credible set file</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>sc  SNP  <span class="sc">-</span>pc PIP \</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>a   ___ \ <span class="co">#annotation data</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>p   ___ \</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>m   ___ \</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>mt  ___ \</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>b   GRCh37 \</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>o   <span class="sc">$</span>{HOME}<span class="sc">/</span>fm_out<span class="sc">/</span>flames_annot</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>to_run <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">flames annotate -c output/fm_out/credible_sets_for_flames.tsv </span><span class="sc">\\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">-sc  SNP  -pc PIP </span><span class="sc">\\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">-a   input/flames/Annotation_data </span><span class="sc">\\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">-p   input/flames/pops/PASS_Schizophrenia.preds </span><span class="sc">\\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">-m   input/flames/pops/PASS_Schizophrenia.genes.out </span><span class="sc">\\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">-mt  ./output/magma/adhd_demo.gsa.out </span><span class="sc">\\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">-b   GRCh37 </span><span class="sc">\\</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">-o   output/fm_out/flames_annot</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: score the annotated locus. Point -i at the annotate output directory.</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>python FLAMES.py FLAMES \</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>i   ___ \</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span>o   <span class="sc">$</span>{HOME}<span class="sc">/</span>fm_out<span class="sc">/</span>flames_out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#run on the command line</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(to_run)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5ebfb866-7c5d-4c67-a259-dc1837b7b0f6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
+<div id="263e66c0-bf2b-49f4-9198-b1ef980fb33f" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>to_run <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">flames annotate -c output/fm_out/credible_sets_for_flames.tsv </span><span class="sc">\\</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">-sc  SNP  -pc PIP </span><span class="sc">\\</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">-a   input/flames/Annotation_data </span><span class="sc">\\</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">-p   ../../pops/example/out/PASS_Schizophrenia.preds </span><span class="sc">\\</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">-m   ../../pops/example/data/magma_scores/PASS_Schizophrenia.genes.out </span><span class="sc">\\</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">-mt  ./output/magma/adhd_demo.gsa.out </span><span class="sc">\\</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">-b   GRCh37 </span><span class="sc">\\</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">-o   output/fm_out/flames_annot</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(to_run)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make a list of annotation files as a txt list</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>to_run <span class="ot">&lt;-</span> <span class="st">&quot;ls output/fm_out/flames_annot/*.tsv &gt; output/fm_out/flames_annot.txt&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(to_run)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0bbc64e6-6554-4541-a7a9-091c0256ae72" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
+<div id="0bbc64e6-6554-4541-a7a9-091c0256ae72" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>to_run <span class="ot">&lt;-</span> <span class="st">&quot;</span></span>
@@ -4512,9 +4494,9 @@ Note
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">flames FLAMES </span><span class="sc">\\</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">    -i   output/fm_out/flames_annot.txt </span><span class="sc">\\</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">    -o   output/fm_out/flames_out</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#run on the command line</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(to_run)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
@@ -4536,10 +4518,10 @@ Warning
 <section id="block-2-read-the-ranking-and-apply-the-threshold" class="level2">
 <h2 class="anchored" data-anchor-id="block-2-read-the-ranking-and-apply-the-threshold">Block 2: Read the ranking and apply the threshold</h2>
 <p>FLAMES writes two files: <code>FLAMES_scores.pred</code> (the reported gene per locus) and <code>FLAMES_scores.raw</code> (every scored gene, with the evidence columns). We load the <code>.raw</code> table so you can see the full ranking, not just the winner.</p>
-<div id="7847e94a-5bca-409d-b601-88238f0b3e4d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
+<div id="7847e94a-5bca-409d-b601-88238f0b3e4d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;output/fm_out/flames_out/FLAMES_scores.raw&quot;</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="fu">paste0</span>(out_dir,<span class="st">&quot;/flames_out/FLAMES_scores.raw&quot;</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Genes scored at the locus:&quot;</span>, <span class="fu">nrow</span>(scores), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(scores[<span class="fu">order</span>(<span class="sc">-</span>FLAMES_scaled),</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             .(symbol, FLAMES_scaled, FLAMES_raw, estimated_cumulative_precision)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4576,7 +4558,7 @@ Note
 </ul>
 </div>
 </div>
-<div id="54723b2b-830b-4a47-9bc8-236fb39e1b28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
+<div id="54723b2b-830b-4a47-9bc8-236fb39e1b28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the genes at the scaled-score threshold and see what passes.</span></span>
@@ -4606,7 +4588,7 @@ Below threshold:
 7: CCDC147    0.06805174</code></pre>
 </div>
 </div>
-<div id="a4509460-9e1d-46d5-90ae-d3be2963f46b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
+<div id="a4509460-9e1d-46d5-90ae-d3be2963f46b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart of scaled scores with the threshold line.</span></span>
@@ -4643,7 +4625,7 @@ Note
 <section id="block-3-trace-the-evidence-behind-the-call" class="level2">
 <h2 class="anchored" data-anchor-id="block-3-trace-the-evidence-behind-the-call">Block 3: Trace the evidence behind the call</h2>
 <p>The scaled score is a blend of two streams: the <strong>XGBoost</strong> score (the functional SNP-to-gene evidence) and the <strong>PoPS</strong> gene-level similarity score. The <code>.raw</code> table keeps both, so we can ask <em>why</em> the top gene won.</p>
-<div id="8fbf1196-71a7-407b-b928-5beb9c311689" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="9">
+<div id="8fbf1196-71a7-407b-b928-5beb9c311689" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the two evidence streams for every gene, ranked by the final score.</span></span>
@@ -4763,7 +4745,7 @@ Note
 </div>
 <section id="final-effector-gene-table" class="level3">
 <h3 class="anchored" data-anchor-id="final-effector-gene-table">Final effector-gene table</h3>
-<div id="9630e6ca-b28d-4204-a2d5-f94d0fa68878" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
+<div id="9630e6ca-b28d-4204-a2d5-f94d0fa68878" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build and save the final table: locus, gene, scaled score, precision, tier.</span></span>

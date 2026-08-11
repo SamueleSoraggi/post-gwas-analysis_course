@@ -305,47 +305,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../01_finemapping.ipynb">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
  <span class="dropdown-text">Fine-mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
  <span class="dropdown-text">Magma prepare input</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
  <span class="dropdown-text">magma_snp_annotation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
  <span class="dropdown-text">magma_gene_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
  <span class="dropdown-text">magma_geneset_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../06_flames.ipynb">
+    <a class="dropdown-item" href="../Notebooks/06_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -484,7 +484,7 @@ Note
 <p>MAGMA corrects for LD so that clusters of correlated SNPs do not act like independent evidence. Without that correction, some genes would look strong simply because they sit in dense LD blocks.</p>
 </div>
 </div>
-<div id="1ec8dcf3" class="cell" data-execution_count="4">
+<div id="1ec8dcf3" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_gene_analysis()</span> <span class="kw">{</span></span>
@@ -512,10 +512,10 @@ Note
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="e039a28f" class="cell" data-execution_count="5">
+<div id="e039a28f" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_gene_analysis</span> FULL <span class="va">${OUT_DIR}</span>/adhd_full.genes.annot <span class="va">${INPUT_DIR}</span>/pval_full.txt <span class="va">${OUT_DIR}</span>/adhd_full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_gene_analysis</span> FULL <span class="va">${OUT_DIR}</span>/adhd_full.genes.annot <span class="va">${OUT_DIR}</span>/pval_full.txt <span class="va">${OUT_DIR}</span>/adhd_full</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -523,16 +523,16 @@ Note
 Running MAGMA gene analysis: FULL
 ============================================================
 Annotation file: output/magma/adhd_full.genes.annot
-P-value file: input/magma/pval_full.txt
+P-value file: output/magma/pval_full.txt
 Output prefix: output/magma/adhd_full
 Welcome to MAGMA v1.10 (linux/s)
 Using flags:
     --bfile reference_data/g1000_eur/g1000_eur
     --gene-annot output/magma/adhd_full.genes.annot
-    --pval input/magma/pval_full.txt use=SNP,P N=225534
+    --pval output/magma/pval_full.txt use=SNP,P N=225534
     --out output/magma/adhd_full
 
-Start time is 14:03:57, Monday 03 Aug 2026
+Start time is 13:09:50, Tuesday 11 Aug 2026
 
 Loading PLINK-format data...
 Reading file reference_data/g1000_eur/g1000_eur.fam... 503 individuals read
@@ -544,7 +544,7 @@ Reading SNP synonyms from file reference_data/g1000_eur/g1000_eur.synonyms (auto
     WARNING: detected 133 synonymous SNP pairs in the data
              skipped all synonym entries involved, synonymous SNPs are kept in analysis
              writing list of detected synonyms in data to supplementary log file
-Reading SNP p-values from file input/magma/pval_full.txt... 
+Reading SNP p-values from file output/magma/pval_full.txt... 
     detected 2 variables in file
     using variable: SNP (SNP id)
     using variable: P (p-value)
@@ -560,13 +560,13 @@ Starting gene analysis...
     writing intermediate output to file output/magma/adhd_full.genes.raw
 
 
-End time is 14:10:36, Monday 03 Aug 2026 (elapsed: 00:06:39)</code></pre>
+End time is 13:16:10, Tuesday 11 Aug 2026 (elapsed: 00:06:20)</code></pre>
 </div>
 </div>
-<div id="bb3d66e9-89ce-4bf3-8983-bf6ac3b41d6b" class="cell" data-execution_count="6">
+<div id="bb3d66e9-89ce-4bf3-8983-bf6ac3b41d6b" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_gene_analysis</span> DEMO <span class="va">${OUT_DIR}</span>/adhd_demo.genes.annot <span class="va">${INPUT_DIR}</span>/pval_demo.txt <span class="va">${OUT_DIR}</span>/adhd_demo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_gene_analysis</span> DEMO <span class="va">${OUT_DIR}</span>/adhd_demo.genes.annot <span class="va">${OUT_DIR}</span>/pval_demo.txt <span class="va">${OUT_DIR}</span>/adhd_demo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -574,16 +574,16 @@ End time is 14:10:36, Monday 03 Aug 2026 (elapsed: 00:06:39)</code></pre>
 Running MAGMA gene analysis: DEMO
 ============================================================
 Annotation file: output/magma/adhd_demo.genes.annot
-P-value file: input/magma/pval_demo.txt
+P-value file: output/magma/pval_demo.txt
 Output prefix: output/magma/adhd_demo
 Welcome to MAGMA v1.10 (linux/s)
 Using flags:
     --bfile reference_data/g1000_eur/g1000_eur
     --gene-annot output/magma/adhd_demo.genes.annot
-    --pval input/magma/pval_demo.txt use=SNP,P N=225534
+    --pval output/magma/pval_demo.txt use=SNP,P N=225534
     --out output/magma/adhd_demo
 
-Start time is 14:10:36, Monday 03 Aug 2026
+Start time is 13:16:10, Tuesday 11 Aug 2026
 
 Loading PLINK-format data...
 Reading file reference_data/g1000_eur/g1000_eur.fam... 503 individuals read
@@ -595,7 +595,7 @@ Reading SNP synonyms from file reference_data/g1000_eur/g1000_eur.synonyms (auto
     WARNING: detected 133 synonymous SNP pairs in the data
              skipped all synonym entries involved, synonymous SNPs are kept in analysis
              writing list of detected synonyms in data to supplementary log file
-Reading SNP p-values from file input/magma/pval_demo.txt... 
+Reading SNP p-values from file output/magma/pval_demo.txt... 
     detected 2 variables in file
     using variable: SNP (SNP id)
     using variable: P (p-value)
@@ -611,10 +611,10 @@ Starting gene analysis...
     writing intermediate output to file output/magma/adhd_demo.genes.raw
 
 
-End time is 14:12:07, Monday 03 Aug 2026 (elapsed: 00:01:31)</code></pre>
+End time is 13:17:45, Tuesday 11 Aug 2026 (elapsed: 00:01:35)</code></pre>
 </div>
 </div>
-<div id="f6006f53" class="cell" data-execution_count="7">
+<div id="f6006f53" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'Gene analysis outputs:'</span></span>
@@ -622,10 +622,10 @@ End time is 14:12:07, Monday 03 Aug 2026 (elapsed: 00:01:31)</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Gene analysis outputs:
--rw-rw-r-- 1 samuele nogroup 5.8K Aug  3 14:12 output/magma/adhd_demo.genes.out
--rw-rw-r-- 1 samuele nogroup 5.0K Aug  3 14:12 output/magma/adhd_demo.genes.raw
--rw-rw-r-- 1 samuele nogroup 1.5M Aug  3 14:10 output/magma/adhd_full.genes.out
--rw-rw-r-- 1 samuele nogroup  11M Aug  3 14:10 output/magma/adhd_full.genes.raw</code></pre>
+-rw-rw-r-- 1 samuele nogroup 5.8K Aug 11 13:17 output/magma/adhd_demo.genes.out
+-rw-rw-r-- 1 samuele nogroup 5.0K Aug 11 13:17 output/magma/adhd_demo.genes.raw
+-rw-rw-r-- 1 samuele nogroup 1.5M Aug 11 13:16 output/magma/adhd_full.genes.out
+-rw-rw-r-- 1 samuele nogroup  11M Aug 11 13:16 output/magma/adhd_full.genes.raw</code></pre>
 </div>
 </div>
 </section>

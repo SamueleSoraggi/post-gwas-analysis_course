@@ -4247,47 +4247,47 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../01_finemapping.ipynb">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
  <span class="dropdown-text">Fine-mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
  <span class="dropdown-text">Magma prepare input</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
  <span class="dropdown-text">magma_snp_annotation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
  <span class="dropdown-text">magma_gene_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
  <span class="dropdown-text">magma_geneset_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../06_flames.ipynb">
+    <a class="dropdown-item" href="../Notebooks/06_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -4441,7 +4441,7 @@ Call:
 --ref-ld-chr reference_data/eur_w_ld_chr/ \
 --w-ld-chr reference_data/eur_w_ld_chr/ 
 
-Beginning analysis at Mon Aug 10 13:41:33 2026
+Beginning analysis at Tue Aug 11 13:57:12 2026
 Reading summary statistics from input/ldsc/adhd_pgc_2022_munged.sumstats.gz ...
 RuntimeWarning: compression has no effect when passing a non-binary object as input for file input/ldsc/adhd_pgc_2022_munged.sumstats.gz
 Read summary statistics for 1112499 SNPs.
@@ -4492,14 +4492,14 @@ Summary of Genetic Correlation Results
                                          p1                                           p2      rg     se       z      p  h2_obs  h2_obs_se  h2_int  h2_int_se  gcov_int  gcov_int_se
 input/ldsc/adhd_pgc_2022_munged.sumstats.gz input/ldsc/bmi_yengo_2018_munged.sumstats.gz -0.0414 0.0160 -2.5904 0.0096  0.5002     0.0246  1.5379     0.1242   -0.0086       0.0122
 
-Analysis finished at Mon Aug 10 13:41:41 2026
-Total time elapsed: 7.65s</code></pre>
+Analysis finished at Tue Aug 11 13:57:20 2026
+Total time elapsed: 8.13s</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>0</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can now adapt this command to calculate the rg between ADHD and the other traits</span></span>
@@ -4507,7 +4507,7 @@ Total time elapsed: 7.65s</code></pre>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ADHD and educational attainment</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&quot;ldsc </span><span class="op">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">--rg input/ldsc/adhd_pgc_2022_munged.sumstats.gz,input/ldsc/educational_attainment_xia_2025_munged.sumstats.gz </span><span class="op">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">--rg input/ldsc/___,input/ldsc/___ </span><span class="op">\</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
@@ -4515,252 +4515,36 @@ Total time elapsed: 7.65s</code></pre>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>*********************************************************************
-* LD Score Regression (LDSC)
-* Version 3.0.1
-* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
-* Broad Institute of MIT and Harvard / MIT Department of Mathematics
-* GNU General Public License v3
-*********************************************************************
-Call: 
-./ldsc.py \
---out output/ldsc/adhd_edu_rg \
---rg input/ldsc/adhd_pgc_2022_munged.sumstats.gz,input/ldsc/educational_attainment_xia_2025_munged.sumstats.gz \
---ref-ld-chr reference_data/eur_w_ld_chr/ \
---w-ld-chr reference_data/eur_w_ld_chr/ 
-
-Beginning analysis at Mon Aug 10 13:44:10 2026
-Reading summary statistics from input/ldsc/adhd_pgc_2022_munged.sumstats.gz ...
-RuntimeWarning: compression has no effect when passing a non-binary object as input for file input/ldsc/adhd_pgc_2022_munged.sumstats.gz
-Read summary statistics for 1112499 SNPs.
-Reading reference panel LD Score from reference_data/eur_w_ld_chr/[1-22] ... (ldscore_fromlist)
-Read reference panel LD Scores for 1290028 SNPs.
-Removing partitioned LD Scores with zero variance.
-Reading regression weight LD Score from reference_data/eur_w_ld_chr/[1-22] ... (ldscore_fromlist)
-Read regression weight LD Scores for 1290028 SNPs.
-After merging with reference panel LD, 1109029 SNPs remain.
-After merging with regression SNP LD, 1109029 SNPs remain.
-Computing rg for phenotype 2/2
-Reading summary statistics from input/ldsc/educational_attainment_xia_2025_munged.sumstats.gz ...
-RuntimeWarning: compression has no effect when passing a non-binary object as input for file input/ldsc/educational_attainment_xia_2025_munged.sumstats.gz
-Read summary statistics for 1217311 SNPs.
-After merging with summary statistics, 1109029 SNPs remain.
-1006540 SNPs with valid alleles.
-
-Heritability of phenotype 1
----------------------------
-Total Observed scale h2: 0.112 (0.0057)
-Lambda GC: 1.3789
-Mean Chi^2: 1.4733
-Intercept: 1.04 (0.0117)
-Ratio: 0.0846 (0.0248)
-
-Heritability of phenotype 2/2
------------------------------
-Total Observed scale h2: 0.1174 (0.0037)
-Lambda GC: 2.3096
-Mean Chi^2: 2.9266
-Intercept: 1.072 (0.0243)
-Ratio: 0.0374 (0.0126)
-
-Genetic Covariance
-------------------
-Total Observed scale gencov: -0.0599 (0.0029)
-Mean z1*z2: -0.495
-Intercept: -0.0282 (0.0107)
-
-Genetic Correlation
--------------------
-Genetic Correlation: -0.5218 (0.0203)
-Z-score: -25.7381
-P: 4.3834e-146
-
-
-Summary of Genetic Correlation Results
-                                         p1                                                            p2      rg     se        z      p  h2_obs  h2_obs_se  h2_int  h2_int_se  gcov_int  gcov_int_se
-input/ldsc/adhd_pgc_2022_munged.sumstats.gz input/ldsc/educational_attainment_xia_2025_munged.sumstats.gz -0.5218 0.0203 -25.7381 0.0000  0.1174     0.0037  1.0720     0.0243   -0.0282       0.0107
-
-Analysis finished at Mon Aug 10 13:44:17 2026
-Total time elapsed: 7.58s</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>0</code></pre>
-</div>
-</div>
-<div id="cell-7" class="cell" data-execution_count="4">
+<div id="cell-7" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ADHD and Year at first birth</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&quot;ldsc </span><span class="op">\</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">--rg input/ldsc/adhd_pgc_2022_munged.sumstats.gz,input/ldsc/year_at_first_birth_mills_2020_munged.sumstats.gz </span><span class="op">\</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/adhd_yearfb_rg&quot;</span> </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ADHD and Year at first birth</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&quot;ldsc </span><span class="op">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">--rg input/ldsc/___,input/ldsc/___ </span><span class="op">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/adhd_yearfb_rg&quot;</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>*********************************************************************
-* LD Score Regression (LDSC)
-* Version 3.0.1
-* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
-* Broad Institute of MIT and Harvard / MIT Department of Mathematics
-* GNU General Public License v3
-*********************************************************************
-Call: 
-./ldsc.py \
---out output/ldsc/adhd_yearfb_rg \
---rg input/ldsc/adhd_pgc_2022_munged.sumstats.gz,input/ldsc/year_at_first_birth_mills_2020_munged.sumstats.gz \
---ref-ld-chr reference_data/eur_w_ld_chr/ \
---w-ld-chr reference_data/eur_w_ld_chr/ 
-
-Beginning analysis at Mon Aug 10 13:44:56 2026
-Reading summary statistics from input/ldsc/adhd_pgc_2022_munged.sumstats.gz ...
-RuntimeWarning: compression has no effect when passing a non-binary object as input for file input/ldsc/adhd_pgc_2022_munged.sumstats.gz
-Read summary statistics for 1112499 SNPs.
-Reading reference panel LD Score from reference_data/eur_w_ld_chr/[1-22] ... (ldscore_fromlist)
-Read reference panel LD Scores for 1290028 SNPs.
-Removing partitioned LD Scores with zero variance.
-Reading regression weight LD Score from reference_data/eur_w_ld_chr/[1-22] ... (ldscore_fromlist)
-Read regression weight LD Scores for 1290028 SNPs.
-After merging with reference panel LD, 1109029 SNPs remain.
-After merging with regression SNP LD, 1109029 SNPs remain.
-Computing rg for phenotype 2/2
-Reading summary statistics from input/ldsc/year_at_first_birth_mills_2020_munged.sumstats.gz ...
-RuntimeWarning: compression has no effect when passing a non-binary object as input for file input/ldsc/year_at_first_birth_mills_2020_munged.sumstats.gz
-Read summary statistics for 1217311 SNPs.
-After merging with summary statistics, 1109029 SNPs remain.
-1106973 SNPs with valid alleles.
-
-Heritability of phenotype 1
----------------------------
-Total Observed scale h2: 0.1144 (0.0054)
-Lambda GC: 1.3581
-Mean Chi^2: 1.4501
-Intercept: 1.0282 (0.0095)
-Ratio: 0.0627 (0.0212)
-
-Heritability of phenotype 2/2
------------------------------
-Total Observed scale h2: 0.0331 (0.0014)
-Lambda GC: 1.4853
-Mean Chi^2: 1.6379
-Intercept: 1.0246 (0.0118)
-Ratio: 0.0385 (0.0184)
-
-Genetic Covariance
-------------------
-Total Observed scale gencov: -0.0404 (0.002)
-Mean z1*z2: -0.3598
-Intercept: -0.0233 (0.008)
-
-Genetic Correlation
--------------------
-Genetic Correlation: -0.6562 (0.0227)
-Z-score: -28.9097
-P: 9.0222e-184
-
-
-Summary of Genetic Correlation Results
-                                         p1                                                           p2      rg     se        z      p  h2_obs  h2_obs_se  h2_int  h2_int_se  gcov_int  gcov_int_se
-input/ldsc/adhd_pgc_2022_munged.sumstats.gz input/ldsc/year_at_first_birth_mills_2020_munged.sumstats.gz -0.6562 0.0227 -28.9097 0.0000  0.0331     0.0014  1.0246     0.0118   -0.0233       0.0080
-
-Analysis finished at Mon Aug 10 13:45:03 2026
-Total time elapsed: 7.69s</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>0</code></pre>
-</div>
-</div>
-<div id="cell-8" class="cell" data-execution_count="5">
+<div id="cell-8" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ADHD and Depression</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&quot;ldsc </span><span class="op">\</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">--rg input/ldsc/adhd_pgc_2022_munged.sumstats.gz,input/ldsc/depression_pgc_2025_munged.sumstats.gz </span><span class="op">\</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/adhd_depression_rg&quot;</span> </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ADHD and Depression</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&quot;ldsc </span><span class="op">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">--rg input/ldsc/___,input/ldsc/___ </span><span class="op">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/adhd_depression_rg&quot;</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>*********************************************************************
-* LD Score Regression (LDSC)
-* Version 3.0.1
-* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
-* Broad Institute of MIT and Harvard / MIT Department of Mathematics
-* GNU General Public License v3
-*********************************************************************
-Call: 
-./ldsc.py \
---out output/ldsc/adhd_depression_rg \
---rg input/ldsc/adhd_pgc_2022_munged.sumstats.gz,input/ldsc/depression_pgc_2025_munged.sumstats.gz \
---ref-ld-chr reference_data/eur_w_ld_chr/ \
---w-ld-chr reference_data/eur_w_ld_chr/ 
-
-Beginning analysis at Mon Aug 10 13:45:38 2026
-Reading summary statistics from input/ldsc/adhd_pgc_2022_munged.sumstats.gz ...
-RuntimeWarning: compression has no effect when passing a non-binary object as input for file input/ldsc/adhd_pgc_2022_munged.sumstats.gz
-Read summary statistics for 1112499 SNPs.
-Reading reference panel LD Score from reference_data/eur_w_ld_chr/[1-22] ... (ldscore_fromlist)
-Read reference panel LD Scores for 1290028 SNPs.
-Removing partitioned LD Scores with zero variance.
-Reading regression weight LD Score from reference_data/eur_w_ld_chr/[1-22] ... (ldscore_fromlist)
-Read regression weight LD Scores for 1290028 SNPs.
-After merging with reference panel LD, 1109029 SNPs remain.
-After merging with regression SNP LD, 1109029 SNPs remain.
-Computing rg for phenotype 2/2
-Reading summary statistics from input/ldsc/depression_pgc_2025_munged.sumstats.gz ...
-RuntimeWarning: compression has no effect when passing a non-binary object as input for file input/ldsc/depression_pgc_2025_munged.sumstats.gz
-Read summary statistics for 1217311 SNPs.
-After merging with summary statistics, 1109029 SNPs remain.
-1046874 SNPs with valid alleles.
-
-Heritability of phenotype 1
----------------------------
-Total Observed scale h2: 0.1138 (0.0052)
-Lambda GC: 1.3581
-Mean Chi^2: 1.4478
-Intercept: 1.03 (0.0099)
-Ratio: 0.067 (0.022)
-
-Heritability of phenotype 2/2
------------------------------
-Total Observed scale h2: 0.0518 (0.0016)
-Lambda GC: 1.8809
-Mean Chi^2: 2.2293
-Intercept: 1.058 (0.0157)
-Ratio: 0.0471 (0.0128)
-
-Genetic Covariance
-------------------
-Total Observed scale gencov: 0.0458 (0.002)
-Mean z1*z2: 0.5434
-Intercept: 0.127 (0.009)
-
-Genetic Correlation
--------------------
-Genetic Correlation: 0.5961 (0.0177)
-Z-score: 33.6323
-P: 5.6613e-248
-
-
-Summary of Genetic Correlation Results
-                                         p1                                                p2     rg     se       z      p  h2_obs  h2_obs_se  h2_int  h2_int_se  gcov_int  gcov_int_se
-input/ldsc/adhd_pgc_2022_munged.sumstats.gz input/ldsc/depression_pgc_2025_munged.sumstats.gz 0.5961 0.0177 33.6323 0.0000  0.0518     0.0016  1.0580     0.0157    0.1270       0.0090
-
-Analysis finished at Mon Aug 10 13:45:46 2026
-Total time elapsed: 7.69s</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>0</code></pre>
-</div>
 </div>
 </section>
 <section id="analyse-and-present-results" class="level2">
@@ -4772,57 +4556,57 @@ Total time elapsed: 7.69s</code></pre>
 <div id="cell-11" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a list with the file paths ----&gt; Adapt this section based on how you named the files</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>path_list <span class="op">=</span> [<span class="st">&quot;output/ldsc/adhd_bmi_rg.log&quot;</span>, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/adhd_edu_rg.log&quot;</span>, </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/adhd_yearfb_rg.log&quot;</span>, </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/adhd_depression_rg.log&quot;</span>]</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a list of trait names</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>trait_list <span class="op">=</span> [<span class="st">&quot;bmi&quot;</span>, <span class="st">&quot;educational_attainment&quot;</span>, <span class="st">&quot;year_first_birth&quot;</span>, <span class="st">&quot;depression&quot;</span>]</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Initiate an empty list </span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#We iterate over all the files </span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(path_list)):</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Initiate the result vector</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;trait1&quot;</span>: <span class="st">&quot;adhd&quot;</span>,</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;trait2&quot;</span>: trait_list[i],</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;rg&quot;</span>: <span class="va">None</span>,</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;se&quot;</span>: <span class="va">None</span>,</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;p-value&quot;</span>: <span class="va">None</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read the file and extract rg, se and p-value</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path_list[i], <span class="st">&quot;r&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j, line <span class="kw">in</span> <span class="bu">enumerate</span>(f):</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> j <span class="op">==</span> <span class="dv">54</span>:</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>                words <span class="op">=</span> line.strip().split()</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Extract 3th and 4th &quot;words&quot; (indices 2 and 3) -&gt; corresponds to rg and se</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>                data[<span class="st">&quot;rg&quot;</span>] <span class="op">=</span> <span class="bu">float</span>(words[<span class="dv">2</span>]) </span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>                data[<span class="st">&quot;se&quot;</span>] <span class="op">=</span> <span class="bu">float</span>(words[<span class="dv">3</span>].strip(<span class="st">&quot;()&quot;</span>))</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> j <span class="op">==</span> <span class="dv">56</span>:</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>                words <span class="op">=</span> line.strip().split()</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>                <span class="co">#Extract the 2nd &quot;word&quot; (indice 1) -&gt; corresponds to the p-value</span></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>                data[<span class="st">&quot;p-value&quot;</span>] <span class="op">=</span> <span class="bu">float</span>(words[<span class="dv">1</span>])</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span> <span class="co"># no need to continue reading the file</span></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Store in rows</span></span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>        rows.append(data)</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Store in a DataFrame</span></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(rows)</span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a list with the file paths ----&gt; Adapt this section based on how you named the files</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>path_list <span class="op">=</span> [<span class="st">&quot;output/ldsc/adhd_bmi_rg.log&quot;</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/adhd_edu_rg.log&quot;</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/adhd_yearfb_rg.log&quot;</span>, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/adhd_depression_rg.log&quot;</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a list of trait names</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>trait_list <span class="op">=</span> [<span class="st">&quot;bmi&quot;</span>, <span class="st">&quot;educational_attainment&quot;</span>, <span class="st">&quot;year_first_birth&quot;</span>, <span class="st">&quot;depression&quot;</span>]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Initiate an empty list </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#We iterate over all the files </span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(path_list)):</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Initiate the result vector</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;trait1&quot;</span>: <span class="st">&quot;adhd&quot;</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;trait2&quot;</span>: trait_list[i],</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;rg&quot;</span>: <span class="va">None</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;se&quot;</span>: <span class="va">None</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;p-value&quot;</span>: <span class="va">None</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read the file and extract rg, se and p-value</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path_list[i], <span class="st">&quot;r&quot;</span>) <span class="im">as</span> f:</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j, line <span class="kw">in</span> <span class="bu">enumerate</span>(f):</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> j <span class="op">==</span> <span class="dv">54</span>:</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>                words <span class="op">=</span> line.strip().split()</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Extract 3th and 4th &quot;words&quot; (indices 2 and 3) -&gt; corresponds to rg and se</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>                data[<span class="st">&quot;rg&quot;</span>] <span class="op">=</span> <span class="bu">float</span>(words[<span class="dv">2</span>]) </span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>                data[<span class="st">&quot;se&quot;</span>] <span class="op">=</span> <span class="bu">float</span>(words[<span class="dv">3</span>].strip(<span class="st">&quot;()&quot;</span>))</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> j <span class="op">==</span> <span class="dv">56</span>:</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>                words <span class="op">=</span> line.strip().split()</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>                <span class="co">#Extract the 2nd &quot;word&quot; (indice 1) -&gt; corresponds to the p-value</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>                data[<span class="st">&quot;p-value&quot;</span>] <span class="op">=</span> <span class="bu">float</span>(words[<span class="dv">1</span>])</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span> <span class="co"># no need to continue reading the file</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Store in rows</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        rows.append(data)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Store in a DataFrame</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(rows)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -4885,39 +4669,39 @@ Total time elapsed: 7.69s</code></pre>
 <div id="cell-13" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create plot </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Error bars -&gt; SE</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>ax.errorbar(</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">&quot;rg&quot;</span>], </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">&quot;trait2&quot;</span>], </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    xerr<span class="op">=</span>[<span class="bu">abs</span>(df[<span class="st">&quot;rg&quot;</span>]<span class="op">-</span>df[<span class="st">&quot;se&quot;</span>]), <span class="bu">abs</span>(df[<span class="st">&quot;rg&quot;</span>]<span class="op">-</span>df[<span class="st">&quot;se&quot;</span>])], </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    fmt<span class="op">=</span><span class="st">&#39;o&#39;</span>, </span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">&#39;black&#39;</span>, </span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Vertical line at 0</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;black&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;--&#39;</span>)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Labels on the y-axis</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels(df[<span class="st">&#39;trait2&#39;</span>])</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Labels on x-axis</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&quot;Genetic correlation&quot;</span>)</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Add p-value on the right</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (_, row) <span class="kw">in</span> <span class="bu">enumerate</span>(df.iterrows()):</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    ax.text(</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        row[<span class="st">&quot;rg&quot;</span>] <span class="op">+</span> row[<span class="st">&quot;se&quot;</span>] <span class="op">+</span> <span class="fl">0.03</span>,</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        i,</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;p=</span><span class="sc">{</span>row[<span class="st">&#39;p-value&#39;</span>]<span class="sc">:.2e}</span><span class="ss">&quot;</span>,</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">&#39;bottom&#39;</span>,</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">8</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create plot </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Error bars -&gt; SE</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ax.errorbar(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">&quot;rg&quot;</span>], </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">&quot;trait2&quot;</span>], </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    xerr<span class="op">=</span>[<span class="bu">abs</span>(df[<span class="st">&quot;rg&quot;</span>]<span class="op">-</span>df[<span class="st">&quot;se&quot;</span>]), <span class="bu">abs</span>(df[<span class="st">&quot;rg&quot;</span>]<span class="op">-</span>df[<span class="st">&quot;se&quot;</span>])], </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    fmt<span class="op">=</span><span class="st">&#39;o&#39;</span>, </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">&#39;black&#39;</span>, </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Vertical line at 0</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;black&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;--&#39;</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Labels on the y-axis</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels(df[<span class="st">&#39;trait2&#39;</span>])</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Labels on x-axis</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&quot;Genetic correlation&quot;</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Add p-value on the right</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (_, row) <span class="kw">in</span> <span class="bu">enumerate</span>(df.iterrows()):</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    ax.text(</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        row[<span class="st">&quot;rg&quot;</span>] <span class="op">+</span> row[<span class="st">&quot;se&quot;</span>] <span class="op">+</span> <span class="fl">0.03</span>,</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        i,</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;p=</span><span class="sc">{</span>row[<span class="st">&#39;p-value&#39;</span>]<span class="sc">:.2e}</span><span class="ss">&quot;</span>,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        va<span class="op">=</span><span class="st">&#39;bottom&#39;</span>,</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">8</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>

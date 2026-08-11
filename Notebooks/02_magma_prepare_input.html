@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -112,6 +112,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -305,47 +308,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../01_finemapping.ipynb">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
  <span class="dropdown-text">Fine-mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
  <span class="dropdown-text">Magma prepare input</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
  <span class="dropdown-text">magma_snp_annotation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
  <span class="dropdown-text">magma_gene_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
  <span class="dropdown-text">magma_geneset_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../06_flames.ipynb">
+    <a class="dropdown-item" href="../Notebooks/06_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -440,38 +443,85 @@ Note
 <p><strong>Questions</strong> 1. Why might a top-hit demo set be useful for teaching, even if it is not ideal for inference? 2. Why do we restrict to chromosomes 1 to 22 here? 3. What problems would appear later if SNP identifiers were duplicated or inconsistent across files?</p>
 </div>
 </div>
-<div id="cd25b4da" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="cd25b4da" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>library(vroom)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>library(dplyr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vroom)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sumstats_path <span class="op">&lt;-</span> <span class="st">"input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>magma_input_dir <span class="op">&lt;-</span> <span class="st">"input/magma"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>.create(magma_input_dir, recursive <span class="op">=</span> TRUE, showWarnings <span class="op">=</span> FALSE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sumstats_path <span class="ot">&lt;-</span> <span class="st">"input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>magma_input_dir <span class="ot">&lt;-</span> <span class="st">"input/magma"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>magma_output_dir <span class="ot">&lt;-</span> <span class="st">"output/magma"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(magma_output_dir, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: ‘dplyr’
+
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+</code></pre>
+</div>
 </div>
 </section>
 <section id="reload-the-gwas-summary-statistics" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Reload the GWAS summary statistics</h1>
 <p>This notebook repeats the same basic filtering logic as notebook 1 so that the MAGMA inputs are aligned with the exploratory QC decisions. In a production pipeline, you might centralise this logic to avoid accidental drift between steps.</p>
-<div id="2529578f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="2529578f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="op">&lt;-</span> vroom(sumstats_path, show_col_types <span class="op">=</span> FALSE) <span class="op">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  mutate(MAF <span class="op">=</span> pmin(FRQ_A_38691, <span class="dv">1</span> <span class="op">-</span> FRQ_A_38691)) <span class="op">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(INFO <span class="op">&gt;=</span> <span class="fl">0.8</span>, MAF <span class="op">&gt;=</span> <span class="fl">0.01</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>cat(sprintf(<span class="st">"QC-passing SNPs: </span><span class="sc">%s</span><span class="ch">\n</span><span class="st">"</span>, <span class="bu">format</span>(nrow(sumstats), big.mark <span class="op">=</span> <span class="st">","</span>)))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>sumstats <span class="op">%&gt;%</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  summarise(</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    min_p <span class="op">=</span> <span class="bu">min</span>(P, na.rm <span class="op">=</span> TRUE),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    max_p <span class="op">=</span> <span class="bu">max</span>(P, na.rm <span class="op">=</span> TRUE),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    min_chr <span class="op">=</span> <span class="bu">min</span>(CHR, na.rm <span class="op">=</span> TRUE),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    max_chr <span class="op">=</span> <span class="bu">max</span>(CHR, na.rm <span class="op">=</span> TRUE)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> <span class="fu">vroom</span>(sumstats_path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MAF =</span> <span class="fu">pmin</span>(FRQ_A_38691, <span class="dv">1</span> <span class="sc">-</span> FRQ_A_38691)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(INFO <span class="sc">&gt;=</span> <span class="fl">0.8</span>, MAF <span class="sc">&gt;=</span> <span class="fl">0.01</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"QC-passing SNPs: %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">nrow</span>(sumstats), <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_p =</span> <span class="fu">min</span>(P, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_p =</span> <span class="fu">max</span>(P, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_chr =</span> <span class="fu">min</span>(CHR, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_chr =</span> <span class="fu">max</span>(CHR, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>QC-passing SNPs: 6,774,125</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A tibble: 1 × 4</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">min_p</th>
+<th data-quarto-table-cell-role="th" scope="col">max_p</th>
+<th data-quarto-table-cell-role="th" scope="col">min_chr</th>
+<th data-quarto-table-cell-role="th" scope="col">max_chr</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9.033e-15</td>
+<td>1</td>
+<td>1</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 <section id="full-magma-input-files" class="level1" data-number="4">
@@ -490,60 +540,279 @@ Important
 <p>MAGMA expects the same SNP identifiers to line up across these files. If one file contains SNPs missing from the other, you will either lose data or produce confusing downstream failures.</p>
 </div>
 </div>
-<div id="d9abfc0b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="d9abfc0b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>snp_loc_full <span class="op">&lt;-</span> sumstats <span class="op">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(CHR <span class="op">%</span><span class="kw">in</span><span class="op">%</span> <span class="dv">1</span>:<span class="dv">22</span>) <span class="op">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  select(SNP, CHR, BP)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>pval_full <span class="op">&lt;-</span> sumstats <span class="op">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(CHR <span class="op">%</span><span class="kw">in</span><span class="op">%</span> <span class="dv">1</span>:<span class="dv">22</span>) <span class="op">%&gt;%</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  select(SNP, P)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>vroom_write(snp_loc_full, <span class="bu">file</span>.path(magma_input_dir, <span class="st">"snp_loc_full.txt"</span>), delim <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, col_names <span class="op">=</span> TRUE)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>vroom_write(pval_full, <span class="bu">file</span>.path(magma_input_dir, <span class="st">"pval_full.txt"</span>), delim <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, col_names <span class="op">=</span> TRUE)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>tibble(<span class="bu">file</span> <span class="op">=</span> c(<span class="st">"snp_loc_full.txt"</span>, <span class="st">"pval_full.txt"</span>), rows <span class="op">=</span> c(nrow(snp_loc_full), nrow(pval_full)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>snp_loc_full <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CHR <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SNP, CHR, BP)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pval_full <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CHR <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SNP, P)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">vroom_write</span>(snp_loc_full, <span class="fu">file.path</span>(magma_output_dir, <span class="st">"snp_loc_full.txt"</span>), <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">vroom_write</span>(pval_full, <span class="fu">file.path</span>(magma_output_dir, <span class="st">"pval_full.txt"</span>), <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">file =</span> <span class="fu">c</span>(<span class="st">"snp_loc_full.txt"</span>, <span class="st">"pval_full.txt"</span>), <span class="at">rows =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(snp_loc_full), <span class="fu">nrow</span>(pval_full)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A tibble: 2 × 2</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">file</th>
+<th data-quarto-table-cell-role="th" scope="col">rows</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>snp_loc_full.txt</td>
+<td>6774125</td>
+</tr>
+<tr class="even">
+<td>pval_full.txt</td>
+<td>6774125</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 <section id="demo-magma-input-files" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Demo MAGMA input files</h1>
 <p>For teaching, we often prefer something that runs in minutes instead of tens of minutes. Here we keep only SNPs with <code>P &lt; 5e-7</code>, which is not a substitute for the full analysis but is enough to demonstrate the pipeline live.</p>
 <p><strong>Question for students:</strong> how might a demo subset distort gene-level or tissue-level conclusions relative to the full analysis?</p>
-<div id="38b83e58" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+<div id="38b83e58" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>DEMO_THRESH <span class="op">&lt;-</span> <span class="fl">5e-7</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>demo_snps <span class="op">&lt;-</span> sumstats <span class="op">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">filter</span>(CHR <span class="op">%</span><span class="kw">in</span><span class="op">%</span> <span class="dv">1</span>:<span class="dv">22</span>, P <span class="op">&lt;</span> DEMO_THRESH)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>snp_loc_demo <span class="op">&lt;-</span> demo_snps <span class="op">%&gt;%</span> select(SNP, CHR, BP)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>pval_demo <span class="op">&lt;-</span> demo_snps <span class="op">%&gt;%</span> select(SNP, P)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>vroom_write(snp_loc_demo, <span class="bu">file</span>.path(magma_input_dir, <span class="st">"snp_loc_demo.txt"</span>), delim <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, col_names <span class="op">=</span> TRUE)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>vroom_write(pval_demo, <span class="bu">file</span>.path(magma_input_dir, <span class="st">"pval_demo.txt"</span>), delim <span class="op">=</span> <span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, col_names <span class="op">=</span> TRUE)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>demo_snps <span class="op">%&gt;%</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  count(CHR, name <span class="op">=</span> <span class="st">"n_SNPs"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  arrange(CHR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>DEMO_THRESH <span class="ot">&lt;-</span> <span class="fl">5e-7</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>demo_snps <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CHR <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>, P <span class="sc">&lt;</span> DEMO_THRESH)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>snp_loc_demo <span class="ot">&lt;-</span> demo_snps <span class="sc">%&gt;%</span> <span class="fu">select</span>(SNP, CHR, BP)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>pval_demo <span class="ot">&lt;-</span> demo_snps <span class="sc">%&gt;%</span> <span class="fu">select</span>(SNP, P)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">vroom_write</span>(snp_loc_demo, <span class="fu">file.path</span>(magma_output_dir, <span class="st">"snp_loc_demo.txt"</span>), <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">vroom_write</span>(pval_demo, <span class="fu">file.path</span>(magma_output_dir, <span class="st">"pval_demo.txt"</span>), <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>demo_snps <span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(CHR, <span class="at">name =</span> <span class="st">"n_SNPs"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(CHR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A spec_tbl_df: 20 × 2</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">n_SNPs</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>422</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>52</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>244</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>124</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>382</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>87</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>66</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>65</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>330</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>11</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>94</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>17</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>103</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>156</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>232</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="316e20fe" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}">
+</div>
+<div id="316e20fe" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cat(<span class="st">"Preview of the full SNP location file:</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>head(snp_loc_full)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cat(<span class="st">"</span><span class="ch">\n</span><span class="st">Preview of the full p-value file:</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>head(pval_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Preview of the full SNP location file:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(snp_loc_full)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Preview of the full p-value file:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pval_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Preview of the full SNP location file:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A spec_tbl_df: 6 × 3</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">SNP</th>
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">BP</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rs62513865</td>
+<td>8</td>
+<td>101592213</td>
+</tr>
+<tr class="even">
+<td>rs79643588</td>
+<td>8</td>
+<td>106973048</td>
+</tr>
+<tr class="odd">
+<td>rs17396518</td>
+<td>8</td>
+<td>108690829</td>
+</tr>
+<tr class="even">
+<td>rs983166</td>
+<td>8</td>
+<td>108681675</td>
+</tr>
+<tr class="odd">
+<td>rs28842593</td>
+<td>8</td>
+<td>103044620</td>
+</tr>
+<tr class="even">
+<td>rs7014597</td>
+<td>8</td>
+<td>104152280</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Preview of the full p-value file:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A spec_tbl_df: 6 × 2</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">SNP</th>
+<th data-quarto-table-cell-role="th" scope="col">P</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rs62513865</td>
+<td>0.8325</td>
+</tr>
+<tr class="even">
+<td>rs79643588</td>
+<td>0.7967</td>
+</tr>
+<tr class="odd">
+<td>rs17396518</td>
+<td>0.6876</td>
+</tr>
+<tr class="even">
+<td>rs983166</td>
+<td>0.5956</td>
+</tr>
+<tr class="odd">
+<td>rs28842593</td>
+<td>0.2081</td>
+</tr>
+<tr class="even">
+<td>rs7014597</td>
+<td>0.9679</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 <section id="wrap-up" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Wrap-up</h1>
-<p>You should now have four files in <code>input/magma/</code>: full and demo versions of the SNP-location and p-value tables. The next notebook uses the SNP-location files together with a gene-location reference to assign SNPs to genes.</p>
+<p>You should now have four files in <code>output/magma/</code>: full and demo versions of the SNP-location and p-value tables. The next notebook uses the SNP-location files together with a gene-location reference to assign SNPs to genes.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

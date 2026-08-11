@@ -337,47 +337,47 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
         <li>
-    <a class="dropdown-item" href="../00_explore_gwas_sumstats.ipynb">
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../01_finemapping.ipynb">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
  <span class="dropdown-text">Fine-mapping</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../02_magma_prepare_input.ipynb">
+    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
  <span class="dropdown-text">Magma prepare input</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../03_magma_snp_annotation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
  <span class="dropdown-text">magma_snp_annotation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../04_magma_gene_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
  <span class="dropdown-text">magma_gene_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../05_magma_geneset_analysis.ipynb">
+    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
  <span class="dropdown-text">magma_geneset_analysis</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../06_flames.ipynb">
+    <a class="dropdown-item" href="../Notebooks/06_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../07_run_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../08_analyse_results_scdrs.ipynb">
+    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../09_SNP_based_heritability.ipynb">
+    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../10_genetic_correlation.ipynb">
+    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -494,7 +494,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(vroom, dplyr, ggplot2, scales, qqman)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sumstats_path <span class="ot">&lt;-</span> <span class="st">"input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>figures_dir <span class="ot">&lt;-</span> <span class="st">"figures"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>figures_dir <span class="ot">&lt;-</span> <span class="st">"output/figures"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(figures_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
@@ -947,7 +947,19 @@ Warning
 <p><span class="math display">\[
 \lambda = \frac{\mathrm{median}(\chi^2_{obs})}{\chi^2_{0.5, df=1}}
 \]</span></p>
-<p><strong>Question for students:</strong> why is a rescaled measure such as <span class="math inline">\(\lambda_{1000}\)</span> useful when comparing studies with very different sample sizes?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Question:</strong> why is a rescaled measure such as <span class="math inline">\(\lambda_{1000}\)</span> useful when comparing studies with very different sample sizes?</p>
+</div>
+</div>
 <div id="6da7075b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1295,7 +1307,7 @@ Note
 <h1 data-number="7"><span class="header-section-number">7</span> Visual checks</h1>
 <p>The next cells reproduce the classic exploratory plots. Save them because they are often useful later in teaching slides, lab reports, and QC summaries.</p>
 <p><strong>Questions for students:</strong> 1. Which plot is best for spotting broad inflation? 2. Which plot is best for locating associated regions in the genome? 3. What is the practical difference between an excess of tiny p-values caused by true biology and one caused by confounding?</p>
-<div id="5f11f3af" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="15">
+<div id="5f11f3af" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> P)) <span class="sc">+</span></span>
@@ -1321,7 +1333,7 @@ Note
 </div>
 </div>
 </div>
-<div id="873147b7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="18">
+<div id="873147b7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.2_qqplot.png"</span>), <span class="at">width =</span> <span class="dv">700</span>, <span class="at">height =</span> <span class="dv">700</span>, <span class="at">res =</span> <span class="dv">120</span>)</span>
@@ -1332,16 +1344,16 @@ Note
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>),</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">sub =</span> <span class="fu">sprintf</span>(<span class="st">"lambda = %.3f | lambda_1000 = %.3f"</span>, lambda_gc, lambda1000))</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Saved QQ plot to figures/1.2_qqplot.png</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Saved QQ plot to output/figures/1.2_qqplot.png</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <strong>pdf:</strong> 2
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Saved QQ plot to figures/1.2_qqplot.png</code></pre>
+<pre><code>Saved QQ plot to output/figures/1.2_qqplot.png</code></pre>
 </div>
 </div>
-<div id="5a26d4de" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="19">
+<div id="5a26d4de" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>manhattan_data <span class="ot">&lt;-</span> sumstats_qc <span class="sc">%&gt;%</span></span>
@@ -1363,16 +1375,16 @@ Note
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex.axis =</span> <span class="fl">0.8</span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Saved Manhattan plot to figures/1.3_manhattan.png</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Saved Manhattan plot to output/figures/1.3_manhattan.png</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <strong>pdf:</strong> 2
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Saved Manhattan plot to figures/1.3_manhattan.png</code></pre>
+<pre><code>Saved Manhattan plot to output/figures/1.3_manhattan.png</code></pre>
 </div>
 </div>
-<div id="3a3432a3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="20">
+<div id="3a3432a3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> OR)) <span class="sc">+</span></span>
@@ -1418,25 +1430,35 @@ Note
 <span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.5_maf_distribution.png"</span>), p5, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
 <span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.6_info_distribution.png"</span>), p6, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
 <span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>p4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>p4</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>p5</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>p6</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
 <pre>Warning message:
 
-“Removed 1718 rows containing non-finite outside the scale range (`stat_bin()`).”
+“Removed 1718 rows containing non-finite outside the scale range
+
+(`stat_bin()`).”
 
 Warning message:
 
-“Removed 2 rows containing missing values or values outside the scale range (`geom_bar()`).”
+“Removed 2 rows containing missing values or values outside the scale range
+
+(`geom_bar()`).”
 
 Warning message:
 
-“Removed 1718 rows containing non-finite outside the scale range (`stat_bin()`).”
+“Removed 1718 rows containing non-finite outside the scale range
+
+(`stat_bin()`).”
 
 Warning message:
 
-“Removed 2 rows containing missing values or values outside the scale range (`geom_bar()`).”
+“Removed 2 rows containing missing values or values outside the scale range
+
+(`geom_bar()`).”
 </pre>
 </div>
 </div>
@@ -1444,6 +1466,20 @@ Warning message:
 <div>
 <figure class="figure">
 <p><img src="00_explore_gwas_sumstats_files/figure-html/cell-14-output-2.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-14-output-3.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-14-output-4.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1469,7 +1505,7 @@ Warning message:
 </ol>
 </div>
 </div>
-<div id="788cf2c5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="21">
+<div id="788cf2c5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
