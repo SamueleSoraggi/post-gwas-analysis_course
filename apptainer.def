@@ -1,0 +1,117 @@
+Bootstrap: docker
+From: debian:bookworm-slim
+
+%labels
+    Maintainer samuele
+    Description Minimal GWAS/post-GWAS container with one pixi environment
+
+%files
+    ./Environments/pixi.toml /opt/gwas/pixi.toml
+
+%post
+    set -eu
+    export DEBIAN_FRONTEND=noninteractive
+    export PIXI_HOME=/opt/pixi
+    export PATH=/opt/pixi/bin:/usr/local/bin:$PATH
+
+    apt-get update
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        git \
+        unzip \
+        bzip2 \
+        xz-utils \
+        libgomp1
+    rm -rf /var/lib/apt/lists/*
+
+    curl -fsSL https://pixi.sh/install.sh | PIXI_HOME=/opt/pixi bash
+    chmod -R a+rX /opt/pixi
+
+    mkdir -p /opt/gwas
+
+
+#### PIXI
+
+    cd /opt/gwas
+    pixi install
+    install -m 0755 /opt/gwas/post-gwas-course.sh /opt/gwas/.pixi/envs/default/bin/post-gwas-course.sh
+
+    #pixi run "yes | pip install --no-cache jupyterlab-quarto"
+    pixi run R -e 'IRkernel::installspec(prefix = "/opt/gwas/.pixi/envs/default", name = "postgwas", displayname = "POST-GWAS")'
+    pixi run 'python -m bash_kernel.install'
+
+    git clone --depth 1 https://github.com/CBIIT/ldsc.git /opt/ldsc
+    git clone --depth 1 https://github.com/SamueleSoraggi/FLAMES.git /opt/FLAMES
+    git clone --depth 1 https://github.com/FinucaneLab/pops.git /opt/pops
+
+    mkdir -p /opt/finemap
+    curl -fsSL -o /tmp/finemap.tgz http://www.christianbenner.com/finemap_v1.4.2_x86_64.tgz
+    tar -xzf /tmp/finemap.tgz -C /opt/finemap
+    FINEMAP_BIN="$(find /opt/finemap -maxdepth 3 -type f -name 'finemap*' | sort | head -1)"
+    chmod +x "${FINEMAP_BIN}"
+    ln -sf "${FINEMAP_BIN}" /usr/local/bin/finemap
+    rm -f /tmp/finemap.tgz
+
+    mkdir -p /opt/magma
+    curl -fL --retry 3 --retry-delay 2 \
+        -o /tmp/magma.zip \
+        "https://vu.data.surf.nl/public.php/dav/files/lxDgt2dNdNr6DYt/?accept=zip"
+    unzip -o /tmp/magma.zip -d /opt/magma
+    MAGMA_BIN="$(find /opt/magma -type f -name 'magma' | head -1)"
+    chmod +x "${MAGMA_BIN}"
+    ln -sf "${MAGMA_BIN}" /usr/local/bin/magma
+    rm -f /tmp/magma.zip
+
+    cat > /usr/local/bin/ldsc <<'EOF'
+#!/bin/sh
+exec /opt/gwas/.pixi/envs/default/bin/python /opt/ldsc/ldsc.py "$@"
+EOF
+
+    cat > /usr/local/bin/munge_sumstats <<'EOF'
+#!/bin/sh
+exec /opt/gwas/.pixi/envs/default/bin/python /opt/ldsc/munge_sumstats.py "$@"
+EOF
+
+    cat > /usr/local/bin/munge_feature_directory <<'EOF'
+#!/bin/sh
+exec /opt/gwas/.pixi/envs/default/bin/python /opt/pops/munge_feature_directory.py "$@"
+EOF
+
+    cat > /usr/local/bin/flames <<'EOF'
+#!/bin/sh
+exec /opt/gwas/.pixi/envs/default/bin/python /opt/FLAMES/FLAMES.py "$@"
+EOF
+
+    cat > /usr/local/bin/pops <<'EOF'
+#!/bin/sh
+exec /opt/gwas/.pixi/envs/default/bin/python /opt/pops/pops.py "$@"
+EOF
+
+    cat > /usr/local/bin/scdrs <<'EOF'
+#!/bin/sh
+exec /opt/gwas/.pixi/envs/default/bin/scdrs "$@"
+EOF
+
+    chmod +x /usr/local/bin/ldsc /usr/local/bin/munge_sumstats /usr/local/bin/munge_feature_directory /usr/local/bin/flames /usr/local/bin/pops /usr/local/bin/scdrs
+    chmod -R a+rX /opt/gwas /opt/ldsc /opt/FLAMES /opt/pops /opt/finemap /opt/magma
+
+%environment
+    export PIXI_HOME=/opt/pixi
+    export PATH=/opt/pixi/bin:/usr/local/bin:$PATH
+
+%runscript
+    echo "Available commands: finemap magma ldsc munge_sumstats flames pops scdrs"
+
+%help
+    Build:
+      apptainer build --fakeroot gwas-course.sif gwas-course.def
+
+    Commands:
+      finemap
+      magma
+      ldsc
+      munge_sumstats
+      flames
+      pops
+      scdrs
