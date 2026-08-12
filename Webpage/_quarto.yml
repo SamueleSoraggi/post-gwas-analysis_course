@@ -11,18 +11,20 @@ website:
         menu:
           - text: "Explore GWAS sumstats"
             href: Notebooks/00_explore_gwas_sumstats.ipynb
+          - text: "Fine mapping"
+            href: Notebooks/01_finemapping.ipynb
           - text: "From variants to genes and tissues"
-            href: Notebooks/01_magma_workflow.ipynb
+            href: Notebooks/02_magma_workflow.ipynb
           - text: "FLAMES"
-            href: Notebooks/02_flames.ipynb
+            href: Notebooks/03_flames.ipynb
           - text: "Run scdrs"
-            href: Notebooks/03_run_scdrs.ipynb
+            href: Notebooks/04_run_scdrs.ipynb
           - text: "analyse results scdrs"
-            href: Notebooks/04_analyse_results_scdrs.ipynb
+            href: Notebooks/05_analyse_results_scdrs.ipynb
           - text: "SNP based heritability"
-            href: Notebooks/05_SNP_based_heritability.ipynb
+            href: Notebooks/06_SNP_based_heritability.ipynb
           - text: "genetic correlation"
-            href: Notebooks/06_genetic_correlation.ipynb
+            href: Notebooks/07_genetic_correlation.ipynb
     right: 
       - icon: github
         href: https://github.com/SamueleSoraggi/post-gwas-phd-course
