@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercise 9. SNP-Based Heritability – Course Template</title>
+<title>Exercise 7: scDRS Cell-Type Analysis – Course Template</title>
 <style>
 
 span.smallcaps{font-variant: small-caps;}
@@ -4251,27 +4251,31 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/01_magma_workflow.html">
+    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
+ <span class="dropdown-text">Fine mapping</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Notebooks/02_magma_workflow.html">
  <span class="dropdown-text">From variants to genes and tissues</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/02_flames.html">
+    <a class="dropdown-item" href="../Notebooks/03_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/03_run_scdrs.html">
+    <a class="dropdown-item" href="../Notebooks/04_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/04_analyse_results_scdrs.html">
+    <a class="dropdown-item" href="../Notebooks/05_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/05_SNP_based_heritability.html">
+    <a class="dropdown-item" href="../Notebooks/06_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/06_genetic_correlation.html">
+    <a class="dropdown-item" href="../Notebooks/07_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -4300,14 +4304,15 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
-  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up"><span class="header-section-number">2</span> 1. Set up </a><a class="anchor nav-link" id="section_1" data-scroll-target="undefined"></a></li>
-  <li><a href="#pepare-the-input-files-for-ldsc" id="toc-pepare-the-input-files-for-ldsc" class="nav-link" data-scroll-target="#pepare-the-input-files-for-ldsc"><span class="header-section-number">3</span> 2. Pepare the input files for LDSC </a><a class="anchor nav-link" id="section_2" data-scroll-target="undefined"></a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up">1. Set up </a><a class="anchor nav-link" id="section_1" data-scroll-target="undefined"></a></li>
+  <li><a href="#single-cell-rna-sequencing-dataset-dopaminergic-neuron-differentiation" id="toc-single-cell-rna-sequencing-dataset-dopaminergic-neuron-differentiation" class="nav-link" data-scroll-target="#single-cell-rna-sequencing-dataset-dopaminergic-neuron-differentiation">2. Single-cell RNA sequencing dataset: dopaminergic neuron differentiation </a><a class="anchor nav-link" id="section_2" data-scroll-target="undefined"></a></li>
+  <li><a href="#prepare-the-input-files-for-scdrs" id="toc-prepare-the-input-files-for-scdrs" class="nav-link" data-scroll-target="#prepare-the-input-files-for-scdrs">3. Prepare the input files for scDRS </a><a class="anchor nav-link" id="section_3" data-scroll-target="undefined"></a>
   <ul class="collapse">
-  <li><a href="#inspect-headers-and-sumstats-formats" id="toc-inspect-headers-and-sumstats-formats" class="nav-link" data-scroll-target="#inspect-headers-and-sumstats-formats"><span class="header-section-number">3.0.1</span> 2.1 Inspect headers and sumstats formats </a><a class="anchor nav-link" id="section_2_1" data-scroll-target="undefined"></a></li>
-  <li><a href="#munge-sumstats" id="toc-munge-sumstats" class="nav-link" data-scroll-target="#munge-sumstats"><span class="header-section-number">3.0.2</span> 2.2 Munge sumstats </a><a class="anchor nav-link" id="section_2_2" data-scroll-target="undefined"></a></li>
-  <li><a href="#run-ldsc-to-estimate-the-h2-snp-for-each-trait" id="toc-run-ldsc-to-estimate-the-h2-snp-for-each-trait" class="nav-link" data-scroll-target="#run-ldsc-to-estimate-the-h2-snp-for-each-trait"><span class="header-section-number">3.1</span> 3. Run LDSC to estimate the h2-SNP for each trait </a><a class="anchor nav-link" id="section_3" data-scroll-target="undefined"></a></li>
-  <li><a href="#analyse-and-present-results" id="toc-analyse-and-present-results" class="nav-link" data-scroll-target="#analyse-and-present-results"><span class="header-section-number">3.2</span> 4. Analyse and present results </a><a class="anchor nav-link" id="section_4" data-scroll-target="undefined"></a></li>
+  <li><a href="#covariate-file" id="toc-covariate-file" class="nav-link" data-scroll-target="#covariate-file">3.1 Covariate file </a><a class="anchor nav-link" id="section_3_1" data-scroll-target="undefined"></a></li>
+  <li><a href="#gene-set-file" id="toc-gene-set-file" class="nav-link" data-scroll-target="#gene-set-file">3.2 Gene set file </a><a class="anchor nav-link" id="section_3_2" data-scroll-target="undefined"></a></li>
+  <li><a href="#run-scdrs-on-the-11day-neurons-dataset" id="toc-run-scdrs-on-the-11day-neurons-dataset" class="nav-link" data-scroll-target="#run-scdrs-on-the-11day-neurons-dataset">4. Run scDRS on the 11day neurons dataset </a><a class="anchor nav-link" id="section_4" data-scroll-target="undefined"></a></li>
+  <li><a href="#run-the-group-level-analysis" id="toc-run-the-group-level-analysis" class="nav-link" data-scroll-target="#run-the-group-level-analysis">5. Run the group level analysis </a><a class="anchor nav-link" id="section_5" data-scroll-target="undefined"></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -4318,7 +4323,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercise 9. SNP-Based Heritability</h1>
+<h1 class="title">Exercise 7: scDRS Cell-Type Analysis</h1>
 <p class="subtitle lead">Post-GWAS Analysis Course</p>
 </div>
 
@@ -4336,9 +4341,9 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </header>
 
 
-<section id="overview" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Overview</h1>
-<p>This notebook estimates SNP-based heritability for ADHD and related traits using LDSC and GWAS summary statistics. You will prepare the inputs, run the heritability analysis, and compare results across traits.</p>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>This notebook uses scDRS to connect the MAGMA gene set to cell types in the Jerber dopaminergic neuron dataset and to explore how robust those associations are.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4349,390 +4354,69 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>By the end of this notebook, you should be able to: - explain what SNP-based heritability estimates measure - prepare GWAS summary statistics for LDSC using the required format and filters - interpret heritability output across several traits in a comparative way</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You will need the following input files: GWAS sumstats for ADHD, BMI, educational attainment, age at first birth, and depression. Those are available as input data.</p>
+<p>By the end of this notebook, you should be able to: - prepare the gene-set and single-cell inputs needed by scDRS - run the scoring and group-level association steps - interpret scDRS output in the context of cell-type enrichment and sensitivity analysis</p>
 </div>
 </div>
 <p>## Table of Contents</p>
 <ul>
 <li><a href="#section_1">Set up</a><br>
 </li>
-<li><a href="#section_2">Prepare the input files for LDSC</a>
+<li><a href="#section_2">Single cell RNA sequencing dataset</a></li>
+<li><a href="#section_3">Prepare the input files for scDRS</a>
 <ul>
-<li><a href="#section_2_1">Check headers</a></li>
-<li><a href="#section_2_2">Munge sumstats</a></li>
+<li><a href="#section_3_1">Covariance file</a></li>
+<li><a href="#section_3_2">Gene set file</a></li>
 </ul></li>
-<li><a href="#section_3">Run LDSC to estimate the SNP based h2</a><br>
+<li><a href="#section_4">Run scDRS</a><br>
 </li>
-<li><a href="#section_4">Analyse and present results</a></li>
+<li><a href="#section_5">Run group-level association</a></li>
 </ul>
 </section>
-<section id="set-up" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> 1. Set up <a class="anchor" id="section_1"></a></h1>
-<div id="cell-3" class="cell" data-execution_count="1">
+<section id="set-up" class="level1">
+<h1>1. Set up <a class="anchor" id="section_1"></a></h1>
+<div id="dcbaf43e" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the different libraries </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scdrs</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scanpy <span class="im">as</span> sc</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> anndata <span class="im">import</span> AnnData</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="pepare-the-input-files-for-ldsc" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> 2. Pepare the input files for LDSC <a class="anchor" id="section_2"></a></h1>
-<p>To estimate the SNP-based heritability (h2-SNP) of the different traits, we are going to use a tool named Linkage Disequilibrium Score Regression (LDSC). (https://github.com/bulik/LDSC) Several tutorials are available on the github page, including how to estimate h2-SNP: https://github.com/bulik/ldsc/wiki/Heritability-and-Genetic-Correlation</p>
-<p>Before running the analysis, we need to harmonise the format of the summary statistics, and restrict them to high quality SNPs found in HapMap3</p>
-<section id="inspect-headers-and-sumstats-formats" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="inspect-headers-and-sumstats-formats"><span class="header-section-number">3.0.1</span> 2.1 Inspect headers and sumstats formats <a class="anchor" id="section_2_1"></a></h3>
-<p>To harmonize the summary statistics, we will use the munge function from LDSC. This function takes as input the sumstats you want to harmonize, as well as a list of SNP to filter the sumstats. Here we use the HapMap3 SNPs present in the reference file w_hm3.snplist. The function requires that the sumstats have the following columns: SNP (SNP identifier is rs number format), N (sample size), signed statistics column (OR, BETA or Z-score), A1 and A2 (with A1 the effect allele). You can use -h to get an overview of the munge function</p>
-<div id="cell-6" class="cell" data-execution_count="2">
+<section id="single-cell-rna-sequencing-dataset-dopaminergic-neuron-differentiation" class="level1">
+<h1>2. Single-cell RNA sequencing dataset: dopaminergic neuron differentiation <a class="anchor" id="section_2"></a></h1>
+<p>For this example we are going to use a dataset that was build by differentiating “215 human induced pluripotent stem cell (iPSC) lines toward a midbrain neural fate, including dopaminergic neurons, and use single-cell RNA sequencing (scRNA-seq) to profile over 1 million cells across three differentiation time points.” The original publication can be found here: https://pubmed.ncbi.nlm.nih.gov/33664506/ <br> The dataset is divided into differentiating neurons cultivated for 11, 30, or 52 days</p>
+<div id="a2c6b9dc" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Check out the munge function from ldsc</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>os.system(<span class="st">&quot;munge_sumstats -h&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the dataset in H5AD format</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#We focus here on the 11day neurons</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>adata <span class="op">=</span> sc.read_h5ad(<span class="st">&quot;./reference_data/scDRS_Jerber_dataset/11day_DA_neurons.h5ad&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>usage: munge_sumstats.py [-h] [--sumstats SUMSTATS] [--N N] [--N-cas N_CAS]
-                         [--N-con N_CON] [--out OUT] [--info-min INFO_MIN]
-                         [--maf-min MAF_MIN] [--daner] [--daner-n]
-                         [--no-alleles] [--merge-alleles MERGE_ALLELES]
-                         [--n-min N_MIN] [--chunksize CHUNKSIZE] [--snp SNP]
-                         [--N-col N_COL] [--N-cas-col N_CAS_COL]
-                         [--N-con-col N_CON_COL] [--a1 A1] [--a2 A2] [--p P]
-                         [--frq FRQ] [--signed-sumstats SIGNED_SUMSTATS]
-                         [--info INFO] [--info-list INFO_LIST]
-                         [--nstudy NSTUDY] [--nstudy-min NSTUDY_MIN]
-                         [--ignore IGNORE] [--a1-inc] [--keep-maf]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --sumstats SUMSTATS   Input filename.
-  --N N                 Sample size If this option is not set, will try to
-                        infer the sample size from the input file. If the
-                        input file contains a sample size column, and this
-                        flag is set, the argument to this flag has priority.
-  --N-cas N_CAS         Number of cases. If this option is not set, will try
-                        to infer the number of cases from the input file. If
-                        the input file contains a number of cases column, and
-                        this flag is set, the argument to this flag has
-                        priority.
-  --N-con N_CON         Number of controls. If this option is not set, will
-                        try to infer the number of controls from the input
-                        file. If the input file contains a number of controls
-                        column, and this flag is set, the argument to this
-                        flag has priority.
-  --out OUT             Output filename prefix.
-  --info-min INFO_MIN   Minimum INFO score.
-  --maf-min MAF_MIN     Minimum MAF.
-  --daner               Use this flag to parse Stephan Ripke&#39;s daner* file
-                        format.
-  --daner-n             Use this flag to parse more recent daner* formatted
-                        files, which include sample size column &#39;Nca&#39; and
-                        &#39;Nco&#39;.
-  --no-alleles          Don&#39;t require alleles. Useful if only unsigned summary
-                        statistics are available and the goal is h2 /
-                        partitioned h2 estimation rather than rg estimation.
-  --merge-alleles MERGE_ALLELES
-                        Same as --merge, except the file should have three
-                        columns: SNP, A1, A2, and all alleles will be matched
-                        to the --merge-alleles file alleles.
-  --n-min N_MIN         Minimum N (sample size). Default is (90th percentile
-                        N) / 2.
-  --chunksize CHUNKSIZE
-                        Chunksize.
-  --snp SNP             Name of SNP column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --N-col N_COL         Name of N column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --N-cas-col N_CAS_COL
-                        Name of N column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --N-con-col N_CON_COL
-                        Name of N column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --a1 A1               Name of A1 column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --a2 A2               Name of A2 column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --p P                 Name of p-value column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --frq FRQ             Name of FRQ or MAF column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --signed-sumstats SIGNED_SUMSTATS
-                        Name of signed sumstat column, comma null value (e.g.,
-                        Z,0 or OR,1). NB: case insensitive.
-  --info INFO           Name of INFO column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --info-list INFO_LIST
-                        Comma-separated list of INFO columns. Will filter on
-                        the mean. NB: case insensitive.
-  --nstudy NSTUDY       Name of NSTUDY column (if not a name that ldsc
-                        understands). NB: case insensitive.
-  --nstudy-min NSTUDY_MIN
-                        Minimum # of studies. Default is to remove everything
-                        below the max, unless there is an N column, in which
-                        case do nothing.
-  --ignore IGNORE       Comma-separated list of column names to ignore.
-  --a1-inc              A1 is the increasing allele.
-  --keep-maf            Keep the MAF column (if one exists).</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>0</code></pre>
+<p>The scRNA seq dataset is organised in H5AD format, and can be read using the library AnnData (https://anndata.readthedocs.io/en/latest/). H5AD files have the following structure:</p>
+<div>
+<p><img role="img" src="data:image/png;base64,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" width="500"></p>
 </div>
-</div>
-<p>As you can see, there are a lot of arguments that we can use to adapt the munging step to the format of the sumstats. A good practice when using new sumstats is to check the columns and their format as well as the metadata to determine: - What is the genome build? Hg38 or Hg19? - Which allele is the effect allele? A1? ALT? EFFECT_ALLELE? - Is there a sample size? A number of controls/cases? - What is the signed sumstat? OR, BETA, etc</p>
-<p>You will now inspect the sumstats that we will be using and their metadata to answer these questions and be ready for the munge step. You might have to refer to the original publication or to the method if the information is not available with the data you have here.</p>
-<div id="cell-8" class="cell" data-execution_count="3">
+<div id="aa96f55d" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">&quot;./output/ldsc&quot;</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore the structure of the dataset and answer the following questions:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>adata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In input/ldsc open the files with extension .sumstats. You can open them in the file browser of jupyterlab. For each sumstats (ADHD, BMI, educational attainment, age at first birth, depression) answet the following <strong>questions</strong></p>
-<ul>
-<li>What is the genome build?</li>
-<li>Which allele is the effect allele?</li>
-<li>What is the sample size?</li>
-<li>What is the signed sumstat?</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="munge-sumstats" class="level3" data-number="3.0.2">
-<h3 data-number="3.0.2" class="anchored" data-anchor-id="munge-sumstats"><span class="header-section-number">3.0.2</span> 2.2 Munge sumstats <a class="anchor" id="section_2_2"></a></h3>
-<p>Now that we have all the information we need, we can munge the sumstats. Here is the example on how to do it with the BMI sumstats:</p>
-<div id="cell-11" class="cell" data-execution_count="4">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example command to run the munge function on the BMI sumstats</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;munge_sumstats </span><span class="op">\</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">    --sumstats input/ldsc/bmi_yengo_2018.txt </span><span class="op">\</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">    --a1 Tested_Allele </span><span class="op">\</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">    --out input/ldsc/bmi_yengo_2018_munged </span><span class="op">\</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">    --merge-alleles ./reference_data/w_hm3.snplist&#39;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>*********************************************************************
-* LD Score Regression (LDSC)
-* Version 3.0.1
-* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
-* Broad Institute of MIT and Harvard / MIT Department of Mathematics
-* GNU General Public License v3
-*********************************************************************
-Call: 
-./munge_sumstats.py \
---sumstats input/ldsc/bmi_yengo_2018.txt \
---out input/ldsc/bmi_yengo_2018_munged \
---merge-alleles ./reference_data/w_hm3.snplist \
---a1 Tested_Allele 
-
-{&#39;SNP&#39;: &#39;SNP&#39;, &#39;Tested_Allele&#39;: &#39;A1&#39;, &#39;Other_Allele&#39;: &#39;A2&#39;, &#39;BETA&#39;: &#39;BETA&#39;, &#39;P&#39;: &#39;P&#39;, &#39;N&#39;: &#39;N&#39;}
-Interpreting column names as follows:
-SNP:    Variant ID (e.g., rs number)
-Tested_Allele:  Allele 1, interpreted as ref allele for signed sumstat.
-Other_Allele:   Allele 2, interpreted as non-ref allele for signed sumstat.
-BETA:   [linear/logistic] regression coefficient (0 --&gt; no effect; above 0 --&gt; A1 is trait/risk increasing)
-P:  p-Value
-N:  Sample size
-
-Reading list of SNPs for allele merge from ./reference_data/w_hm3.snplist
-Read 1217311 SNPs for allele merge.
-Reading sumstats from input/ldsc/bmi_yengo_2018.txt into memory 5000000 SNPs at a time.
-.WARNING: 48 SNPs had P outside of (0,1]. The P column may be mislabeled.
- done
-Read 2334001 SNPs from --sumstats file.
-Removed 1315341 SNPs not in --merge-alleles.
-Removed 0 SNPs with missing values.
-Removed 0 SNPs with INFO &lt;= 0.9.
-Removed 0 SNPs with MAF &lt;= 0.01.
-Removed 48 SNPs with out-of-bounds p-values.
-Removed 0 variants that were not SNPs or were strand-ambiguous.
-1018612 SNPs remain.
-Removed 0 SNPs with duplicated rs numbers (1018612 SNPs remain).
-Removed 0 SNPs with N &lt; 472784.6666666667 (1018612 SNPs remain).
-Median value of BETA was 0.0, which seems sensible.
-Removed 0 SNPs whose alleles did not match --merge-alleles (1018612 SNPs remain).
-Writing summary statistics for 1217311 SNPs (1018612 with nonmissing beta) to input/ldsc/bmi_yengo_2018_munged.sumstats.gz.
-
-Metadata:
-Mean chi^2 = 8.986
-Lambda GC = 3.61
-Max chi^2 = 1480.885
-61727 Genome-wide significant SNPs (some may have been removed by filtering).
-
-Conversion finished at Tue Aug 11 13:52:20 2026
-Total time elapsed: 17.1s</code></pre>
-</div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>0</code></pre>
-</div>
-</div>
-<div id="cell-12" class="cell" data-execution_count="15">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can now adapt this command and munge the other sumstats </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#add more lines after --sumstats if needed</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#ADHD</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;munge_sumstats </span><span class="op">\</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="st">--sumstats ./input/ldsc/ADHD2022_iPSYCH_deCODE_PGC.meta </span><span class="op">\</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="st">--N  </span><span class="op">\</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="st">--out ./output/ldsc/adhd_pgc_2022_munged </span><span class="op">\</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="st">--merge-alleles reference_data/w_hm3.snplist&#39;</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="15">
-<pre><code>512</code></pre>
-</div>
-</div>
-<div id="cell-13" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can now adapt this command and munge the other sumstats </span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#add more lines after --sumstats if needed</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#ADHD</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;munge_sumstats </span><span class="op">\</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="st">--N-cas-col ___ --N-con-col ___ </span><span class="op">\</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="st">--sumstats ./input/ldsc/ADHD2022_iPSYCH_deCODE_PGC.meta </span><span class="op">\</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="st">--out ./output/ldsc/adhd_pgc_2022_munged </span><span class="op">\</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="st">--merge-alleles reference_data/w_hm3.snplist&#39;</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-14" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Educational attainment</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;munge_sumstats </span><span class="op">\</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">--sumstats ./input/ldsc/educational_attainment_xia_2025.tsv </span><span class="op">\</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">--a1 ___ --a2 ___ </span><span class="op">\</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">--snp ___ </span><span class="op">\</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="st">--p ___ </span><span class="op">\</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="st">--N ___ </span><span class="op">\</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="st">--out ./output/ldsc/educational_attainment_xia_2025_munged </span><span class="op">\</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="st">--merge-alleles reference_data/w_hm3.snplist&#39;</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-15" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Age at first birth </span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;munge_sumstats </span><span class="op">\</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">--sumstats input/ldsc/year_at_first_birth_mills_2020.tsv </span><span class="op">\</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">--a1 ___ --a2 ___ </span><span class="op">\</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">--snp ___ </span><span class="op">\</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">--p ___ </span><span class="op">\</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">--N ___ </span><span class="op">\</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/year_at_first_birth_mills_2020_munged </span><span class="op">\</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">--merge-alleles reference_data/w_hm3.snplist&#39;</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-16" class="cell" data-execution_count="28">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Depression (ALREADY written because it has default parameters names)</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;munge_sumstats </span><span class="op">\</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">--sumstats input/ldsc/depression_pgc_2025.tsv </span><span class="op">\</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/depression_pgc_2025_munged </span><span class="op">\</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">--merge-alleles reference_data/w_hm3.snplist&#39;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>*********************************************************************
-* LD Score Regression (LDSC)
-* Version 3.0.1
-* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
-* Broad Institute of MIT and Harvard / MIT Department of Mathematics
-* GNU General Public License v3
-*********************************************************************
-Call: 
-./munge_sumstats.py \
---sumstats input/ldsc/depression_pgc_2025.tsv \
---out output/ldsc/depression_pgc_2025_munged \
---merge-alleles reference_data/w_hm3.snplist 
-
-{&#39;SNP&#39;: &#39;SNP&#39;, &#39;A1&#39;: &#39;A1&#39;, &#39;A2&#39;: &#39;A2&#39;, &#39;FRQ&#39;: &#39;FRQ&#39;, &#39;INFO&#39;: &#39;INFO&#39;, &#39;BETA&#39;: &#39;BETA&#39;, &#39;P&#39;: &#39;P&#39;, &#39;N&#39;: &#39;N&#39;}
-Interpreting column names as follows:
-SNP:    Variant ID (e.g., rs number)
-A1: Allele 1, interpreted as ref allele for signed sumstat.
-A2: Allele 2, interpreted as non-ref allele for signed sumstat.
-FRQ:    Allele frequency
-INFO:   INFO score (imputation quality; higher --&gt; better imputation)
-BETA:   [linear/logistic] regression coefficient (0 --&gt; no effect; above 0 --&gt; A1 is trait/risk increasing)
-P:  p-Value
-N:  Sample size
-
-Reading list of SNPs for allele merge from reference_data/w_hm3.snplist
-Read 1217311 SNPs for allele merge.
-Reading sumstats from input/ldsc/depression_pgc_2025.tsv into memory 5000000 SNPs at a time.
-.. done
-Read 7363302 SNPs from --sumstats file.
-Removed 6251211 SNPs not in --merge-alleles.
-Removed 0 SNPs with missing values.
-Removed 13736 SNPs with INFO &lt;= 0.9.
-Removed 548 SNPs with MAF &lt;= 0.01.
-Removed 0 SNPs with out-of-bounds p-values.
-Removed 0 variants that were not SNPs or were strand-ambiguous.
-1097807 SNPs remain.
-Removed 0 SNPs with duplicated rs numbers (1097807 SNPs remain).
-Removed 0 SNPs with N &lt; 768433.64 (1097807 SNPs remain).
-Median value of BETA was 9.999500033329732e-05, which seems sensible.
-Removed 0 SNPs whose alleles did not match --merge-alleles (1097807 SNPs remain).
-Writing summary statistics for 1217311 SNPs (1097807 with nonmissing beta) to output/ldsc/depression_pgc_2025_munged.sumstats.gz.
-
-Metadata:
-Mean chi^2 = 2.213
-Lambda GC = 1.862
-Max chi^2 = 116.974
-3358 Genome-wide significant SNPs (some may have been removed by filtering).
-
-Conversion finished at Mon Aug 10 13:31:43 2026
-Total time elapsed: 22.61s</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>0</code></pre>
+<pre><code>AnnData object with n_obs × n_vars = 253381 × 32738
+    obs: &#39;sample_index&#39;, &#39;sample_id&#39;, &#39;donor_id&#39;, &#39;cluster_id&#39;, &#39;celltype&#39;, &#39;time_point&#39;, &#39;pool_id&#39;, &#39;treatment&#39;
+    var: &#39;gene_ids-0&#39;, &#39;gene_ids-1&#39;, &#39;gene_ids-2&#39;, &#39;gene_ids-3&#39;, &#39;gene_ids-4&#39;, &#39;gene_ids-5&#39;, &#39;gene_ids-6&#39;, &#39;gene_ids-7&#39;, &#39;gene_ids-8&#39;, &#39;gene_ids-9&#39;, &#39;gene_ids-10&#39;, &#39;gene_ids-11&#39;, &#39;gene_ids-12&#39;, &#39;gene_ids-13&#39;, &#39;gene_ids-14&#39;, &#39;gene_ids-15&#39;, &#39;gene_ids-16&#39;, &#39;gene_ids-17&#39;, &#39;gene_ids-18&#39;, &#39;gene_ids-19&#39;, &#39;gene_ids-20&#39;, &#39;gene_ids-21&#39;, &#39;gene_ids-22&#39;, &#39;gene_ids-23&#39;, &#39;gene_ids-24&#39;, &#39;gene_ids-25&#39;, &#39;gene_ids-26&#39;, &#39;gene_ids-27&#39;, &#39;gene_ids-28&#39;, &#39;gene_ids-29&#39;, &#39;gene_ids-30&#39;, &#39;gene_ids-31&#39;, &#39;gene_ids-32&#39;, &#39;gene_ids-33&#39;, &#39;gene_ids-34&#39;, &#39;gene_ids-35&#39;, &#39;gene_ids-36&#39;, &#39;gene_ids-37&#39;
+    obsm: &#39;X_umap&#39;</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -4745,177 +4429,23 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A good practice is to check the output log of munge_stats make sure that at least 200,000 SNPs remain in the munged file for each trait</p>
+<p><strong>Questions</strong></p>
+<ul>
+<li>How many cells are contained in the dataset?</li>
+<li>How many genes?</li>
+<li>What type of information contains ‘obs’?</li>
+<li>What type of information contains ‘var’?</li>
+<li>What type of infomation contains ‘obsm’?</li>
+</ul>
 </div>
 </div>
-</section>
-<section id="run-ldsc-to-estimate-the-h2-snp-for-each-trait" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="run-ldsc-to-estimate-the-h2-snp-for-each-trait"><span class="header-section-number">3.1</span> 3. Run LDSC to estimate the h2-SNP for each trait <a class="anchor" id="section_3"></a></h2>
-<p>Now that the sumstats are harmonized, we can calculate the h2-SNP for each trait using ldsc. The function takes as input the munged sumstats, the LD scores for a list of reference SNPs and the list of reference SNPs.</p>
-<div id="cell-19" class="cell" data-execution_count="5">
+<div id="b36137e2" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example of command for BMI</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;ldsc </span><span class="op">\</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">--h2 input/ldsc/bmi_yengo_2018_munged.sumstats.gz </span><span class="op">\</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/bmi_yengo_2018_h2&#39;</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also view a snippet of the table using</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>adata.obs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>*********************************************************************
-* LD Score Regression (LDSC)
-* Version 3.0.1
-* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
-* Broad Institute of MIT and Harvard / MIT Department of Mathematics
-* GNU General Public License v3
-*********************************************************************
-Call: 
-./ldsc.py \
---out output/ldsc/bmi_yengo_2018_h2 \
---h2 input/ldsc/bmi_yengo_2018_munged.sumstats.gz \
---ref-ld-chr reference_data/eur_w_ld_chr/ \
---w-ld-chr reference_data/eur_w_ld_chr/ 
-
-Beginning analysis at Tue Aug 11 13:55:31 2026
-Reading summary statistics from input/ldsc/bmi_yengo_2018_munged.sumstats.gz ...
-RuntimeWarning: compression has no effect when passing a non-binary object as input for file input/ldsc/bmi_yengo_2018_munged.sumstats.gz
-Read summary statistics for 1018612 SNPs.
-Reading reference panel LD Score from reference_data/eur_w_ld_chr/[1-22] ... (ldscore_fromlist)
-Read reference panel LD Scores for 1290028 SNPs.
-Removing partitioned LD Scores with zero variance.
-Reading regression weight LD Score from reference_data/eur_w_ld_chr/[1-22] ... (ldscore_fromlist)
-Read regression weight LD Scores for 1290028 SNPs.
-After merging with reference panel LD, 1013790 SNPs remain.
-After merging with regression SNP LD, 1013790 SNPs remain.
-Using two-step estimator with cutoff at 30.
-Total Observed scale h2: 0.4552 (0.0193)
-Lambda GC: 3.6129
-Mean Chi^2: 8.8743
-Intercept: 1.8969 (0.0452)
-Ratio: 0.1139 (0.0057)
-Analysis finished at Tue Aug 11 13:55:43 2026
-Total time elapsed: 12.25s</code></pre>
-</div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>0</code></pre>
-</div>
-</div>
-<div id="cell-20" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can now adapt this command to calculate h2 for the other traits</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ADHD</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;ldsc </span><span class="op">\</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="st">--h2 input/ldsc/___ </span><span class="op">\</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/adhd_pgc_2022_h2&#39;</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-21" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Educational attainment</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;ldsc </span><span class="op">\</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">--h2 input/ldsc/___ </span><span class="op">\</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/educational_attainment_xia_2025_h2&#39;</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-22" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Year at first birth</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;ldsc </span><span class="op">\</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">--h2 input/ldsc/___ </span><span class="op">\</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/year_at_first_birth_mills_2020_h2&#39;</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-23" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Depression</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>command <span class="op">=</span> <span class="st">&#39;ldsc </span><span class="op">\</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="st">--h2 input/ldsc/___ </span><span class="op">\</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="st">--ref-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="st">--w-ld-chr reference_data/eur_w_ld_chr/ </span><span class="op">\</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="st">--n-blocks 200 </span><span class="op">\</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="st">--out output/ldsc/depression_pgc_2025_h2&#39;</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>os.system(command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section>
-<section id="analyse-and-present-results" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="analyse-and-present-results"><span class="header-section-number">3.2</span> 4. Analyse and present results <a class="anchor" id="section_4"></a></h2>
-<p>You now have calculated the SNP-based heritability for each of the trait. We will extract that information from the log file, and present the results in a table.</p>
-<div id="cell-25" class="cell" data-execution_count="35">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a list with the file paths</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>path_list <span class="op">=</span> [<span class="st">&quot;output/ldsc/adhd_pgc_2022_h2.log&quot;</span>, </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/bmi_yengo_2018_h2.log&quot;</span>, </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/educational_attainment_xia_2025_h2.log&quot;</span>, </span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/year_at_first_birth_mills_2020_h2.log&quot;</span>, </span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;output/ldsc/depression_pgc_2025_h2.log&quot;</span>]</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a list of trait names</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>trait_list <span class="op">=</span> [<span class="st">&quot;adhd&quot;</span>, <span class="st">&quot;bmi&quot;</span>, <span class="st">&quot;educational_attainment&quot;</span>, <span class="st">&quot;year_first_birth&quot;</span>, <span class="st">&quot;depression&quot;</span>]</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Initiate an empty list </span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">#We iterate over all the files </span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(path_list)):</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read only the 26th line (index 25) -&gt; line where h2 is</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(path_list[i], <span class="st">&quot;r&quot;</span>) <span class="im">as</span> f:</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j, line <span class="kw">in</span> <span class="bu">enumerate</span>(f):</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> j <span class="op">==</span> <span class="dv">25</span>:</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>                words <span class="op">=</span> line.strip().split()</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">len</span>(words)<span class="op">&gt;=</span><span class="dv">6</span>:</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># Extract 5th and 6th &quot;words&quot; (indices 4 and 5) -&gt; corresponds to h2 and se</span></span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>                    word5 <span class="op">=</span> words[<span class="dv">4</span>] </span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>                    word6 <span class="op">=</span> words[<span class="dv">5</span>].strip(<span class="st">&quot;()&quot;</span>)</span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>                    <span class="co">#Store in rows</span></span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>                    rows.append({</span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;trait&quot;</span>:trait_list[i],</span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;h2_observed&quot;</span>: word5,</span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;se&quot;</span>: word6</span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>                    })</span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Store in a DataFrame</span></span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(rows)</span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="35">
 <div>
 
 
@@ -4923,45 +4453,153 @@ Total time elapsed: 12.25s</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">trait</th>
-<th data-quarto-table-cell-role="th">h2_observed</th>
-<th data-quarto-table-cell-role="th">se</th>
+<th data-quarto-table-cell-role="th">sample_index</th>
+<th data-quarto-table-cell-role="th">sample_id</th>
+<th data-quarto-table-cell-role="th">donor_id</th>
+<th data-quarto-table-cell-role="th">cluster_id</th>
+<th data-quarto-table-cell-role="th">celltype</th>
+<th data-quarto-table-cell-role="th">time_point</th>
+<th data-quarto-table-cell-role="th">pool_id</th>
+<th data-quarto-table-cell-role="th">treatment</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">index</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>adhd</td>
-<td>0.1127</td>
-<td>0.0052</td>
+<th data-quarto-table-cell-role="th">AAACCTGAGAACAACT-1-0</th>
+<td>0</td>
+<td>5245STDY7352549</td>
+<td>HPSI0714i-iudw_1</td>
+<td>2</td>
+<td>P_FPP</td>
+<td>D11</td>
+<td>pool1</td>
+<td>NONE</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>bmi</td>
-<td>0.4552</td>
-<td>0.0193</td>
+<th data-quarto-table-cell-role="th">AAACCTGAGACAAGCC-1-0</th>
+<td>0</td>
+<td>5245STDY7352549</td>
+<td>HPSI0614i-liqa_1</td>
+<td>1</td>
+<td>P_FPP</td>
+<td>D11</td>
+<td>pool1</td>
+<td>NONE</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>educational_attainment</td>
-<td>0.1082</td>
-<td>0.0031</td>
+<th data-quarto-table-cell-role="th">AAACCTGAGACGCACA-1-0</th>
+<td>0</td>
+<td>5245STDY7352549</td>
+<td>HPSI1113i-podx_1</td>
+<td>1</td>
+<td>P_FPP</td>
+<td>D11</td>
+<td>pool1</td>
+<td>NONE</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>year_first_birth</td>
-<td>0.0328</td>
-<td>0.0012</td>
+<th data-quarto-table-cell-role="th">AAACCTGAGGAATGGA-1-0</th>
+<td>0</td>
+<td>5245STDY7352549</td>
+<td>HPSI0114i-eipl_1</td>
+<td>0</td>
+<td>FPP</td>
+<td>D11</td>
+<td>pool1</td>
+<td>NONE</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>depression</td>
-<td>0.0496</td>
-<td>0.0016</td>
+<th data-quarto-table-cell-role="th">AAACCTGCACGTCTCT-1-0</th>
+<td>0</td>
+<td>5245STDY7352549</td>
+<td>HPSI0914i-suop_5</td>
+<td>1</td>
+<td>P_FPP</td>
+<td>D11</td>
+<td>pool1</td>
+<td>NONE</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">TTTGGTTTCTTCAACT-1-37</th>
+<td>37</td>
+<td>5245STDY7962568</td>
+<td>HPSI0813i-guss_1</td>
+<td>0</td>
+<td>FPP</td>
+<td>D11</td>
+<td>pool13</td>
+<td>NONE</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">TTTGTCAAGCTGCAAG-1-37</th>
+<td>37</td>
+<td>5245STDY7962568</td>
+<td>HPSI0813i-peoj_1</td>
+<td>0</td>
+<td>FPP</td>
+<td>D11</td>
+<td>pool13</td>
+<td>NONE</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">TTTGTCAGTAACGCGA-1-37</th>
+<td>37</td>
+<td>5245STDY7962568</td>
+<td>HPSI0714i-kute_5</td>
+<td>0</td>
+<td>FPP</td>
+<td>D11</td>
+<td>pool13</td>
+<td>NONE</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">TTTGTCAGTGTCAATC-1-37</th>
+<td>37</td>
+<td>5245STDY7962568</td>
+<td>HPSI0813i-zexw_3</td>
+<td>2</td>
+<td>P_FPP</td>
+<td>D11</td>
+<td>pool13</td>
+<td>NONE</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">TTTGTCATCCAACCAA-1-37</th>
+<td>37</td>
+<td>5245STDY7962568</td>
+<td>HPSI1013i-jufd_3</td>
+<td>0</td>
+<td>FPP</td>
+<td>D11</td>
+<td>pool13</td>
+<td>NONE</td>
 </tr>
 </tbody>
 </table>
 
+<p>253381 rows × 8 columns</p>
 </div>
 </div>
 </div>
@@ -4975,7 +4613,354 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Question.</strong> Based on the result table, are the results in line with what you expect/the literature?</p>
+<p><strong>Question.</strong> What format do gene names have in the dataset?</p>
+</div>
+</div>
+</section>
+<section id="prepare-the-input-files-for-scdrs" class="level1">
+<h1>3. Prepare the input files for scDRS <a class="anchor" id="section_3"></a></h1>
+<p>scDRS requires 3 different files as input: the H5AD file containing the scRNA seq data, a covariate file associated to the H5AD file, and the gene set file. A description of the different input and output file formats for scDRS can be found here: https://martinjzhang.github.io/scDRS/file_format.html</p>
+<section id="covariate-file" class="level2">
+<h2 class="anchored" data-anchor-id="covariate-file">3.1 Covariate file <a class="anchor" id="section_3_1"></a></h2>
+<p>The covariate file (.cov) contains information about the covariate we would like to include in the analysis. The first column corresponds to the cell names (matching adata.obs_names), and the other columns contain the covariates (e.g. n_genes, sex_male, age…) for each cell. <br> The covariates you decide to include should be adapted to the dataset you are using and how it was created. <br> Here, we will include the donor ID, the number of genes expressed by the cell, and a constant.</p>
+<div id="f3a62c34-eed8-4525-9bc6-db7fa0110dc1" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">&quot;./output/scdrs/&quot;</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="40148ecc" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initiate the covariate table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> adata</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a column with the number of genes:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>sc.pp.filter_cells(cov, min_genes<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#New donor column:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>cov.obs[<span class="st">&quot;donor_idv2&quot;</span>] <span class="op">=</span> cov.obs[<span class="st">&quot;donor_id&quot;</span>].astype(<span class="st">&quot;category&quot;</span>).cat.codes</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Add a column containing a constant value</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>cov.obs[<span class="st">&quot;const&quot;</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Select the columns we need and save the file</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>file_cov <span class="op">=</span> cov.obs[[<span class="st">&quot;const&quot;</span>, <span class="st">&quot;n_genes&quot;</span>, <span class="st">&quot;donor_idv2&quot;</span>]]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>file_cov.to_csv(<span class="st">&quot;./output/scdrs/jeber_11day_neurons.cov&quot;</span>, sep <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="gene-set-file" class="level2">
+<h2 class="anchored" data-anchor-id="gene-set-file">3.2 Gene set file <a class="anchor" id="section_3_2"></a></h2>
+<p>The gene set file (.gs) contains the list of gene for each trait we want to consider. The first column contains the trait name, and the second column contains the geneset. The geneset corresponds to the gene id, and the MAGMA z-score or p-value for that gene.</p>
+<p>For this example, we want to build a .gs file with the top 100 genes identified by MAGMA.</p>
+<div id="7540717a" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the output files from MAGMA</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>magma_out <span class="op">=</span> pd.read_fwf(<span class="st">&quot;./output/magma/adhd_full.genes.out&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>magma_out.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">GENE</th>
+<th data-quarto-table-cell-role="th">CHR</th>
+<th data-quarto-table-cell-role="th">START</th>
+<th data-quarto-table-cell-role="th">STOP</th>
+<th data-quarto-table-cell-role="th">NSNPS</th>
+<th data-quarto-table-cell-role="th">NPARAM</th>
+<th data-quarto-table-cell-role="th">N</th>
+<th data-quarto-table-cell-role="th">ZSTAT</th>
+<th data-quarto-table-cell-role="th">P</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>84069</td>
+<td>1</td>
+<td>891872</td>
+<td>920488</td>
+<td>7</td>
+<td>1</td>
+<td>225534</td>
+<td>0.65538</td>
+<td>0.25611</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>84808</td>
+<td>1</td>
+<td>900579</td>
+<td>927473</td>
+<td>20</td>
+<td>3</td>
+<td>225534</td>
+<td>1.22680</td>
+<td>0.10994</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>57801</td>
+<td>1</td>
+<td>924342</td>
+<td>946608</td>
+<td>29</td>
+<td>3</td>
+<td>225534</td>
+<td>0.87823</td>
+<td>0.18991</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>9636</td>
+<td>1</td>
+<td>938847</td>
+<td>959920</td>
+<td>15</td>
+<td>1</td>
+<td>225534</td>
+<td>0.47696</td>
+<td>0.31669</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>375790</td>
+<td>1</td>
+<td>945503</td>
+<td>1001499</td>
+<td>7</td>
+<td>1</td>
+<td>225534</td>
+<td>0.63903</td>
+<td>0.26140</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="8c1897a0" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#As we can see in the first few rows of the MAGMA output, the genes are designated by numbers.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#We use a file with the MAGMA gene numbers and corresponding gene symbols to fix that</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Load the reference file with gene number and corresponding gene symbol</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ncbi_ref <span class="op">=</span> pd.read_csv(<span class="st">&quot;./reference_data/NCBI37.3.gene.loc&quot;</span>, sep <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, header <span class="op">=</span> <span class="va">None</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ncbi_ref <span class="op">=</span> ncbi_ref.iloc[:,[<span class="dv">0</span>,<span class="dv">5</span>]]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ncbi_ref.columns <span class="op">=</span> [<span class="st">&quot;GENE&quot;</span>,<span class="st">&quot;GENE_symbol&quot;</span>]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ncbi_ref.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">GENE</th>
+<th data-quarto-table-cell-role="th">GENE_symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>79501</td>
+<td>OR4F5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>100996442</td>
+<td>LOC100996442</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>729759</td>
+<td>OR4F29</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>81399</td>
+<td>OR4F16</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>148398</td>
+<td>SAMD11</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="4fa013e9" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a table with the gene name and the corresponding z-score</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Add the gene symbol column</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> magma_out.merge(ncbi_ref, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span>, on <span class="op">=</span> <span class="st">&#39;GENE&#39;</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Select the columns we need for scDRS</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">&#39;GENE_symbol&#39;</span>, <span class="st">&#39;ZSTAT&#39;</span>]]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Rename the ZSTAT column with the name of the trait</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> [<span class="st">&quot;GENE&quot;</span>, <span class="st">&quot;ADHD&quot;</span>]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>df.head()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Save the file </span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">&quot;./output/scdrs/zfile_adhd_magma.tsv&quot;</span>, sep <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, index <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="05a953eb" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Use scdrs munge-gs to create the .gs file</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#We munge the file to keep the TOP 100 GENES</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>munge_command <span class="op">=</span> <span class="st">&quot;scdrs munge-gs </span><span class="op">\</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="st">--out-file ./output/scdrs/munge_adhd_magma_100.gs </span><span class="op">\</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="st">--zscore-file ./output/scdrs/zfile_adhd_magma.tsv </span><span class="op">\</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="st">--weight zscore </span><span class="op">\</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="st">--n-max 100&quot;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>os.system(munge_command)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>******************************************************************************
+* Single-cell disease relevance score (scDRS)
+* Version 1.0.2
+* Martin Jinye Zhang and Kangcheng Hou
+* HSPH / Broad Institute / UCLA
+* MIT License
+******************************************************************************
+Call: scdrs munge-gs \
+--zscore-file ./output/scdrs/zfile_adhd_magma.tsv \
+--weight zscore \
+--n-min 100 \
+--n-max 100 \
+--out-file ./output/scdrs/munge_adhd_magma_100.gs
+
+--zscore-file loaded: n_gene=18112, n_trait=1 (sys_time=0.0s)
+Print info for the first 3 traits and first 10 genes
+Traits               [&#39;ADHD&#39;]
+PLEKHN1              [0.65538]
+PERM1                [1.2268]
+HES4                 [0.87823]
+ISG15                [0.47696]
+AGRN                 [0.63903]
+C1orf159             [0.44094]
+TTLL10               [0.63568]
+TNFRSF18             [-1.5323]
+TNFRSF4              [-1.4947]
+UBE2J2               [-0.31362]
+--zscore-file have values above 1 or below 0. Seems fine.
+
+Finish munging 1 gene sets (sys_time=0.0s)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>0</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open and inspect the munged gene set . <strong>Question.</strong> What does the output of the munging step look like? You can also directly check the file from the file browser in jupyterLab.</p>
+</div>
+</div>
+</section>
+<section id="run-scdrs-on-the-11day-neurons-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="run-scdrs-on-the-11day-neurons-dataset">4. Run scDRS on the 11day neurons dataset <a class="anchor" id="section_4"></a></h2>
+<p>We now have prepared all the input files necessary to run scDRS. <br> We can run the compute-score function, which will calculate a score for each cell in the dataset. This command takes as input the h5ad file, the covariate file, the gene set file, and additional arguments related to which score to return.</p>
+<div id="c4caa90f" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This step took more than 30 minutes</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>scdrs_command <span class="op">=</span> <span class="st">&quot;scdrs compute-score </span><span class="op">\</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">--h5ad-file ./reference_data/scDRS_Jerber_dataset/11day_DA_neurons.h5ad </span><span class="op">\</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">--h5ad-species human </span><span class="op">\</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">--gs-file ./output/scdrs/munge_adhd_magma_100.gs </span><span class="op">\</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">--gs-species human </span><span class="op">\</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="st">--cov-file ./reference_data/scDRS_Jerber_dataset/11day_DA_neurons_wSex.tsv </span><span class="op">\</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="st">--flag-filter-data True </span><span class="op">\</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="st">--flag-raw-count True </span><span class="op">\</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="st">--flag-return-ctrl-raw-score False </span><span class="op">\</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="st">--flag-return-ctrl-norm-score True </span><span class="op">\</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="st">--out-folder ./output/scdrs/ &quot;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;The command to use is below. We do not run it as it takes some time, but we have already generated the output files.</span><span class="ch">\n</span><span class="sc">{</span>scdrs_command<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>The command to use is below. We do not run it as it takes some time, but we have already generated the output files.
+scdrs compute-score --h5ad-file ./reference_data/scDRS_Jerber_dataset/11day_DA_neurons.h5ad --h5ad-species human --gs-file ./output/scdrs/munge_adhd_magma_100.gs --gs-species human --cov-file ./reference_data/scDRS_Jerber_dataset/11day_DA_neurons_wSex.tsv --flag-filter-data True --flag-raw-count True --flag-return-ctrl-raw-score False --flag-return-ctrl-norm-score True --out-folder ./output/scdrs/ </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Question.</strong> Can you tell why the software outputs two files .score.gz and .full_score.gz?</p>
+</div>
+</div>
+</section>
+<section id="run-the-group-level-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-group-level-analysis">5. Run the group level analysis <a class="anchor" id="section_5"></a></h2>
+<p>Now that we have computed the disease score for each cell, we can compute group-level associations. Here, the groups that we will consider are the different cell types in the dataset. <br> We use the perform-downstream command, which will calculate an association p-value for each cell type in the dataset, based on the disease score for each cell, and the scores for control gene sets. The function takes as input the h5ad file, the covariate file, the scores calculated for each cell, and the name of the group-level we want to analyse.</p>
+<div id="ab451638" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This took around 30min to run</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>group_level_command <span class="op">=</span> <span class="st">&quot;scdrs perform-downstream </span><span class="op">\</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">--h5ad-file ./reference_data/scDRS_Jerber_dataset/11day_DA_neurons.h5ad </span><span class="op">\</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">--score-file ./output/scdrs/ADHD.full_score.gz </span><span class="op">\</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">--out-folder ./output/scdrs/ </span><span class="op">\</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">--group-analysis celltype </span><span class="op">\</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">--flag-filter-data True </span><span class="op">\</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="st">--flag-raw-count True&quot;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;The command to use is below. We do not run it as it takes some time, but we have already generated the output files.</span><span class="ch">\n</span><span class="sc">{</span>group_level_command<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>The command to use is below. We do not run it as it takes some time, but we have already generated the output files.
+scdrs perform-downstream --h5ad-file ./reference_data/scDRS_Jerber_dataset/11day_DA_neurons.h5ad --score-file ./output/scdrs/ADHD.full_score.gz --out-folder ./output/scdrs/ --group-analysis celltype --flag-filter-data True --flag-raw-count True</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Question.</strong> How is the output file organised? You can use the file format page to understand the different columns.</p>
 </div>
 </div>
 
