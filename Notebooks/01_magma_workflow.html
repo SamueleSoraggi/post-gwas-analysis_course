@@ -1,0 +1,3107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MAGMA: From Variants to Genes to Tissues – Course Template</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a9715c2d8f60b3a98396ecba141d0106.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8a591ff59271d21f6a5d1e80b3747fb5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-a9715c2d8f60b3a98396ecba141d0106.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Course Template</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-notebooks" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Notebooks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-notebooks">    
+        <li>
+    <a class="dropdown-item" href="../Notebooks/00_explore_gwas_sumstats.html">
+ <span class="dropdown-text">Explore GWAS sumstats</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Notebooks/01_magma_workflow.html">
+ <span class="dropdown-text">From variants to genes and tissues</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Notebooks/02_flames.html">
+ <span class="dropdown-text">FLAMES</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Notebooks/03_run_scdrs.html">
+ <span class="dropdown-text">Run scdrs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Notebooks/04_analyse_results_scdrs.html">
+ <span class="dropdown-text">analyse results scdrs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Notebooks/05_SNP_based_heritability.html">
+ <span class="dropdown-text">SNP based heritability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Notebooks/06_genetic_correlation.html">
+ <span class="dropdown-text">genetic correlation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/SamueleSoraggi/post-gwas-phd-course"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-gene-level-analysis" id="toc-why-gene-level-analysis" class="nav-link active" data-scroll-target="#why-gene-level-analysis">Why Gene-Level Analysis?</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#the-workflow" id="toc-the-workflow" class="nav-link" data-scroll-target="#the-workflow">The workflow</a></li>
+  <li><a href="#what-makes-this-statistically-hard" id="toc-what-makes-this-statistically-hard" class="nav-link" data-scroll-target="#what-makes-this-statistically-hard">What makes this statistically hard</a></li>
+  </ul></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#step-1-prepare-the-magma-input-files" id="toc-step-1-prepare-the-magma-input-files" class="nav-link" data-scroll-target="#step-1-prepare-the-magma-input-files">Step 1: Prepare the MAGMA Input Files</a>
+  <ul class="collapse">
+  <li><a href="#load-the-summary-statistics" id="toc-load-the-summary-statistics" class="nav-link" data-scroll-target="#load-the-summary-statistics">Load the summary statistics</a></li>
+  <li><a href="#quality-control" id="toc-quality-control" class="nav-link" data-scroll-target="#quality-control">Quality control</a></li>
+  <li><a href="#remove-duplicate-rsids" id="toc-remove-duplicate-rsids" class="nav-link" data-scroll-target="#remove-duplicate-rsids">Remove duplicate rsIDs</a></li>
+  <li><a href="#write-the-two-files" id="toc-write-the-two-files" class="nav-link" data-scroll-target="#write-the-two-files">Write the two files</a></li>
+  <li><a href="#choosing-the-sample-size" id="toc-choosing-the-sample-size" class="nav-link" data-scroll-target="#choosing-the-sample-size">Choosing the sample size</a></li>
+  </ul></li>
+  <li><a href="#the-reference-data" id="toc-the-reference-data" class="nav-link" data-scroll-target="#the-reference-data">The Reference Data</a>
+  <ul class="collapse">
+  <li><a href="#gene-locations-where-the-genes-are" id="toc-gene-locations-where-the-genes-are" class="nav-link" data-scroll-target="#gene-locations-where-the-genes-are">1. Gene locations: where the genes are</a></li>
+  <li><a href="#ld-reference-panel-how-correlated-the-snps-are" id="toc-ld-reference-panel-how-correlated-the-snps-are" class="nav-link" data-scroll-target="#ld-reference-panel-how-correlated-the-snps-are">2. LD reference panel: how correlated the SNPs are</a></li>
+  <li><a href="#gene-expression-the-tissue-covariate" id="toc-gene-expression-the-tissue-covariate" class="nav-link" data-scroll-target="#gene-expression-the-tissue-covariate">3. Gene expression: the tissue covariate</a></li>
+  </ul></li>
+  <li><a href="#step-2-snp-gene-annotation" id="toc-step-2-snp-gene-annotation" class="nav-link" data-scroll-target="#step-2-snp-gene-annotation">Step 2: SNP → Gene Annotation</a>
+  <ul class="collapse">
+  <li><a href="#inspect-the-annotation" id="toc-inspect-the-annotation" class="nav-link" data-scroll-target="#inspect-the-annotation">Inspect the annotation</a></li>
+  </ul></li>
+  <li><a href="#step-3-gene-analysis" id="toc-step-3-gene-analysis" class="nav-link" data-scroll-target="#step-3-gene-analysis">Step 3: Gene Analysis</a>
+  <ul class="collapse">
+  <li><a href="#read-the-results" id="toc-read-the-results" class="nav-link" data-scroll-target="#read-the-results">Read the results</a></li>
+  <li><a href="#top-genes" id="toc-top-genes" class="nav-link" data-scroll-target="#top-genes">Top genes</a></li>
+  <li><a href="#gene-level-manhattan-plot" id="toc-gene-level-manhattan-plot" class="nav-link" data-scroll-target="#gene-level-manhattan-plot">Gene-level Manhattan plot</a></li>
+  <li><a href="#did-magma-actually-control-for-gene-size" id="toc-did-magma-actually-control-for-gene-size" class="nav-link" data-scroll-target="#did-magma-actually-control-for-gene-size">Did MAGMA actually control for gene size?</a></li>
+  <li><a href="#gene-level-qq-plot" id="toc-gene-level-qq-plot" class="nav-link" data-scroll-target="#gene-level-qq-plot">Gene-level QQ plot</a></li>
+  </ul></li>
+  <li><a href="#step-4-tissue-enrichment" id="toc-step-4-tissue-enrichment" class="nav-link" data-scroll-target="#step-4-tissue-enrichment">Step 4: Tissue Enrichment</a>
+  <ul class="collapse">
+  <li><a href="#read-the-tissue-results" id="toc-read-the-tissue-results" class="nav-link" data-scroll-target="#read-the-tissue-results">Read the tissue results</a></li>
+  </ul></li>
+  <li><a href="#step-5-extension-curated-gene-sets" id="toc-step-5-extension-curated-gene-sets" class="nav-link" data-scroll-target="#step-5-extension-curated-gene-sets">Step 5 (Extension): Curated Gene Sets</a></li>
+  <li><a href="#what-can-go-wrong" id="toc-what-can-go-wrong" class="nav-link" data-scroll-target="#what-can-go-wrong">What Can Go Wrong</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MAGMA: From Variants to Genes to Tissues</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Before You Start
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This notebook is <strong>self-contained</strong>: it starts from the raw ADHD summary statistics file and takes you all the way to tissue enrichment. You need</p>
+<ul>
+<li>the summary statistics: <code>ADHD2022_iPSYCH_deCODE_PGC.meta.gz</code></li>
+<li>the three reference datasets in <code>reference_data/</code> (unzipped, see below)</li>
+<li>access to MAGMA on the course server</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How the Code in This Session Works
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>MAGMA is a <strong>command-line program</strong>, not an R package. So this notebook alternates between two kinds of chunk:</p>
+<ul>
+<li><strong>Bash chunks</strong>: the actual MAGMA commands. These are marked <code>eval = FALSE</code>: you copy them into a terminal on the course server and run them there.</li>
+<li><strong>R chunks</strong>: read the MAGMA output files back in, tabulate and plot them. These are set to run <strong>only if the output file exists</strong>, so the notebook knits cleanly before you have run anything. Once a MAGMA step finishes, re-knit and the corresponding figures appear.</li>
+</ul>
+<p>Work through in order: read the bash chunk, run it in the terminal, wait, then run the R chunk that reads its output.</p>
+</div>
+</div>
+<section id="why-gene-level-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="why-gene-level-analysis">Why Gene-Level Analysis?</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A GWAS gives you a Manhattan plot and a list of lead SNPs. That list is hard to act on: the lead SNP is usually intergenic, it is significant only because of LD with something unknown, and thousands of genuinely causal variants sit just below 5 × 10⁻⁸ and are invisible. Gene-level analysis reframes the question from <em>“which variant?”</em> to <em>“which gene?”</em> and <em>“which tissue?”</em>, questions you can follow up in the lab.</p>
+</div>
+</div>
+<section id="learning-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
+<p>After this session you will be able to:</p>
+<ul>
+<li>Explain what MAGMA aggregates and why LD makes that non-trivial</li>
+<li>Prepare MAGMA input files and choose the correct sample size for a case-control GWAS</li>
+<li>Run all three MAGMA steps and describe what each reference file contributes</li>
+<li>Interpret <code>.genes.out</code> and <code>.gsa.out</code>, applying the correct multiple-testing correction to each</li>
+<li>Explain why tissue enrichment must be conditioned on average expression, and what happens if it is not</li>
+<li>Recognise the main confounders: gene size, gene density, and the MHC region</li>
+</ul>
+</section>
+<section id="the-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="the-workflow">The workflow</h3>
+<p>MAGMA (<strong>M</strong>ulti-marker <strong>A</strong>nalysis of <strong>G</strong>eno<strong>M</strong>ic <strong>A</strong>nnotation, de Leeuw et al.&nbsp;2015) is a sequence of three commands. We prepare its input first, then run them in order, each consuming the output of the one before.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A["&lt;b&gt;Step 1 - Prepare&lt;/b&gt;&lt;br&gt;QC the summary statistics in R&lt;br&gt;snp_loc.txt + pval.txt"]
+  B["&lt;b&gt;Step 2 - Annotate&lt;/b&gt;&lt;br&gt;Assign each SNP to a gene&lt;br&gt;.genes.annot"]
+  C["&lt;b&gt;Step 3 - Gene analysis&lt;/b&gt;&lt;br&gt;One p-value per gene, LD-corrected&lt;br&gt;.genes.out + .genes.raw"]
+  D["&lt;b&gt;Step 4 - Gene sets&lt;/b&gt;&lt;br&gt;Which tissues or pathways are enriched&lt;br&gt;.gsa.out"]
+  A --&gt; B --&gt; C --&gt; D
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="what-makes-this-statistically-hard" class="level3">
+<h3 class="anchored" data-anchor-id="what-makes-this-statistically-hard">What makes this statistically hard</h3>
+<p>The naive approach, taking the smallest p-value in each gene or averaging the p-values, fails badly for one reason: <strong>linkage disequilibrium</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The LD problem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A gene containing 300 SNPs does not contain 300 independent pieces of evidence. If those SNPs sit in two haplotype blocks, they carry roughly <em>two</em> independent signals repeated 150 times each. Any method that treats them as independent will report an extravagantly small p-value for a gene that has only weak evidence.</p>
+<p>Worse, this bias is <strong>systematic</strong>: large genes and genes in high-LD regions contain more SNPs, so they would appear more significant regardless of biology. You would rediscover gene size, not disease genetics.</p>
+<p>MAGMA solves this by computing the SNP-wise mean χ² statistic for the gene and then deriving its <strong>null distribution given the observed LD matrix</strong>, estimated from a reference panel of real genotypes. The resulting gene p-value is corrected for both the number of SNPs and their correlation.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why summary statistics are enough
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>MAGMA never sees individual-level genotypes from the GWAS. It needs LD only to know how correlated the SNPs are, and LD is a property of the <em>population</em>, not of your sample. So a reference panel of a few hundred individuals of matched ancestry substitutes for the original genotypes. This is what makes MAGMA runnable on any published GWAS, and it is also why <strong>ancestry matching is not optional</strong>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div id="2e1cafd7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(vroom, dplyr, ggplot2, scales)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Every path used in this session, in one place. Change them here and nowhere else.</p>
+<div id="2fefaece" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>GENE_LOC <span class="ot">&lt;-</span> <span class="st">"reference_data/NCBI37.3/NCBI37.3.gene.loc"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>LD_REF   <span class="ot">&lt;-</span> <span class="st">"reference_data/g1000_eur/g1000_eur"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>GTEX     <span class="ot">&lt;-</span> <span class="st">"reference_data/gtex_v8_ts_avg_log2TPM.entrez.dedup.txt"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>OUT_PREFIX <span class="ot">&lt;-</span> <span class="st">"output/magma"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>SUMSTATS <span class="ot">&lt;-</span> <span class="st">"input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="step-1-prepare-the-magma-input-files" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-prepare-the-magma-input-files">Step 1: Prepare the MAGMA Input Files</h2>
+<p>MAGMA does not read GWAS summary statistics directly. It needs two small plain text files, which we build here from the raw file.</p>
+<ul>
+<li><strong>SNP location file</strong>: <code>SNP  CHR  BP</code>. Where each variant sits. No p-values.</li>
+<li><strong>P-value file</strong>: <code>SNP  P</code>. The association evidence. No positions.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why two files instead of one
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The split mirrors the two MAGMA steps. Annotation (Step 2) is purely positional: it needs coordinates and knows nothing about association. Gene analysis (Step 3) needs association evidence but takes the positions from the annotation file produced in Step 2. Keeping them separate means one annotation can be reused across several GWAS of the same variant set.</p>
+</div>
+</div>
+<section id="load-the-summary-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-summary-statistics">Load the summary statistics</h3>
+<p>The ADHD file lives in a different place on the course server than on a laptop, so we look in the likely locations and take the first that exists.</p>
+<div id="b8dcd8a7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> <span class="fu">vroom</span>(SUMSTATS, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Loaded %s variants x %d columns from:</span><span class="sc">\n</span><span class="st">  %s</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(<span class="fu">nrow</span>(sumstats), <span class="at">big.mark =</span> <span class="st">","</span>), <span class="fu">ncol</span>(sumstats), SUMSTATS))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loaded 6,774,224 variants x 14 columns from:
+  input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz</code></pre>
+</div>
+</div>
+<div id="5b8e7e3c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sumstats, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A spec_tbl_df: 5 × 14</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">SNP</th>
+<th data-quarto-table-cell-role="th" scope="col">BP</th>
+<th data-quarto-table-cell-role="th" scope="col">A1</th>
+<th data-quarto-table-cell-role="th" scope="col">A2</th>
+<th data-quarto-table-cell-role="th" scope="col">FRQ_A_38691</th>
+<th data-quarto-table-cell-role="th" scope="col">FRQ_U_186843</th>
+<th data-quarto-table-cell-role="th" scope="col">INFO</th>
+<th data-quarto-table-cell-role="th" scope="col">OR</th>
+<th data-quarto-table-cell-role="th" scope="col">SE</th>
+<th data-quarto-table-cell-role="th" scope="col">P</th>
+<th data-quarto-table-cell-role="th" scope="col">Direction</th>
+<th data-quarto-table-cell-role="th" scope="col">Nca</th>
+<th data-quarto-table-cell-role="th" scope="col">Nco</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8</td>
+<td>rs62513865</td>
+<td>101592213</td>
+<td>C</td>
+<td>T</td>
+<td>0.925</td>
+<td>0.937</td>
+<td>0.981</td>
+<td>0.99631</td>
+<td>0.0175</td>
+<td>0.8325</td>
+<td>+---+++0-++-+</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>rs79643588</td>
+<td>106973048</td>
+<td>G</td>
+<td>A</td>
+<td>0.910</td>
+<td>0.917</td>
+<td>1.000</td>
+<td>1.00411</td>
+<td>0.0159</td>
+<td>0.7967</td>
+<td>++--++-+-+-++</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>rs17396518</td>
+<td>108690829</td>
+<td>T</td>
+<td>G</td>
+<td>0.561</td>
+<td>0.577</td>
+<td>0.998</td>
+<td>0.99611</td>
+<td>0.0096</td>
+<td>0.6876</td>
+<td>--++-++??-+--</td>
+<td>37367</td>
+<td>184388</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>rs983166</td>
+<td>108681675</td>
+<td>A</td>
+<td>C</td>
+<td>0.570</td>
+<td>0.586</td>
+<td>0.996</td>
+<td>0.99491</td>
+<td>0.0096</td>
+<td>0.5956</td>
+<td>--++-++++-+--</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>rs28842593</td>
+<td>103044620</td>
+<td>T</td>
+<td>C</td>
+<td>0.839</td>
+<td>0.836</td>
+<td>0.982</td>
+<td>0.98314</td>
+<td>0.0135</td>
+<td>0.2081</td>
+<td>----++0+??--+</td>
+<td>37504</td>
+<td>184525</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="quality-control" class="level3">
+<h3 class="anchored" data-anchor-id="quality-control">Quality control</h3>
+<p>Everything that goes into MAGMA should pass the same QC you would apply before any downstream analysis. Two filters, and one structural requirement.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What we filter and why
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong><code>INFO &gt;= 0.8</code></strong>: well-imputed variants only. Poorly imputed genotypes give attenuated effect estimates and unreliable p-values, which propagate straight into the gene statistic.</p></li>
+<li><p><strong><code>MAF &gt;= 0.01</code></strong>: common variants only. Below 1%, the LD reference panel (503 Europeans, Step 3) has too few copies of the minor allele to estimate correlations at all, so MAGMA cannot use the variant properly even if you give it.</p></li>
+<li><p><strong>Autosomes only (chr 1-22)</strong>: <code>NCBI37.3.gene.loc</code> contains no sex chromosomes, so anything on X or Y would be dropped silently anyway.</p></li>
+</ol>
+</div>
+</div>
+<p>The frequency column name embeds the case count (<code>FRQ_A_38691</code>), which changes from study to study, so we detect it rather than hard-code it.</p>
+<div id="b6f85859" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>frq_case_col <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^FRQ_A"</span>, <span class="fu">names</span>(sumstats), <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>n_cases    <span class="ot">&lt;-</span> sumstats<span class="sc">$</span>Nca[<span class="dv">1</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>n_controls <span class="ot">&lt;-</span> sumstats<span class="sc">$</span>Nco[<span class="dv">1</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MAF =</span> <span class="fu">pmin</span>(.data[[frq_case_col]], <span class="dv">1</span> <span class="sc">-</span> .data[[frq_case_col]]))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>magma_input <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(INFO <span class="sc">&gt;=</span> <span class="fl">0.8</span>, MAF <span class="sc">&gt;=</span> <span class="fl">0.01</span>, CHR <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Step =</span> <span class="fu">c</span>(<span class="st">"Variants in file"</span>, <span class="st">"Fail INFO &lt; 0.8"</span>, <span class="st">"Fail MAF &lt; 0.01"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Non-autosomal"</span>, <span class="st">"Passed to MAGMA"</span>),</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variants =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(sumstats),</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sum</span>(sumstats<span class="sc">$</span>INFO <span class="sc">&lt;</span> <span class="fl">0.8</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sum</span>(sumstats<span class="sc">$</span>MAF  <span class="sc">&lt;</span> <span class="fl">0.01</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sum</span>(<span class="sc">!</span>sumstats<span class="sc">$</span>CHR <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>               <span class="fu">nrow</span>(magma_input))</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">% of file</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, <span class="dv">100</span> <span class="sc">*</span> Variants <span class="sc">/</span> <span class="fu">nrow</span>(sumstats)),</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>         <span class="at">Variants =</span> <span class="fu">format</span>(Variants, <span class="at">big.mark =</span> <span class="st">","</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A tibble: 5 × 3</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">Step</th>
+<th data-quarto-table-cell-role="th" scope="col">Variants</th>
+<th data-quarto-table-cell-role="th" scope="col">% of file</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variants in file</td>
+<td>6,774,224</td>
+<td>100.0%</td>
+</tr>
+<tr class="even">
+<td>Fail INFO &lt; 0.8</td>
+<td><span style="white-space:pre-wrap"> 0</span></td>
+<td><span style="white-space:pre-wrap">0.0% </span></td>
+</tr>
+<tr class="odd">
+<td>Fail MAF &lt; 0.01</td>
+<td><span style="white-space:pre-wrap"> 99</span></td>
+<td><span style="white-space:pre-wrap">0.0% </span></td>
+</tr>
+<tr class="even">
+<td>Non-autosomal</td>
+<td>0</td>
+<td>0.0%</td>
+</tr>
+<tr class="odd">
+<td>Passed to MAGMA</td>
+<td>6,774,125</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The exclusion counts overlap
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Rare variants are also the hardest to impute, so many variants fail both the INFO and the MAF filter. The rows above do not add up, and they are not meant to. The number to report is the final one: how many variants entered the analysis.</p>
+</div>
+</div>
+</section>
+<section id="remove-duplicate-rsids" class="level3">
+<h3 class="anchored" data-anchor-id="remove-duplicate-rsids">Remove duplicate rsIDs</h3>
+<p>Meta-analysed files routinely contain repeated identifiers: multi-allelic sites, merged rsIDs. MAGMA will either fail or silently double-count them, so this check is not optional.</p>
+<div id="f946c0cb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n_dup <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">duplicated</span>(magma_input<span class="sc">$</span>SNP))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Duplicated rsIDs: %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(n_dup, <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>magma_input <span class="ot">&lt;-</span> magma_input <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(SNP, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Final variant set: %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">nrow</span>(magma_input), <span class="at">big.mark =</span> <span class="st">","</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Duplicated rsIDs: 6
+Final variant set: 6,774,119</code></pre>
+</div>
+</div>
+</section>
+<section id="write-the-two-files" class="level3">
+<h3 class="anchored" data-anchor-id="write-the-two-files">Write the two files</h3>
+<div id="66329c26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SNP_LOC <span class="ot">&lt;-</span> <span class="st">"output/magma/snp_loc.txt"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>PVAL    <span class="ot">&lt;-</span> <span class="st">"output/magma/pval.txt"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vroom_write</span>(magma_input <span class="sc">%&gt;%</span> <span class="fu">select</span>(SNP, CHR, BP), SNP_LOC,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">vroom_write</span>(magma_input <span class="sc">%&gt;%</span> <span class="fu">select</span>(SNP, P), PVAL,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"── snp_loc.txt ──</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(magma_input <span class="sc">%&gt;%</span> <span class="fu">select</span>(SNP, CHR, BP), <span class="dv">4</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">── pval.txt ──</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(magma_input <span class="sc">%&gt;%</span> <span class="fu">select</span>(SNP, P), <span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre>── snp_loc.txt ──
+
+<span class="ansi-bright-black-fg"># A tibble: 4 × 3</span>
+
+  SNP          CHR        BP
+
+  <span style="font-style:italic" class="ansi-bright-black-fg">&lt;chr&gt;</span>      <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span>     <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span>
+
+<span class="ansi-bright-black-fg">1</span> rs62513865     8 101<span style="text-decoration:underline">5</span><span style="text-decoration:underline">9</span><span style="text-decoration:underline">2</span>213
+
+<span class="ansi-bright-black-fg">2</span> rs79643588     8 106<span style="text-decoration:underline">9</span><span style="text-decoration:underline">7</span><span style="text-decoration:underline">3</span>048
+
+<span class="ansi-bright-black-fg">3</span> rs17396518     8 108<span style="text-decoration:underline">6</span><span style="text-decoration:underline">9</span><span style="text-decoration:underline">0</span>829
+
+<span class="ansi-bright-black-fg">4</span> rs983166       8 108<span style="text-decoration:underline">6</span><span style="text-decoration:underline">8</span><span style="text-decoration:underline">1</span>675
+
+
+
+── pval.txt ──
+
+<span class="ansi-bright-black-fg"># A tibble: 4 × 2</span>
+
+  SNP            P
+
+  <span style="font-style:italic" class="ansi-bright-black-fg">&lt;chr&gt;</span>      <span style="font-style:italic" class="ansi-bright-black-fg">&lt;dbl&gt;</span>
+
+<span class="ansi-bright-black-fg">1</span> rs62513865 0.832
+
+<span class="ansi-bright-black-fg">2</span> rs79643588 0.797
+
+<span class="ansi-bright-black-fg">3</span> rs17396518 0.688
+
+<span class="ansi-bright-black-fg">4</span> rs983166   0.596
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="choosing-the-sample-size" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-the-sample-size">Choosing the sample size</h3>
+<p>MAGMA needs <code>N</code> to convert p-values into Z-statistics. For a <strong>balanced</strong> study this is just the number of individuals. For an unbalanced case-control study it is not: 38,691 cases and 186,843 controls carry far less information than 112,767 of each would.</p>
+<p>The right quantity is the <strong>effective sample size</strong>:</p>
+<p><span class="math display">\[N_{\text{eff}} = \frac{4}{\frac{1}{N_{\text{cases}}} + \frac{1}{N_{\text{controls}}}}\]</span></p>
+<div id="a7460c9e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n_total <span class="ot">&lt;-</span> n_cases <span class="sc">+</span> n_controls</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>n_eff   <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">/</span> n_cases <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> n_controls)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Cases       : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(n_cases,    <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Controls    : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(n_controls, <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Total N     : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(n_total,    <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Effective N : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">round</span>(n_eff), <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Ratio       : %.2f</span><span class="sc">\n</span><span class="st">"</span>, n_eff <span class="sc">/</span> n_total))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cases       : 38,691
+Controls    : 186,843
+Total N     : 225,534
+Effective N : 128,214
+Ratio       : 0.57</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The effective sample size is roughly <strong>57%</strong> of the nominal total. The extra controls beyond a 1:1 ratio add real but rapidly diminishing information, and <code>N_eff</code> is the number that reflects it.</p>
+<p>Because <code>N</code> here is the same for every SNP, it rescales the gene statistics rather than reordering them, so the <em>ranking</em> of genes barely moves. It matters when you compare gene Z-statistics across studies, when you combine MAGMA output with other tools, and when you report the analysis. Use <code>N_eff</code> and say so.</p>
+<p>If your summary statistics file has a <strong>per-SNP</strong> sample size column (many meta-analyses do; this one does not), use it instead. MAGMA takes it with <code>ncol=N</code> in place of <code>N=</code>, and it correctly handles variants that were present in only some contributing cohorts.</p>
+</div>
+</div>
+<div id="03dbb0ec" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>N_MAGMA <span class="ot">&lt;-</span> <span class="fu">round</span>(n_eff)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<hr>
+</section>
+</section>
+<section id="the-reference-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-reference-data">The Reference Data</h2>
+<p>Three reference files do the real work in Steps 2-4. Look at each one before running anything, because most MAGMA failures are a mismatch between these files and your data.</p>
+<section id="gene-locations-where-the-genes-are" class="level3">
+<h3 class="anchored" data-anchor-id="gene-locations-where-the-genes-are">1. Gene locations: where the genes are</h3>
+<div id="69690af0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gene_loc <span class="ot">&lt;-</span> <span class="fu">read.table</span>(GENE_LOC, <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"GENE"</span>, <span class="st">"CHR"</span>, <span class="st">"START"</span>, <span class="st">"STOP"</span>, <span class="st">"STRAND"</span>, <span class="st">"SYMBOL"</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"%s protein-coding genes, build NCBI37.3 (hg19)</span><span class="sc">\n\n</span><span class="st">"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(<span class="fu">nrow</span>(gene_loc), <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gene_loc, <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>19,427 protein-coding genes, build NCBI37.3 (hg19)
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A data.frame: 6 × 6</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th" scope="col">GENE</th>
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">START</th>
+<th data-quarto-table-cell-role="th" scope="col">STOP</th>
+<th data-quarto-table-cell-role="th" scope="col">STRAND</th>
+<th data-quarto-table-cell-role="th" scope="col">SYMBOL</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">1</th>
+<td>79501</td>
+<td>1</td>
+<td>69091</td>
+<td>70008</td>
+<td>+</td>
+<td>OR4F5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">2</th>
+<td>100996442</td>
+<td>1</td>
+<td>142447</td>
+<td>174392</td>
+<td>-</td>
+<td>LOC100996442</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">3</th>
+<td>729759</td>
+<td>1</td>
+<td>367659</td>
+<td>368597</td>
+<td>+</td>
+<td>OR4F29</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">4</th>
+<td>81399</td>
+<td>1</td>
+<td>621096</td>
+<td>622034</td>
+<td>-</td>
+<td>OR4F16</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">5</th>
+<td>148398</td>
+<td>1</td>
+<td>859993</td>
+<td>879961</td>
+<td>+</td>
+<td>SAMD11</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">6</th>
+<td>26155</td>
+<td>1</td>
+<td>879583</td>
+<td>894679</td>
+<td>-</td>
+<td>NOC2L</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Two things to notice
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Genes are identified by Entrez ID, not by symbol.</strong> MAGMA works entirely in Entrez IDs, so its output is unreadable until you join the symbol back on, which we do in Step 3. Every other file you bring to MAGMA (gene sets, expression matrices) must also be keyed on Entrez ID.</p>
+<p><strong>This is hg19, and it is protein-coding only.</strong> ~19,400 genes, not the ~60,000 in a full GENCODE annotation. Non-coding RNAs, pseudogenes and antisense transcripts are absent, so a signal falling in a lncRNA is simply assigned to a neighbouring protein-coding gene or to nothing at all. That is a real limitation of this reference, not of MAGMA.</p>
+</div>
+</div>
+</section>
+<section id="ld-reference-panel-how-correlated-the-snps-are" class="level3">
+<h3 class="anchored" data-anchor-id="ld-reference-panel-how-correlated-the-snps-are">2. LD reference panel: how correlated the SNPs are</h3>
+<div id="84c93f80" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>n_individuals <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">readLines</span>(<span class="fu">paste0</span>(LD_REF, <span class="st">".fam"</span>)))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"LD panel: 1000 Genomes Phase 3, European ancestry</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Individuals: %d</span><span class="sc">\n</span><span class="st">"</span>, n_individuals))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Format: PLINK binary (.bed / .bim / .fam)</span><span class="sc">\n</span><span class="st">"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>LD panel: 1000 Genomes Phase 3, European ancestry
+Individuals: 503
+Format: PLINK binary (.bed / .bim / .fam)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Ancestry must match
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>503 European individuals. This is the correct panel for the ADHD 2022 meta-analysis, which is European-ancestry. Using it with an East Asian or African GWAS gives the wrong LD matrix, and therefore wrong gene p-values, with no error message. Matched panels (<code>g1000_afr</code>, <code>g1000_eas</code>, <code>g1000_sas</code>, <code>g1000_amr</code>) are available from the MAGMA website.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The <code>.synonyms</code> file
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The panel ships with <code>g1000_eur.synonyms</code>, which maps merged and deprecated rsIDs onto their current identifiers. MAGMA loads it automatically as long as it shares the prefix of the <code>.bed/.bim/.fam</code> files. It matters: without it, a meaningful fraction of your SNPs silently fail to match the panel because the GWAS was annotated against a different dbSNP build.</p>
+</div>
+</div>
+</section>
+<section id="gene-expression-the-tissue-covariate" class="level3">
+<h3 class="anchored" data-anchor-id="gene-expression-the-tissue-covariate">3. Gene expression: the tissue covariate</h3>
+<div id="0cb253cf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gtex_header <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(<span class="fu">readLines</span>(GTEX, <span class="at">n =</span> <span class="dv">1</span>), <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Genes   : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">length</span>(<span class="fu">readLines</span>(GTEX)) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Columns : %d  (1 gene ID + %d tissues + 1 average)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">length</span>(gtex_header), <span class="fu">length</span>(gtex_header) <span class="sc">-</span> <span class="dv">2</span>))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Brain tissues among them: %d</span><span class="sc">\n\n</span><span class="st">"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="fu">grepl</span>(<span class="st">"^Brain"</span>, gtex_header))))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gtex_header, <span class="dv">14</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(gtex_header, <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Genes   : 23,961
+Columns : 56  (1 gene ID + 54 tissues + 1 average)
+Brain tissues among them: 13
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'GENE'</li><li>'Adipose_Subcutaneous'</li><li>'Adipose_Visceral_Omentum'</li><li>'Adrenal_Gland'</li><li>'Artery_Aorta'</li><li>'Artery_Coronary'</li><li>'Artery_Tibial'</li><li>'Bladder'</li><li>'Brain_Amygdala'</li><li>'Brain_Anterior_cingulate_cortex_BA24'</li><li>'Brain_Caudate_basal_ganglia'</li><li>'Brain_Cerebellar_Hemisphere'</li><li>'Brain_Cerebellum'</li><li>'Brain_Cortex'</li></ol>
+</div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'Vagina'</li><li>'Whole_Blood'</li><li>'Average'</li></ol>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The <code>Average</code> column is the most important column in this file
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It holds the mean expression of each gene across all 54 tissues, and it exists to solve a confound that would otherwise dominate the entire analysis.</p>
+<p>Genes that are highly expressed <em>everywhere</em>, the housekeeping genes, are longer, more conserved, more constrained, and carry more GWAS signal for almost every trait. Test each tissue on its own and you will find that nearly all 54 tissues are “enriched”, because all of them are correlated with general expression level.</p>
+<p>Conditioning on <code>Average</code> changes the question from <em>“are genes expressed in this tissue associated with ADHD?”</em> to <em>“are genes expressed <strong>specifically</strong> in this tissue associated with ADHD, over and above general expression?”</em> Only the second question is informative. We do this in Step 4.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="step-2-snp-gene-annotation" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-snp-gene-annotation">Step 2: SNP → Gene Annotation</h2>
+<p>Assign every variant to a gene, by position.</p>
+<div id="950116f6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="22">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>command <span class="ot">&lt;-</span> (<span class="st">"magma </span><span class="sc">\\</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="st">  --annotate window=10,10 </span><span class="sc">\\</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="st">  --snp-loc  output/magma/snp_loc.txt </span><span class="sc">\\</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="st">  --gene-loc reference_data/NCBI37.3/NCBI37.3.gene.loc </span><span class="sc">\\</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="st">  --out      output/magma/adhd"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">system</span>(command, <span class="at">intern =</span> T)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(output, <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Welcome to MAGMA v1.10 (linux/s)
+Using flags:
+    --annotate window=10,10
+    --snp-loc output/magma/snp_loc.txt
+    --gene-loc reference_data/NCBI37.3/NCBI37.3.gene.loc
+    --out output/magma/adhd
+
+Start time is 11:04:56, Wednesday 12 Aug 2026
+
+Starting annotation...
+Reading gene locations from file reference_data/NCBI37.3/NCBI37.3.gene.loc... 
+    adding window: 10000bp
+    19427 gene locations read from file
+    chromosome  1: 2016 genes
+    chromosome  2: 1226 genes
+    chromosome  3: 1050 genes
+    chromosome  4: 745 genes
+    chromosome  5: 856 genes
+    chromosome  6: 1016 genes
+    chromosome  7: 906 genes
+    chromosome  8: 669 genes
+    chromosome  9: 775 genes
+    chromosome 10: 723 genes
+    chromosome 11: 1275 genes
+    chromosome 12: 1009 genes
+    chromosome 13: 320 genes
+    chromosome 14: 595 genes
+    chromosome 15: 586 genes
+    chromosome 16: 817 genes
+    chromosome 17: 1147 genes
+    chromosome 18: 271 genes
+    chromosome 19: 1389 genes
+    chromosome 20: 527 genes
+    chromosome 21: 215 genes
+    chromosome 22: 442 genes
+    chromosome  X: 805 genes
+    chromosome  Y: 47 genes
+Reading SNP locations from file output/magma/snp_loc.txt... 
+    WARNING: on line 1, chromosome code 'CHR' not recognised; skipping SNP (ID = SNP)
+    6774119 SNP locations read from file                                                            
+    of those, 3230552 (47.69%) mapped to at least one gene
+Writing annotation to file output/magma/adhd.genes.annot
+    for chromosome  1, 85 genes are empty (out of 2016)
+    for chromosome  2, 18 genes are empty (out of 1226)
+    for chromosome  3, 2 genes are empty (out of 1050)
+    for chromosome  4, 22 genes are empty (out of 745)
+    for chromosome  5, 9 genes are empty (out of 856)
+    for chromosome  6, 2 genes are empty (out of 1016)
+    for chromosome  7, 21 genes are empty (out of 906)
+    for chromosome  8, 46 genes are empty (out of 669)
+    for chromosome  9, 40 genes are empty (out of 775)
+    for chromosome 10, 12 genes are empty (out of 723)
+    for chromosome 11, 7 genes are empty (out of 1275)
+    for chromosome 12, 4 genes are empty (out of 1009)
+    for chromosome 13, 1 gene is empty (out of 320)
+    for chromosome 14, 12 genes are empty (out of 595)
+    for chromosome 15, 29 genes are empty (out of 586)
+    for chromosome 16, 61 genes are empty (out of 817)
+    for chromosome 17, 26 genes are empty (out of 1147)
+    for chromosome 19, 30 genes are empty (out of 1389)
+    for chromosome 20, 3 genes are empty (out of 527)
+    for chromosome 21, 4 genes are empty (out of 215)
+    for chromosome 22, 21 genes are empty (out of 442)
+    for chromosome  X, 805 genes are empty (out of 805)
+    for chromosome  Y, 47 genes are empty (out of 47)
+    at least one SNP mapped to each of a total of 18120 genes (out of 19427)
+
+
+End time is 11:05:05, Wednesday 12 Aug 2026 (elapsed: 00:00:09)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><code>window=10,10</code>: the one choice that matters here
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The window extends the boundaries of each gene by 10 kb upstream and 10 kb before assigning SNPs.</p>
+<ul>
+<li><code>window=0,0</code>: only variants <strong>inside</strong> the gene body. Conservative, and it misses promoter and enhancer variants, which is where a large share of GWAS signal actually sits.</li>
+<li><code>window=10,10</code>: the common default. Captures proximal regulatory variation without much overlap between neighbouring genes.</li>
+<li><code>window=35,10</code>: 35 kb upstream, 10 kb downstream. Asymmetric because regulatory elements cluster upstream. Used in several published MAGMA analyses.</li>
+</ul>
+<p>Bigger windows recover more regulatory signal but assign more SNPs to <em>several</em> genes at once, which blurs the attribution in gene-dense regions. There is no correct answer; <strong>there is a requirement to state which you used</strong>, and it is good practice to check that your headline result survives a different window (Exercise 2).</p>
+</div>
+</div>
+<section id="inspect-the-annotation" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-the-annotation">Inspect the annotation</h3>
+<div id="9ca1a03b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="26">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ANNOT <span class="ot">&lt;-</span> <span class="fu">paste0</span>(OUT_PREFIX, <span class="st">"/adhd.genes.annot"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="e5ca6304" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="27">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>annot_lines <span class="ot">&lt;-</span> <span class="fu">readLines</span>(ANNOT)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>annot_lines <span class="ot">&lt;-</span> annot_lines[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"^#"</span>, annot_lines)]   <span class="co"># drop header comments</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Each line: GENE  CHR:START:STOP  SNP1  SNP2  ...</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>parts <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(annot_lines, <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>annot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">GENE   =</span> <span class="fu">vapply</span>(parts, <span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="fu">character</span>(<span class="dv">1</span>), <span class="dv">1</span>),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_snps =</span> <span class="fu">vapply</span>(parts, <span class="cf">function</span>(x) <span class="fu">length</span>(x) <span class="sc">-</span> <span class="dv">2</span>L, <span class="fu">integer</span>(<span class="dv">1</span>)),</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Genes with at least one SNP : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">nrow</span>(annot), <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Median SNPs per gene        : %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">median</span>(annot<span class="sc">$</span>n_snps)));</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Largest gene (by SNP count) : %s SNPs</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(<span class="fu">max</span>(annot<span class="sc">$</span>n_snps), <span class="at">big.mark =</span> <span class="st">","</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Genes with at least one SNP : 18,120
+Median SNPs per gene        : 100
+Largest gene (by SNP count) : 15,004 SNPs</code></pre>
+</div>
+</div>
+<div id="66d80ad3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="28">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(annot, <span class="fu">aes</span>(<span class="at">x =</span> n_snps)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">60</span>, <span class="at">fill =</span> <span class="st">"#4682B4"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"SNPs assigned per gene"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Log scale. The spread across two orders of magnitude is exactly the bias MAGMA must correct"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"SNPs in gene (log scale)"</span>, <span class="at">y =</span> <span class="st">"Genes"</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_magma_workflow_files/figure-html/cell-17-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Around 18,000 of the ~19,400 genes receive at least one SNP; the rest fall in regions with no QC-passing variants.</p>
+<p>The histogram spans two orders of magnitude: some genes get a handful of SNPs, some get thousands. <strong>This is the whole reason Step 3 is statistically non-trivial.</strong> If gene p-values were computed by any method that rewards having more SNPs, this distribution would translate directly into a ranking of genes by size. Watch for it again in Step 3, where we check explicitly that it has not happened.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="step-3-gene-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-gene-analysis">Step 3: Gene Analysis</h2>
+<p>Combine the SNP p-values within each gene into a single gene p-value, correcting for LD.</p>
+<div id="8cc0206d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="35">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>command <span class="ot">&lt;-</span> <span class="st">"magma </span><span class="sc">\\</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="st">  --bfile      reference_data/g1000_eur/g1000_eur </span><span class="sc">\\</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="st">  --gene-annot output/magma/adhd.genes.annot </span><span class="sc">\\</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="st">  --pval       output/magma/pval.txt use=SNP,P N=128214 </span><span class="sc">\\</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="st">  --out        output/magma/adhd"</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">system</span>(command, <span class="at">intern=</span>T)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(output, <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: output/magma/adhd.genes.out   (readable results, one row per gene)</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">#         output/magma/adhd.genes.raw   (full statistics + gene correlations,</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">#                                        required as input to Step 4)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Welcome to MAGMA v1.10 (linux/s)
+Using flags:
+    --bfile reference_data/g1000_eur/g1000_eur
+    --gene-annot output/magma/adhd.genes.annot
+    --pval output/magma/pval.txt use=SNP,P N=128214
+    --out output/magma/adhd
+
+Start time is 11:08:47, Wednesday 12 Aug 2026
+
+Loading PLINK-format data...
+Reading file reference_data/g1000_eur/g1000_eur.fam... 503 individuals read
+Reading file reference_data/g1000_eur/g1000_eur.bim... 22665064 SNPs read
+Preparing file reference_data/g1000_eur/g1000_eur.bed... 
+
+Reading SNP synonyms from file reference_data/g1000_eur/g1000_eur.synonyms (auto-detected)
+    read 6016767 mapped synonyms from file, mapping to 3921040 SNPs in the data
+    WARNING: detected 133 synonymous SNP pairs in the data
+             skipped all synonym entries involved, synonymous SNPs are kept in analysis
+             writing list of detected synonyms in data to supplementary log file
+Reading SNP p-values from file output/magma/pval.txt... 
+    detected 2 variables in file
+    using variable: SNP (SNP id)
+    using variable: P (p-value)
+    read 6774120 lines from file, containing valid SNP p-values for 6723396 SNPs in data (99.25% of lines, 29.66% of SNPs in data)
+Loading gene annotation from file output/magma/adhd.genes.annot... 
+    18120 gene definitions read from file
+    found 18112 genes containing valid SNPs in genotype data
+
+
+Starting gene analysis... 
+    using model: SNPwise-mean
+    writing gene analysis results to file output/magma/adhd.genes.out                                                 
+    writing intermediate output to file output/magma/adhd.genes.raw
+
+
+End time is 11:14:44, Wednesday 12 Aug 2026 (elapsed: 00:05:57)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The arguments, one by one
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--bfile</code></td>
+<td>PLINK-format LD reference. MAGMA reads genotypes here purely to compute SNP-SNP correlations</td>
+</tr>
+<tr class="even">
+<td><code>--gene-annot</code></td>
+<td>The SNP-to-gene map from Step 2</td>
+</tr>
+<tr class="odd">
+<td><code>--pval ... use=SNP,P</code></td>
+<td>The p-value file, naming which columns hold the identifier and the p-value</td>
+</tr>
+<tr class="even">
+<td><code>N=128214</code></td>
+<td>Effective sample size from Step 1. Use <code>ncol=N</code> instead if you have a per-SNP N column</td>
+</tr>
+<tr class="odd">
+<td><code>--out</code></td>
+<td>Output prefix. <strong>Both</strong> <code>.genes.out</code> and <code>.genes.raw</code> are written</td>
+</tr>
+</tbody>
+</table>
+<p><code>.genes.raw</code> looks like an intermediate file but is not disposable: it carries the gene-gene correlations that Step 4 needs to run a valid competitive test. Do not delete it.</p>
+</div>
+</div>
+<section id="read-the-results" class="level3">
+<h3 class="anchored" data-anchor-id="read-the-results">Read the results</h3>
+<div id="a4d1fd16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="36">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>GENES_OUT <span class="ot">&lt;-</span> <span class="fu">paste0</span>(OUT_PREFIX, <span class="st">"/adhd.genes.out"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="586c6782" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="37">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">read.table</span>(GENES_OUT, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># MAGMA reports Entrez IDs; join the symbols back on so results are readable</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(gene_loc <span class="sc">%&gt;%</span> <span class="fu">select</span>(GENE, SYMBOL), <span class="at">by =</span> <span class="st">"GENE"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GENE =</span> <span class="fu">as.character</span>(GENE))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>BONF <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="fu">nrow</span>(genes)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Genes tested                   : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">nrow</span>(genes), <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Bonferroni threshold (0.05/N)  : %.3g</span><span class="sc">\n</span><span class="st">"</span>, BONF))</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Genome-wide significant genes  : %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">sum</span>(genes<span class="sc">$</span>P <span class="sc">&lt;</span> BONF)))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genes, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Genes tested                   : 18,112
+Bonferroni threshold (0.05/N)  : 2.76e-06
+Genome-wide significant genes  : 56</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A data.frame: 5 × 10</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th" scope="col">GENE</th>
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">START</th>
+<th data-quarto-table-cell-role="th" scope="col">STOP</th>
+<th data-quarto-table-cell-role="th" scope="col">NSNPS</th>
+<th data-quarto-table-cell-role="th" scope="col">NPARAM</th>
+<th data-quarto-table-cell-role="th" scope="col">N</th>
+<th data-quarto-table-cell-role="th" scope="col">ZSTAT</th>
+<th data-quarto-table-cell-role="th" scope="col">P</th>
+<th data-quarto-table-cell-role="th" scope="col">SYMBOL</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">1</th>
+<td>84069</td>
+<td>1</td>
+<td>891872</td>
+<td>920488</td>
+<td>7</td>
+<td>1</td>
+<td>128214</td>
+<td>0.65538</td>
+<td>0.25611</td>
+<td>PLEKHN1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">2</th>
+<td>84808</td>
+<td>1</td>
+<td>900579</td>
+<td>927473</td>
+<td>20</td>
+<td>3</td>
+<td>128214</td>
+<td>1.22680</td>
+<td>0.10994</td>
+<td>PERM1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">3</th>
+<td>57801</td>
+<td>1</td>
+<td>924342</td>
+<td>946608</td>
+<td>29</td>
+<td>3</td>
+<td>128214</td>
+<td>0.87823</td>
+<td>0.18991</td>
+<td>HES4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">4</th>
+<td>9636</td>
+<td>1</td>
+<td>938847</td>
+<td>959920</td>
+<td>15</td>
+<td>1</td>
+<td>128214</td>
+<td>0.47696</td>
+<td>0.31669</td>
+<td>ISG15</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">5</th>
+<td>375790</td>
+<td>1</td>
+<td>945503</td>
+<td>1001499</td>
+<td>7</td>
+<td>1</td>
+<td>128214</td>
+<td>0.63903</td>
+<td>0.26140</td>
+<td>AGRN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The columns of <code>.genes.out</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GENE</code></td>
+<td>Entrez gene ID</td>
+</tr>
+<tr class="even">
+<td><code>CHR</code>, <code>START</code>, <code>STOP</code></td>
+<td>Gene location (hg19)</td>
+</tr>
+<tr class="odd">
+<td><code>NSNPS</code></td>
+<td>Number of SNPs assigned to the gene</td>
+</tr>
+<tr class="even">
+<td><code>NPARAM</code></td>
+<td><strong>Effective</strong> number of independent SNPs after accounting for LD. Compare it to <code>NSNPS</code>; the gap is the LD correction made visible</td>
+</tr>
+<tr class="odd">
+<td><code>N</code></td>
+<td>Sample size used</td>
+</tr>
+<tr class="even">
+<td><code>ZSTAT</code></td>
+<td>Gene-level Z statistic. Higher = stronger association. Always positive: a gene has no direction of effect</td>
+</tr>
+<tr class="odd">
+<td><code>P</code></td>
+<td>Gene-level p-value</td>
+</tr>
+</tbody>
+</table>
+<p>The gene-level threshold is Bonferroni across the genes tested, about <strong>0.05 / 18,000 ≈ 2.7 × 10⁻⁶</strong>. It is <em>not</em> 5 × 10⁻⁸: that threshold is calibrated for a million independent SNP tests, and using it here would be absurdly conservative.</p>
+</div>
+</div>
+</section>
+<section id="top-genes" class="level3">
+<h3 class="anchored" data-anchor-id="top-genes">Top genes</h3>
+<div id="c722fd53" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="38">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>genes <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">25</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(SYMBOL,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>            GENE, CHR,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>            NSNPS,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">NPARAM =</span> <span class="fu">round</span>(NPARAM, <span class="dv">1</span>),</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">ZSTAT  =</span> <span class="fu">round</span>(ZSTAT, <span class="dv">2</span>),</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">P      =</span> <span class="fu">signif</span>(P, <span class="dv">3</span>),</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">Significant =</span> <span class="fu">ifelse</span>(P <span class="sc">&lt;</span> BONF, <span class="st">"yes"</span>, <span class="st">"no"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A data.frame: 25 × 8</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th" scope="col">SYMBOL</th>
+<th data-quarto-table-cell-role="th" scope="col">GENE</th>
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">NSNPS</th>
+<th data-quarto-table-cell-role="th" scope="col">NPARAM</th>
+<th data-quarto-table-cell-role="th" scope="col">ZSTAT</th>
+<th data-quarto-table-cell-role="th" scope="col">P</th>
+<th data-quarto-table-cell-role="th" scope="col">Significant</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">1</th>
+<td>KDM4A</td>
+<td>9682</td>
+<td>1</td>
+<td>106</td>
+<td>11</td>
+<td>7.42</td>
+<td>6.01e-14</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">2</th>
+<td>PTPRF</td>
+<td>5792</td>
+<td>1</td>
+<td>256</td>
+<td>12</td>
+<td>6.92</td>
+<td>2.27e-12</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">3</th>
+<td>ST3GAL3</td>
+<td>6487</td>
+<td>1</td>
+<td>474</td>
+<td>23</td>
+<td>6.83</td>
+<td>4.37e-12</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">4</th>
+<td>CDH8</td>
+<td>1006</td>
+<td>16</td>
+<td>768</td>
+<td>44</td>
+<td>6.55</td>
+<td>2.86e-11</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">5</th>
+<td>XRN2</td>
+<td>22803</td>
+<td>20</td>
+<td>180</td>
+<td>14</td>
+<td>6.53</td>
+<td>3.27e-11</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">6</th>
+<td>DCC</td>
+<td>1630</td>
+<td>18</td>
+<td>4225</td>
+<td>106</td>
+<td>6.28</td>
+<td>1.67e-10</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">7</th>
+<td>SORCS3</td>
+<td>22986</td>
+<td>10</td>
+<td>1773</td>
+<td>47</td>
+<td>6.23</td>
+<td>2.28e-10</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">8</th>
+<td>NKX2-4</td>
+<td>644524</td>
+<td>20</td>
+<td>34</td>
+<td>8</td>
+<td>6.22</td>
+<td>2.49e-10</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">9</th>
+<td>FOXP2</td>
+<td>93986</td>
+<td>7</td>
+<td>835</td>
+<td>42</td>
+<td>6.08</td>
+<td>5.89e-10</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">10</th>
+<td>KIZ</td>
+<td>55857</td>
+<td>20</td>
+<td>180</td>
+<td>8</td>
+<td>5.83</td>
+<td>2.80e-09</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">11</th>
+<td>MEF2C</td>
+<td>4208</td>
+<td>5</td>
+<td>331</td>
+<td>25</td>
+<td>5.78</td>
+<td>3.80e-09</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">12</th>
+<td>SLC6A9</td>
+<td>6536</td>
+<td>1</td>
+<td>101</td>
+<td>21</td>
+<td>5.64</td>
+<td>8.70e-09</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">13</th>
+<td>CDC20</td>
+<td>991</td>
+<td>1</td>
+<td>23</td>
+<td>6</td>
+<td>5.50</td>
+<td>1.85e-08</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">14</th>
+<td>MED8</td>
+<td>112950</td>
+<td>1</td>
+<td>43</td>
+<td>7</td>
+<td>5.44</td>
+<td>2.61e-08</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">15</th>
+<td>MPL</td>
+<td>4352</td>
+<td>1</td>
+<td>31</td>
+<td>5</td>
+<td>5.37</td>
+<td>3.96e-08</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">16</th>
+<td>ELOVL1</td>
+<td>64834</td>
+<td>1</td>
+<td>30</td>
+<td>6</td>
+<td>5.36</td>
+<td>4.06e-08</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">17</th>
+<td>LSM6</td>
+<td>11157</td>
+<td>4</td>
+<td>89</td>
+<td>6</td>
+<td>5.35</td>
+<td>4.37e-08</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">18</th>
+<td>SEMA3F</td>
+<td>6405</td>
+<td>3</td>
+<td>80</td>
+<td>9</td>
+<td>5.27</td>
+<td>6.65e-08</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">19</th>
+<td>SZT2</td>
+<td>23334</td>
+<td>1</td>
+<td>111</td>
+<td>9</td>
+<td>5.24</td>
+<td>7.84e-08</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">20</th>
+<td>SEMA6D</td>
+<td>80031</td>
+<td>15</td>
+<td>1521</td>
+<td>55</td>
+<td>5.21</td>
+<td>9.39e-08</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">21</th>
+<td>HYI</td>
+<td>81888</td>
+<td>1</td>
+<td>30</td>
+<td>5</td>
+<td>5.16</td>
+<td>1.21e-07</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">22</th>
+<td>ARTN</td>
+<td>9048</td>
+<td>1</td>
+<td>52</td>
+<td>6</td>
+<td>5.09</td>
+<td>1.80e-07</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">23</th>
+<td>TIE1</td>
+<td>7075</td>
+<td>1</td>
+<td>48</td>
+<td>5</td>
+<td>5.06</td>
+<td>2.15e-07</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">24</th>
+<td>B4GALT2</td>
+<td>8704</td>
+<td>1</td>
+<td>49</td>
+<td>9</td>
+<td>5.05</td>
+<td>2.19e-07</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">25</th>
+<td>COL19A1</td>
+<td>1310</td>
+<td>6</td>
+<td>831</td>
+<td>56</td>
+<td>5.04</td>
+<td>2.36e-07</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="gene-level-manhattan-plot" class="level3">
+<h3 class="anchored" data-anchor-id="gene-level-manhattan-plot">Gene-level Manhattan plot</h3>
+<div id="8375f65a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="39">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build a continuous genome-wide x axis by stacking chromosomes end to end</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>chr_offsets <span class="ot">&lt;-</span> genes <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHR) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">chr_len =</span> <span class="fu">max</span>(STOP), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(CHR) <span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">offset =</span> <span class="fu">cumsum</span>(<span class="fu">as.numeric</span>(chr_len)) <span class="sc">-</span> <span class="fu">as.numeric</span>(chr_len))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>plot_dat <span class="ot">&lt;-</span> genes <span class="sc">%&gt;%</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(chr_offsets, <span class="at">by =</span> <span class="st">"CHR"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pos_cum =</span> (START <span class="sc">+</span> STOP) <span class="sc">/</span> <span class="dv">2</span> <span class="sc">+</span> offset,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">logp    =</span> <span class="sc">-</span><span class="fu">log10</span>(P))</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>axis_dat <span class="ot">&lt;-</span> plot_dat <span class="sc">%&gt;%</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHR) <span class="sc">%&gt;%</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">centre =</span> <span class="fu">mean</span>(pos_cum), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>top_labels <span class="ot">&lt;-</span> plot_dat <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(P) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_dat, <span class="fu">aes</span>(<span class="at">x =</span> pos_cum, <span class="at">y =</span> logp, <span class="at">colour =</span> <span class="fu">factor</span>(CHR <span class="sc">%%</span> <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.9</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fu">log10</span>(BONF), <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> top_labels, <span class="fu">aes</span>(<span class="at">label =</span> SYMBOL),</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.7</span>, <span class="at">size =</span> <span class="fl">2.9</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#4682B4"</span>, <span class="st">"#B0C4DE"</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> axis_dat<span class="sc">$</span>centre, <span class="at">labels =</span> axis_dat<span class="sc">$</span>CHR,</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fl">0.01</span>)) <span class="sc">+</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gene-level association across the genome"</span>,</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="fu">sprintf</span>(<span class="st">"Red line = Bonferroni threshold (%.2g). Top 10 genes labelled"</span>, BONF),</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="fu">expression</span>(<span class="sc">-</span>log[<span class="dv">10</span>](P))) <span class="sc">+</span></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_magma_workflow_files/figure-html/cell-22-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compare this with a standard SNP-level Manhattan plot of the same GWAS. Two differences matter:</p>
+<ul>
+<li><strong>The peaks are narrower.</strong> Each locus is now a handful of genes rather than a tower of hundreds of correlated SNPs. That is the aggregation doing its job.</li>
+<li><strong>There are signals here that were not significant at SNP level.</strong> A gene where many variants each reach P ≈ 10⁻⁴ can clear the gene-level threshold even though no single variant came close to 5 × 10⁻⁸. Recovering that sub-threshold, distributed signal is the main reason to run MAGMA at all.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="did-magma-actually-control-for-gene-size" class="level3">
+<h3 class="anchored" data-anchor-id="did-magma-actually-control-for-gene-size">Did MAGMA actually control for gene size?</h3>
+<p>This is the check to run every time, and the one most often skipped.</p>
+<div id="a37bfe45" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="40">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(genes, <span class="fu">aes</span>(<span class="at">x =</span> NSNPS, <span class="at">y =</span> ZSTAT)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.15</span>, <span class="at">size =</span> <span class="fl">0.7</span>, <span class="at">colour =</span> <span class="st">"#4682B4"</span>) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"gam"</span>, <span class="at">colour =</span> <span class="st">"#B3541E"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">linewidth =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Gene-level Z statistic against gene size"</span>,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"A flat trend line means the LD/size correction worked"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"SNPs assigned to gene (log scale)"</span>, <span class="at">y =</span> <span class="st">"ZSTAT"</span>) <span class="sc">+</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre>The `method` was set to <span class="ansi-blue-fg">"gam"</span>, but <span class="ansi-blue-fg">mgcv</span> is not installed.
+
+<span class="ansi-yellow-fg">!</span> Falling back to `method = "lm"`.
+
+<span class="ansi-cyan-fg">ℹ</span> Install <span class="ansi-blue-fg">mgcv</span> or change the `method` argument to resolve this issue.
+
+`geom_smooth()` using formula = 'y ~ x'
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_magma_workflow_files/figure-html/cell-23-output-2.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The trend line should be close to <strong>flat</strong>. If bigger genes systematically had higher Z statistics, your top genes would be a list of the longest genes in the genome, and the tissue analysis in Step 4 would inherit that bias.</p>
+<p>A mild residual upward slope is normal and expected: larger genes really do have more opportunity to contain causal variation, and MAGMA corrects for the <em>statistical</em> inflation from testing more correlated SNPs, not for that genuine biological effect.</p>
+</div>
+</div>
+</section>
+<section id="gene-level-qq-plot" class="level3">
+<h3 class="anchored" data-anchor-id="gene-level-qq-plot">Gene-level QQ plot</h3>
+<div id="cfdbf29b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="41">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>obs <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fu">sort</span>(genes<span class="sc">$</span>P))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>exp <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fu">ppoints</span>(<span class="fu">length</span>(obs)))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(exp, obs), <span class="fu">aes</span>(<span class="at">x =</span> exp, <span class="at">y =</span> obs)) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"grey40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.9</span>, <span class="at">colour =</span> <span class="st">"#4682B4"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"QQ plot of gene-level p-values"</span>,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"On the line at the left = well calibrated; lifting at the right = real signal"</span>,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="fu">expression</span>(Expected<span class="sc">~-</span>log[<span class="dv">10</span>](P)),</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(Observed<span class="sc">~-</span>log[<span class="dv">10</span>](P))) <span class="sc">+</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_magma_workflow_files/figure-html/cell-24-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Read it like any QQ plot, but remember that this one is diagnosing <strong>MAGMA</strong>, not the GWAS. The <strong>left-hand portion sitting on the diagonal</strong> is the evidence that the LD correction is calibrated. If the bulk of genes lifted off the line immediately, the LD reference is wrong, most often an ancestry mismatch, or a <code>.synonyms</code> file that failed to load so that most SNPs went unmatched.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="step-4-tissue-enrichment" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-tissue-enrichment">Step 4: Tissue Enrichment</h2>
+<p>Gene p-values in hand, the question becomes: <strong>do genes specifically expressed in a particular tissue carry more ADHD signal than genes in general?</strong></p>
+<div id="9686a1cc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="42">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>command <span class="ot">&lt;-</span> <span class="st">"magma </span><span class="sc">\\</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="st">  --gene-results output/magma/adhd.genes.raw </span><span class="sc">\\</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="st">  --gene-covar   reference_data/gtex_v8_ts_avg_log2TPM.entrez.dedup.txt </span><span class="sc">\\</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="st">  --model        condition-hide=Average direction=greater </span><span class="sc">\\</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="st">  --out          output/magma/adhd_tissue"</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">system</span>(command, <span class="at">intern=</span>T)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(output, <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: output/magma/adhd_tissue.gsa.out</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Welcome to MAGMA v1.10 (linux/s)
+Using flags:
+    --gene-results output/magma/adhd.genes.raw
+    --gene-covar reference_data/gtex_v8_ts_avg_log2TPM.entrez.dedup.txt
+    --model condition-hide=Average direction=greater
+    --out output/magma/adhd_tissue
+
+Start time is 11:23:08, Wednesday 12 Aug 2026
+
+Reading file output/magma/adhd.genes.raw... 
+    18112 genes read from file
+Loading gene-level covariates...
+Reading file reference_data/gtex_v8_ts_avg_log2TPM.entrez.dedup.txt... 
+    detected 55 variables in file (using all)
+    found 55 valid gene covariates, for 16966 genes defined in genotype data
+Processing missing values...
+    found 1146 genes not present in all input files: removing these from analysis
+    16966 genes remaining in analysis
+Preparing variables for analysis...
+    truncating Z-scores 3 points below zero or 6 standard deviations above the mean
+    truncating covariate values more than 5 standard deviations from the mean
+    total variables available for analysis: 55 gene covariates
+
+Parsing model specifications...
+Inverting gene-gene correlation matrix...
+Performing regression analysis...                                                                                  
+    testing direction: one-sided, positive (sets), one-sided, positive (covar)
+    conditioning on internal variables:
+        gene size, log(gene size)
+        gene density, log(gene density)
+        inverse mac, log(inverse mac)
+    conditioning on input variables (no output):
+        Average (covar)
+    analysing individual variables
+
+    analysing single-variable models (number of models: 54)
+    writing results to file output/magma/adhd_tissue.gsa.out                                                          
+
+End time is 11:23:15, Wednesday 12 Aug 2026 (elapsed: 00:00:07)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span><code>--model condition-hide=Average direction=greater</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is the most important line in the session, and the difference between a result and an artefact.</p>
+<p><strong><code>condition-hide=Average</code></strong> conditions every tissue test on the average expression across all tissues, and hides that covariate from the output. Without it you are asking “are expressed genes associated with ADHD?”, to which the answer is yes for nearly every tissue, and the result is uninterpretable. With it you are asking “is expression <em>specific to this tissue</em> associated with ADHD?”.</p>
+<p><strong><code>direction=greater</code></strong> makes the test one-sided. The hypothesis is that <em>higher</em> expression in the relevant tissue goes with <em>stronger</em> association. A two-sided test would also flag tissues where the relationship runs backwards, which has no sensible interpretation here and wastes half your significance budget.</p>
+<p>Run it once without these options and compare (Exercise 1). The difference is dramatic, and it is the reason a lot of published tissue-enrichment results are weaker than they look.</p>
+</div>
+</div>
+<section id="read-the-tissue-results" class="level3">
+<h3 class="anchored" data-anchor-id="read-the-tissue-results">Read the tissue results</h3>
+<div id="8cc3f460-d46a-4c96-bdfc-b8d2be8068a7" class="cell" data-execution_count="43">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>OUT_PREFIX</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+'output/magma'
+</div>
+</div>
+<div id="4bc2f959" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="44">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>GSA_OUT <span class="ot">&lt;-</span> <span class="fu">paste0</span>(OUT_PREFIX, <span class="st">"/adhd_tissue.gsa.out"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="b5faf899" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="45">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>gsa <span class="ot">&lt;-</span> <span class="fu">read.table</span>(GSA_OUT, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">comment.char =</span> <span class="st">"#"</span>,</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>BONF_TISSUE <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="sc">/</span> <span class="fu">nrow</span>(gsa)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Tissues tested       : %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(gsa)))</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Bonferroni threshold : %.4g</span><span class="sc">\n</span><span class="st">"</span>, BONF_TISSUE))</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Significant tissues  : %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">sum</span>(gsa<span class="sc">$</span>P <span class="sc">&lt;</span> BONF_TISSUE)))</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>gsa <span class="sc">%&gt;%</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P) <span class="sc">%&gt;%</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Tissue =</span> VARIABLE,</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>            NGENES,</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">BETA     =</span> <span class="fu">round</span>(BETA, <span class="dv">4</span>),</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">BETA_STD =</span> <span class="fu">round</span>(BETA_STD, <span class="dv">4</span>),</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">SE       =</span> <span class="fu">round</span>(SE, <span class="dv">4</span>),</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">P        =</span> <span class="fu">signif</span>(P, <span class="dv">3</span>),</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">Significant =</span> <span class="fu">ifelse</span>(P <span class="sc">&lt;</span> BONF_TISSUE, <span class="st">"yes"</span>, <span class="st">"no"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tissues tested       : 54
+Bonferroni threshold : 0.0009259
+Significant tissues  : 11</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A data.frame: 15 × 7</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th" scope="col">Tissue</th>
+<th data-quarto-table-cell-role="th" scope="col">NGENES</th>
+<th data-quarto-table-cell-role="th" scope="col">BETA</th>
+<th data-quarto-table-cell-role="th" scope="col">BETA_STD</th>
+<th data-quarto-table-cell-role="th" scope="col">SE</th>
+<th data-quarto-table-cell-role="th" scope="col">P</th>
+<th data-quarto-table-cell-role="th" scope="col">Significant</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">1</th>
+<td>Brain_Cerebellar_Hemisphere</td>
+<td>16966</td>
+<td>0.0303</td>
+<td>0.0607</td>
+<td>0.0068</td>
+<td>4.61e-06</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">2</th>
+<td>Brain_Frontal_Cortex_BA9</td>
+<td>16966</td>
+<td>0.0340</td>
+<td>0.0624</td>
+<td>0.0077</td>
+<td>5.11e-06</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">3</th>
+<td>Brain_Cerebellum</td>
+<td>16966</td>
+<td>0.0307</td>
+<td>0.0608</td>
+<td>0.0071</td>
+<td>6.78e-06</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">4</th>
+<td>Brain_Caudate_basal_ganglia</td>
+<td>16966</td>
+<td>0.0382</td>
+<td>0.0658</td>
+<td>0.0088</td>
+<td>7.65e-06</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">5</th>
+<td>Brain_Cortex</td>
+<td>16966</td>
+<td>0.0342</td>
+<td>0.0621</td>
+<td>0.0080</td>
+<td>9.55e-06</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">6</th>
+<td>Brain_Nucleus_accumbens_basa...</td>
+<td>16966</td>
+<td>0.0362</td>
+<td>0.0626</td>
+<td>0.0085</td>
+<td>1.11e-05</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">7</th>
+<td>Brain_Anterior_cingulate_cor...</td>
+<td>16966</td>
+<td>0.0339</td>
+<td>0.0596</td>
+<td>0.0081</td>
+<td>1.47e-05</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">8</th>
+<td>Brain_Hypothalamus</td>
+<td>16966</td>
+<td>0.0377</td>
+<td>0.0646</td>
+<td>0.0091</td>
+<td>1.61e-05</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">9</th>
+<td>Brain_Putamen_basal_ganglia</td>
+<td>16966</td>
+<td>0.0370</td>
+<td>0.0628</td>
+<td>0.0090</td>
+<td>1.88e-05</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">10</th>
+<td>Brain_Amygdala</td>
+<td>16966</td>
+<td>0.0338</td>
+<td>0.0574</td>
+<td>0.0089</td>
+<td>7.01e-05</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">11</th>
+<td>Brain_Hippocampus</td>
+<td>16966</td>
+<td>0.0333</td>
+<td>0.0562</td>
+<td>0.0090</td>
+<td>1.15e-04</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">12</th>
+<td>Brain_Substantia_nigra</td>
+<td>16966</td>
+<td>0.0296</td>
+<td>0.0507</td>
+<td>0.0097</td>
+<td>1.20e-03</td>
+<td>no</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">13</th>
+<td>Pituitary</td>
+<td>16966</td>
+<td>0.0261</td>
+<td>0.0483</td>
+<td>0.0100</td>
+<td>4.68e-03</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="row">14</th>
+<td>Brain_Spinal_cord_cervical_c...</td>
+<td>16966</td>
+<td>0.0168</td>
+<td>0.0301</td>
+<td>0.0097</td>
+<td>4.22e-02</td>
+<td>no</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="row">15</th>
+<td>Testis</td>
+<td>16966</td>
+<td>0.0097</td>
+<td>0.0167</td>
+<td>0.0063</td>
+<td>6.22e-02</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="1782406f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="46">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>gsa_plot <span class="ot">&lt;-</span> gsa <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">logp   =</span> <span class="sc">-</span><span class="fu">log10</span>(P),</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">tissue =</span> <span class="fu">gsub</span>(<span class="st">"_"</span>, <span class="st">" "</span>, VARIABLE),</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">group  =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"^Brain"</span>, VARIABLE), <span class="st">"Brain"</span>, <span class="st">"Other tissue"</span>))</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gsa_plot, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(tissue, logp), <span class="at">y =</span> logp, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fu">log10</span>(BONF_TISSUE),</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Brain"</span> <span class="ot">=</span> <span class="st">"#B3541E"</span>, <span class="st">"Other tissue"</span> <span class="ot">=</span> <span class="st">"#B0C4DE"</span>),</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">name =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tissue enrichment of ADHD gene-level association"</span>,</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="fu">sprintf</span>(<span class="st">"GTEx v8, conditioned on average expression. Red line = Bonferroni (%.2g)"</span>,</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>                          BONF_TISSUE),</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="fu">expression</span>(<span class="sc">-</span>log[<span class="dv">10</span>](P))) <span class="sc">+</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">11</span>) <span class="sc">+</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_magma_workflow_files/figure-html/cell-29-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Brain tissues (orange) should dominate the top of the ranking, with several clearing the Bonferroni line. This is simultaneously a <strong>sanity check</strong>, since a neurodevelopmental disorder had better implicate brain, and a <strong>result</strong>: it shows the common-variant signal for ADHD acts through genes with brain-specific expression, and it points at which brain regions to prioritise.</p>
+<p>Three cautions when reading this plot:</p>
+<ul>
+<li><strong>The 54 tissues are far from independent.</strong> The thirteen brain regions are strongly correlated with one another, so Bonferroni is conservative <em>and</em> the ordering <em>within</em> the brain regions is not reliable. Do not claim that cerebellum beats cortex because it sits one bar higher.</li>
+<li><strong><code>BETA</code> matters, not just <code>P</code>.</strong> <code>BETA</code> is the association between expression and gene-level signal; <code>BETA_STD</code> puts it on a standardised scale so tissues are comparable. A tiny p-value with a negligible beta is a large-sample artefact.</li>
+<li><strong>Testis and whole blood often rank high in GTEx analyses of any trait.</strong> Testis expresses an unusually large share of the genome, and whole blood has its own expression idiosyncrasies. Treat them with more scepticism than a result that matches a known biology.</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="step-5-extension-curated-gene-sets" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-extension-curated-gene-sets">Step 5 (Extension): Curated Gene Sets</h2>
+<p>Tissue expression is a <em>continuous</em> covariate. MAGMA also runs the classic <strong>discrete</strong> gene-set test: given a list of genes belonging to a pathway, are those genes more associated than the rest of the genome?</p>
+<div id="e9e9c91b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="47">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download an Entrez-ID gene set collection from MSigDB, e.g. GO Biological</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Process:  c5.go.bp.v2023.2.Hs.entrez.gmt</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># GMT format is: SET_NAME &lt;tab&gt; description &lt;tab&gt; gene1 &lt;tab&gt; gene2 ...</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># MAGMA expects the set name followed directly by gene IDs, so drop column 2:</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"cut -f1,3- input/c5.go.bp.v2023.2.Hs.entrez.gmt &gt; output/magma/gobp.magma.txt"</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>command <span class="ot">&lt;-</span> <span class="st">"magma </span><span class="sc">\\</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="st">  --gene-results output/magma/adhd.genes.raw </span><span class="sc">\\</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="st">  --set-annot    output/magma/gobp.magma.txt </span><span class="sc">\\</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="st">  --out          output/magma/adhd_gobp"</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">system</span>(command, <span class="at">intern=</span>T)</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(output, <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: output/magma/adhd_gobp.gsa.out</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Welcome to MAGMA v1.10 (linux/s)
+Using flags:
+    --gene-results output/magma/adhd.genes.raw
+    --set-annot output/magma/gobp.magma.txt
+    --out output/magma/adhd_gobp
+
+Start time is 11:24:29, Wednesday 12 Aug 2026
+
+Reading file output/magma/adhd.genes.raw... 
+    18112 genes read from file
+Loading gene-set annotation...
+Reading file output/magma/gobp.magma.txt... 
+    WARNING: gene set GOBP_FORMATION_OF_QUADRUPLE_SL_U4_U5_U6_SNRNP contains no genes defined in genotype data
+    WARNING: gene set GOBP_NEGATIVE_REGULATION_OF_INTERLEUKIN_21_PRODUCTION contains no genes defined in genotype data
+    WARNING: gene set GOBP_REGULATION_OF_XENOBIOTIC_DETOXIFICATION_BY_TRANSMEMBRANE_EXPORT_ACROSS_THE_PLASMA_MEMBRANE contains no genes defined in genotype data
+    7647 gene-set definitions read from file
+    found 7644 gene sets containing genes defined in genotype data (containing a total of 15290 unique genes)
+Preparing variables for analysis...
+    truncating Z-scores 3 points below zero or 6 standard deviations above the mean
+    WARNING: discarding gene set 'GOBP_LNCRNA_MEDIATED_POST_TRANSCRIPTIONAL_GENE_SILENCING' from file output/magma/gobp.magma.txt, variance is too low (set contains only one gene used in analysis)
+    WARNING: discarding gene set 'GOBP_NEGATIVE_REGULATION_OF_CELL_CHEMOTAXIS_TO_FIBROBLAST_GROWTH_FACTOR' from file output/magma/gobp.magma.txt, variance is too low (set contains only one gene used in analysis)
+    WARNING: discarding gene set 'GOBP_NEGATIVE_REGULATION_OF_EXTRACELLULAR_MATRIX_ASSEMBLY' from file output/magma/gobp.magma.txt, variance is too low (set contains only one gene used in analysis)
+    WARNING: discarding gene set 'GOBP_NEGATIVE_REGULATION_OF_INTERLEUKIN_6_MEDIATED_SIGNALING_PATHWAY' from file output/magma/gobp.magma.txt, variance is too low (set contains only one gene used in analysis)
+    WARNING: discarding gene set 'GOBP_NEGATIVE_REGULATION_OF_MATRIX_METALLOPEPTIDASE_SECRETION' from file output/magma/gobp.magma.txt, variance is too low (set contains only one gene used in analysis)
+    WARNING: discarding gene set 'GOBP_NEGATIVE_REGULATION_OF_VASCULAR_ENDOTHELIAL_GROWTH_FACTOR_PRODUCTION' from file output/magma/gobp.magma.txt, variance is too low (set contains only one gene used in analysis)
+    truncating covariate values more than 5 standard deviations from the mean
+    total variables available for analysis: 7638 gene sets
+
+Parsing model specifications...
+Inverting gene-gene correlation matrix...
+Performing regression analysis...                                                                                  
+    testing direction: one-sided, positive (sets), two-sided (covar)
+    conditioning on internal variables:
+        gene size, log(gene size)
+        gene density, log(gene density)
+        inverse mac, log(inverse mac)
+    analysing individual variables
+
+    analysing single-variable models (number of models: 7638)
+    writing results to file output/magma/adhd_gobp.gsa.out                                                            
+
+End time is 11:24:38, Wednesday 12 Aug 2026 (elapsed: 00:00:09)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Competitive vs self-contained tests
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The MAGMA gene-set test is <strong>competitive</strong>: the null hypothesis is that genes in the set are <em>no more</em> associated than genes outside it.</p>
+<p>A <strong>self-contained</strong> test asks only whether genes in the set are associated at all, and in a polygenic trait essentially every large gene set passes that, because the whole genome is mildly enriched. Competitive tests are the ones worth running, and they are the reason <code>.genes.raw</code> (with its gene-gene correlations) is required rather than just the gene p-values.</p>
+<p>Correct for the number of gene sets tested. GO Biological Process contains several thousand sets, so the Bonferroni threshold is around 10⁻⁵, and MAGMA also reports an FDR-style correction in the <code>.gsa.out</code> header when you request it.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-can-go-wrong" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-go-wrong">What Can Go Wrong</h2>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Genome build mismatch
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>NCBI37.3.gene.loc</code> is hg19. If your summary statistics are hg38, every SNP is assigned to the wrong gene. There is <strong>no error message</strong>: you get a full, plausible-looking set of results that is meaningless. Lift over the summary statistics, or use an hg38 gene location file. Check the build first, every time.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Ancestry mismatch in the LD panel
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A European panel with a non-European GWAS produces wrong LD, wrong <code>NPARAM</code>, and wrong gene p-values, silently. Use the matched panel, and for multi-ancestry meta-analyses be explicit about the limitation in your Methods.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>The MHC region (chr6: 25-34 Mb)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Extremely long-range LD makes every gene in the MHC look significant whenever anything in the region is associated. Standard practice is to exclude the region entirely, or to retain only a single representative gene, and to say which you did. Check whether your top hits cluster there before interpreting them.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Tissue analysis without conditioning on average expression
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Covered in Step 4 and worth repeating: without <code>condition-hide=Average</code> you are measuring how broadly a gene is expressed, not where it acts. Most tissues will appear significant, and the result means nothing.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Reading gene-level significance as causality
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A significant MAGMA gene is the gene <em>nearest the signal</em>, with a 10 kb window. The causal gene may be hundreds of kilobases away, because regulatory variants long range. MAGMA prioritises candidates; it does not identify causal genes. That is what eQTL colocalisation, chromatin interaction data, and the tools later in this course are for.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Deleting <code>.genes.raw</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It looks like scratch output. Step 4 cannot run without it, and regenerating it means repeating the 20-60 minute gene analysis.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/SamueleSoraggi\.github\.io\/post-gwas-analysis_course\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

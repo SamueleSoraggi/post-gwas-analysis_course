@@ -341,43 +341,27 @@ window.Quarto = {
  <span class="dropdown-text">Explore GWAS sumstats</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/01_finemapping.html">
- <span class="dropdown-text">Fine-mapping</span></a>
+    <a class="dropdown-item" href="../Notebooks/01_magma_workflow.html">
+ <span class="dropdown-text">From variants to genes and tissues</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/02_magma_prepare_input.html">
- <span class="dropdown-text">Magma prepare input</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Notebooks/03_magma_snp_annotation.html">
- <span class="dropdown-text">magma_snp_annotation</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Notebooks/04_magma_gene_analysis.html">
- <span class="dropdown-text">magma_gene_analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Notebooks/05_magma_geneset_analysis.html">
- <span class="dropdown-text">magma_geneset_analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Notebooks/06_flames.html">
+    <a class="dropdown-item" href="../Notebooks/02_flames.html">
  <span class="dropdown-text">FLAMES</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/07_run_scdrs.html">
+    <a class="dropdown-item" href="../Notebooks/03_run_scdrs.html">
  <span class="dropdown-text">Run scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/08_analyse_results_scdrs.html">
+    <a class="dropdown-item" href="../Notebooks/04_analyse_results_scdrs.html">
  <span class="dropdown-text">analyse results scdrs</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/09_SNP_based_heritability.html">
+    <a class="dropdown-item" href="../Notebooks/05_SNP_based_heritability.html">
  <span class="dropdown-text">SNP based heritability</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../Notebooks/10_genetic_correlation.html">
+    <a class="dropdown-item" href="../Notebooks/06_genetic_correlation.html">
  <span class="dropdown-text">genetic correlation</span></a>
   </li>  
     </ul>
@@ -406,14 +390,29 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
-  <li><a href="#what-is-in-a-gwas-summary-statistics-file" id="toc-what-is-in-a-gwas-summary-statistics-file" class="nav-link" data-scroll-target="#what-is-in-a-gwas-summary-statistics-file"><span class="header-section-number">2</span> What is in a GWAS summary-statistics file?</a></li>
-  <li><a href="#basic-structure-checks" id="toc-basic-structure-checks" class="nav-link" data-scroll-target="#basic-structure-checks"><span class="header-section-number">3</span> Basic structure checks</a></li>
-  <li><a href="#quality-control-filters" id="toc-quality-control-filters" class="nav-link" data-scroll-target="#quality-control-filters"><span class="header-section-number">4</span> Quality control filters</a></li>
-  <li><a href="#genomic-inflation" id="toc-genomic-inflation" class="nav-link" data-scroll-target="#genomic-inflation"><span class="header-section-number">5</span> Genomic inflation</a></li>
-  <li><a href="#genome-wide-significant-hits" id="toc-genome-wide-significant-hits" class="nav-link" data-scroll-target="#genome-wide-significant-hits"><span class="header-section-number">6</span> Genome-wide significant hits</a></li>
-  <li><a href="#visual-checks" id="toc-visual-checks" class="nav-link" data-scroll-target="#visual-checks"><span class="header-section-number">7</span> Visual checks</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">8</span> Wrap-up</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a>
+  <ul class="collapse">
+  <li><a href="#step-1-load-the-file-and-read-the-columns" id="toc-step-1-load-the-file-and-read-the-columns" class="nav-link" data-scroll-target="#step-1-load-the-file-and-read-the-columns"><span class="header-section-number">1.1</span> Step 1: Load the file and read the columns</a>
+  <ul class="collapse">
+  <li><a href="#what-each-column-means" id="toc-what-each-column-means" class="nav-link" data-scroll-target="#what-each-column-means"><span class="header-section-number">1.1.1</span> What each column means</a></li>
+  </ul></li>
+  <li><a href="#step-2-quality-control" id="toc-step-2-quality-control" class="nav-link" data-scroll-target="#step-2-quality-control"><span class="header-section-number">1.2</span> Step 2: Quality control</a>
+  <ul class="collapse">
+  <li><a href="#look-at-what-you-are-filtering-on" id="toc-look-at-what-you-are-filtering-on" class="nav-link" data-scroll-target="#look-at-what-you-are-filtering-on"><span class="header-section-number">1.2.1</span> Look at what you are filtering on</a></li>
+  <li><a href="#distributions-of-the-key-columns" id="toc-distributions-of-the-key-columns" class="nav-link" data-scroll-target="#distributions-of-the-key-columns"><span class="header-section-number">1.2.2</span> Distributions of the key columns</a></li>
+  </ul></li>
+  <li><a href="#step-3-is-the-signal-real-λ-and-the-qq-plot" id="toc-step-3-is-the-signal-real-λ-and-the-qq-plot" class="nav-link" data-scroll-target="#step-3-is-the-signal-real-λ-and-the-qq-plot"><span class="header-section-number">1.3</span> Step 3: Is the signal real? λ and the QQ plot</a></li>
+  <li><a href="#step-4-the-manhattan-plot" id="toc-step-4-the-manhattan-plot" class="nav-link" data-scroll-target="#step-4-the-manhattan-plot"><span class="header-section-number">1.4</span> Step 4: The Manhattan plot</a>
+  <ul class="collapse">
+  <li><a href="#count-loci-not-snps" id="toc-count-loci-not-snps" class="nav-link" data-scroll-target="#count-loci-not-snps"><span class="header-section-number">1.4.1</span> Count loci, not SNPs</a></li>
+  </ul></li>
+  <li><a href="#step-5-effect-sizes-frequency-and-power" id="toc-step-5-effect-sizes-frequency-and-power" class="nav-link" data-scroll-target="#step-5-effect-sizes-frequency-and-power"><span class="header-section-number">1.5</span> Step 5: Effect Sizes, Frequency, and Power</a></li>
+  <li><a href="#step-6-one-last-check-on-duplicate-identifiers" id="toc-step-6-one-last-check-on-duplicate-identifiers" class="nav-link" data-scroll-target="#step-6-one-last-check-on-duplicate-identifiers"><span class="header-section-number">1.6</span> Step 6: One Last Check on Duplicate Identifiers</a>
+  <ul class="collapse">
+  <li><a href="#session-summary" id="toc-session-summary" class="nav-link" data-scroll-target="#session-summary"><span class="header-section-number">1.6.1</span> Session summary</a></li>
+  </ul></li>
+  <li><a href="#what-can-go-wrong" id="toc-what-can-go-wrong" class="nav-link" data-scroll-target="#what-can-go-wrong"><span class="header-section-number">1.7</span> What can go wrong</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -453,7 +452,15 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>By the end of this notebook, you should be able to: - describe the key columns in a GWAS summary-statistics file - justify basic INFO and minor-allele-frequency filtering - interpret Manhattan, QQ, and p-value distribution plots - connect SNP-level results to later gene and pathway analyses</p>
+<p>By the end of this notebook, you should be able to:</p>
+<ul>
+<li>Describe what a GWAS summary statistics file contains and what each column means</li>
+<li>Apply the standard QC filters (imputation quality, minor allele frequency) and say why each exists</li>
+<li>Compute and interpret the genomic inflation factor λ and λ<sub>1000</sub></li>
+<li>Read a QQ plot and a Manhattan plot, and distinguish polygenic signal from technical inflation</li>
+<li>Count independent loci rather than significant SNPs</li>
+<li>Spot duplicate identifiers and the other structural problems that break downstream tools</li>
+</ul>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -462,11 +469,14 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Before you run anything
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This notebook assumes you are running from the <code>repo/notebooks</code> directory. The ADHD summary-statistics file should be available at <code>input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz</code>.</p>
+<p><strong>How to Use the Code in This Session (and the next ones)</strong></p>
+<p>Run the notebook top to bottom. Every chunk depends on the ones above it. Where you see a <strong>Read the output</strong> box, stop and look at what R printed <em>before</em> reading the explanation. The whole point of this session is learning to read GWAS output, not learning to type R.</p>
+<p><strong>When do you use this?</strong> A collaborator sends you a GWAS summary statistics file and asks you to run a polygenic score, a genetic correlation, or a MAGMA gene analysis. Before you run <em>anything</em> downstream, you have to answer three questions: <strong>Is this file well-formed? Is the signal real or is it inflation? Which variants do I keep?</strong> Every method you will use for the rest of this course silently assumes you have already done this.</p>
+<p><strong>Before you run anything</strong> The ADHD summary-statistics file should be available at <code>input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz</code>. This is the <strong>ADHD 2022 GWAS meta-analysis</strong> (Demontis et al., <em>Nature Genetics</em> 2023) combining iPSYCH, deCODE and the Psychiatric Genomics Consortium: <strong>38,691 cases and 186,843 controls</strong>, ~6.7 million variants, genome build <strong>hg19 (GRCh37)</strong>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -475,11 +485,11 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Study Questions
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use these questions to frame the analysis before you start:</p>
+<p>** Study Questions** Use these questions to frame the analysis before you start:</p>
 <ol type="1">
 <li>Which columns are essential if you want to run gene-level analyses later?</li>
 <li>Why are INFO and MAF filters usually applied before visualisation or downstream modelling?</li>
@@ -488,49 +498,38 @@ window.Quarto = {
 </ol>
 </div>
 </div>
-<div id="8ec0813d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
+<div id="537a7221" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(vroom, dplyr, ggplot2, scales, qqman)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(vroom, dplyr, ggplot2, scales, qqman, data.table)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sumstats_path <span class="ot">&lt;-</span> <span class="st">"input/ADHD2022_iPSYCH_deCODE_PGC.meta.gz"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>figures_dir <span class="ot">&lt;-</span> <span class="st">"output/figures"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(figures_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-</section>
-<section id="what-is-in-a-gwas-summary-statistics-file" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> What is in a GWAS summary-statistics file?</h1>
-<p>Each row represents one tested variant. The file does not contain individual-level genotype data; instead, it stores per-variant summaries such as association strength, uncertainty, allele frequency, and genomic position.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Column guide
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Typical columns in this dataset include: - <code>CHR</code>: chromosome number - <code>SNP</code>: variant identifier - <code>BP</code>: base-pair position - <code>A1</code> and <code>A2</code>: the two alleles - <code>FRQ_A_38691</code>: frequency of the effect allele in cases - <code>INFO</code>: imputation quality - <code>OR</code>: odds ratio - <code>SE</code>: standard error of the effect estimate - <code>P</code>: p-value - <code>Nca</code> and <code>Nco</code>: case and control counts</p>
-</div>
-</div>
-<div id="c27c7da0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
+<section id="step-1-load-the-file-and-read-the-columns" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="step-1-load-the-file-and-read-the-columns"><span class="header-section-number">1.1</span> Step 1: Load the file and read the columns</h2>
+<p><code>vroom()</code> reads gzipped files directly and is fast enough that a 6.7-million-row file loads in a few seconds.</p>
+<div id="099c182f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Loading GWAS summary statistics...</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> <span class="fu">vroom</span>(sumstats_path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Loaded %s SNPs and %d columns.</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">nrow</span>(sumstats), <span class="at">big.mark =</span> <span class="st">","</span>), <span class="fu">ncol</span>(sumstats)))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sumstats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> <span class="fu">vroom</span>(sumstats_path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Loaded %s variants x %d columns</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(<span class="fu">nrow</span>(sumstats), <span class="at">big.mark =</span> <span class="st">","</span>), <span class="fu">ncol</span>(sumstats)))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sumstats, <span class="dv">8</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sumstats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Loading GWAS summary statistics...
-Loaded 6,774,224 SNPs and 14 columns.</code></pre>
+<pre><code>Loaded 6,774,224 variants x 14 columns</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
-<caption>A spec_tbl_df: 6 × 14</caption>
+<caption>A spec_tbl_df: 8 × 14</caption>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" scope="col">CHR</th>
@@ -662,15 +661,41 @@ Loaded 6,774,224 SNPs and 14 columns.</code></pre>
 <td>38691</td>
 <td>186843</td>
 </tr>
+<tr class="odd">
+<td>8</td>
+<td>rs3134156</td>
+<td>100479917</td>
+<td>T</td>
+<td>C</td>
+<td>0.841</td>
+<td>0.833</td>
+<td>0.997</td>
+<td>0.98866</td>
+<td>0.0128</td>
+<td>0.3762</td>
+<td>-+----+--++--</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>rs6980591</td>
+<td>103144592</td>
+<td>A</td>
+<td>C</td>
+<td>0.783</td>
+<td>0.790</td>
+<td>1.000</td>
+<td>1.01106</td>
+<td>0.0108</td>
+<td>0.3075</td>
+<td>++-++---+++++</td>
+<td>38691</td>
+<td>186843</td>
+</tr>
 </tbody>
 </table>
 </div>
-</div>
-<div id="3e5a2354" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sumstats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Rows: 6,774,224
@@ -708,22 +733,120 @@ $ Nco          <span style="font-style:italic" class="ansi-bright-black-fg">&lt;
 </div>
 </div>
 </div>
-</section>
-<section id="basic-structure-checks" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Basic structure checks</h1>
-<p>A first pass should answer three questions: how many variants are present, how they are distributed across chromosomes, and what the study sample size was. These checks catch obvious file-format problems early.</p>
-<p><strong>Question for students:</strong> if one chromosome had dramatically fewer variants than expected, what technical or biological explanations would you consider first?</p>
-<div id="eca6bc63" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
+<section id="what-each-column-means" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="what-each-column-means"><span class="header-section-number">1.1.1</span> What each column means</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+<th>Why you care</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>CHR</code>, <code>BP</code></td>
+<td>Chromosome and base-pair position (hg19)</td>
+<td>Every downstream tool needs a genome build; mixing hg19 and hg38 silently ruins the analysis</td>
+</tr>
+<tr class="even">
+<td><code>SNP</code></td>
+<td>rsID from dbSNP</td>
+<td>The key used to match against LD reference panels</td>
+</tr>
+<tr class="odd">
+<td><code>A1</code></td>
+<td>Effect allele: effects and frequencies refer to this allele</td>
+<td>Get this wrong and every effect direction flips</td>
+</tr>
+<tr class="even">
+<td><code>A2</code></td>
+<td>Other allele</td>
+<td>Needed to harmonise across datasets</td>
+</tr>
+<tr class="odd">
+<td><code>FRQ_A_*</code>, <code>FRQ_U_*</code></td>
+<td>Frequency of <code>A1</code> in cases / controls</td>
+<td>Used to derive MAF; a large case-control gap at a non-associated SNP signals a genotyping problem</td>
+</tr>
+<tr class="even">
+<td><code>INFO</code></td>
+<td>Imputation quality, 0-1</td>
+<td>Poorly imputed variants give noisy, biased effect estimates</td>
+</tr>
+<tr class="odd">
+<td><code>OR</code></td>
+<td>Odds ratio per copy of <code>A1</code></td>
+<td>The effect size</td>
+</tr>
+<tr class="even">
+<td><code>SE</code></td>
+<td>Standard error of log(OR)</td>
+<td>Precision; <code>Z = log(OR)/SE</code></td>
+</tr>
+<tr class="odd">
+<td><code>P</code></td>
+<td>Association p-value</td>
+<td>The evidence</td>
+</tr>
+<tr class="even">
+<td><code>Nca</code>, <code>Nco</code></td>
+<td>Cases and controls</td>
+<td>Needed for effective sample size</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why frequency columns have numbers in their names
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The PGC convention writes the sample size into the header: <code>FRQ_A_38691</code> = allele frequency in the 38,691 cases; <code>FRQ_U_186843</code> = frequency in the 186,843 controls.</p>
+</div>
+</div>
+<div id="861e1d3b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>snps_per_chr <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(CHR, <span class="at">name =</span> <span class="st">"n_SNPs"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(CHR)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>n_cases <span class="ot">&lt;-</span> sumstats<span class="sc">$</span>Nca[<span class="dv">1</span>]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>n_controls <span class="ot">&lt;-</span> sumstats<span class="sc">$</span>Nco[<span class="dv">1</span>]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>snps_per_chr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>frq_case_col <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^FRQ_A"</span>, <span class="fu">names</span>(sumstats), <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>frq_ctrl_col <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^FRQ_U"</span>, <span class="fu">names</span>(sumstats), <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>n_cases    <span class="ot">&lt;-</span> sumstats<span class="sc">$</span>Nca[<span class="dv">1</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>n_controls <span class="ot">&lt;-</span> sumstats<span class="sc">$</span>Nco[<span class="dv">1</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Case frequency column   : %s</span><span class="sc">\n</span><span class="st">"</span>, frq_case_col))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Control frequency column: %s</span><span class="sc">\n</span><span class="st">"</span>, frq_ctrl_col))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Cases    : %s</span><span class="sc">\n</span><span class="st">Controls : %s</span><span class="sc">\n</span><span class="st">Total N  : %s</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_cases,    <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_controls, <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_cases <span class="sc">+</span> n_controls, <span class="at">big.mark =</span> <span class="st">","</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Case frequency column   : FRQ_A_38691
+Control frequency column: FRQ_U_186843
+Cases    : 38,691
+Controls : 186,843
+Total N  : 225,534</code></pre>
+</div>
+</div>
+<p>Variants per chromosome.</p>
+<div id="cf7713b3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>snps_per_chr <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(CHR, <span class="at">name =</span> <span class="st">"n_variants"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(CHR)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>snps_per_chr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
@@ -731,7 +854,7 @@ $ Nco          <span style="font-style:italic" class="ansi-bright-black-fg">&lt;
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" scope="col">CHR</th>
-<th data-quarto-table-cell-role="th" scope="col">n_SNPs</th>
+<th data-quarto-table-cell-role="th" scope="col">n_variants</th>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
@@ -831,97 +954,215 @@ $ Nco          <span style="font-style:italic" class="ansi-bright-black-fg">&lt;
 </table>
 </div>
 </div>
-<div id="cfd3cfc0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
+<div id="2abc455b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Cases: %s</span><span class="sc">\n</span><span class="st">Controls: %s</span><span class="sc">\n</span><span class="st">Total N: %s</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_cases, <span class="at">big.mark =</span> <span class="st">","</span>),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_controls, <span class="at">big.mark =</span> <span class="st">","</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">format</span>(n_cases <span class="sc">+</span> n_controls, <span class="at">big.mark =</span> <span class="st">","</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(snps_per_chr, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(CHR), <span class="at">y =</span> n_variants)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#4682B4"</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Variants tested per chromosome"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Counts should track chromosome length; a chromosome that is far off suggests a truncated file"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Chromosome"</span>, <span class="at">y =</span> <span class="st">"Variants"</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Cases: 38,691
-Controls: 186,843
-Total N: 225,534</code></pre>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-6-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The bars decline smoothly from chromosome 1 to 22, roughly in proportion to chromosome length. That smooth decline is the check: a chromosome that is missing, or that has far fewer variants than its neighbours, usually means the file was truncated during download or that one chromosome failed in the meta-analysis. Note also that the sex chromosomes are absent: this file is autosomes only, which is typical and which MAGMA expects.</p>
 </div>
 </div>
 </section>
-<section id="quality-control-filters" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Quality control filters</h1>
-<p>This practical uses two simple filters: - <code>INFO &gt;= 0.8</code> to keep well-imputed variants - <code>MAF &gt;= 0.01</code> to remove very rare variants with unstable estimates</p>
+</section>
+<section id="step-2-quality-control" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="step-2-quality-control"><span class="header-section-number">1.2</span> Step 2: Quality control</h2>
+<p>Two filters are near-universal in post-GWAS work.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The two standard filters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong><code>INFO &gt;= 0.8</code></strong>: keep only well-imputed variants. Most variants in a GWAS were never genotyped; they were <em>imputed</em> from a reference panel. <code>INFO</code> (also called <code>Rsq</code>) estimates how much information the imputation actually recovered. Below 0.8 the effect estimate is attenuated and the standard error is unreliable.</p></li>
+<li><p><strong><code>MAF &gt;= 0.01</code></strong>: keep only common variants. At MAF &lt; 1% the effective sample size for the minor allele is small, the asymptotic assumptions behind the logistic regression start to fail, and the LD reference panels used downstream (typically ~500 individuals) cannot estimate LD for the variant at all.</p></li>
+</ol>
+</div>
+</div>
+<p><strong>MAF</strong> (minor allele frequency) is not in the file, so we derive it. The frequency columns report the frequency of <code>A1</code>, which may be the major or the minor allele; the minor allele frequency is whichever of the two is smaller.</p>
+<div id="e57ad1f5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MAF =</span> <span class="fu">pmin</span>(.data[[frq_case_col]], <span class="dv">1</span> <span class="sc">-</span> .data[[frq_case_col]]))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sumstats_qc <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(INFO <span class="sc">&gt;=</span> <span class="fl">0.8</span>, MAF <span class="sc">&gt;=</span> <span class="fl">0.01</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>n_variants_raw <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sumstats)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>qc_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Step =</span> <span class="fu">c</span>(<span class="st">"Variants in file"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Fail INFO &lt; 0.8"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Fail MAF &lt; 0.01"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Pass both (analysis set)"</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">Variants =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(sumstats),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sum</span>(sumstats<span class="sc">$</span>INFO <span class="sc">&lt;</span> <span class="fl">0.8</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sum</span>(sumstats<span class="sc">$</span>MAF  <span class="sc">&lt;</span> <span class="fl">0.01</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>               <span class="fu">nrow</span>(sumstats_qc))</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">% of file</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.1f%%"</span>, <span class="dv">100</span> <span class="sc">*</span> Variants <span class="sc">/</span> <span class="fu">nrow</span>(sumstats)),</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">Variants =</span> <span class="fu">format</span>(Variants, <span class="at">big.mark =</span> <span class="st">","</span>))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>qc_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A tibble: 4 × 3</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">Step</th>
+<th data-quarto-table-cell-role="th" scope="col">Variants</th>
+<th data-quarto-table-cell-role="th" scope="col">% of file</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variants in file</td>
+<td>6,774,224</td>
+<td>100.0%</td>
+</tr>
+<tr class="even">
+<td><span style="white-space:pre-wrap">Fail INFO &lt; 0.8 </span></td>
+<td><span style="white-space:pre-wrap"> 0</span></td>
+<td><span style="white-space:pre-wrap">0.0% </span></td>
+</tr>
+<tr class="odd">
+<td><span style="white-space:pre-wrap">Fail MAF &lt; 0.01 </span></td>
+<td><span style="white-space:pre-wrap"> 99</span></td>
+<td><span style="white-space:pre-wrap">0.0% </span></td>
+</tr>
+<tr class="even">
+<td>Pass both (analysis set)</td>
+<td>6,774,125</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+<span class="screen-reader-only">Warning</span>These two counts overlap
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These are teaching defaults, not universal rules. The right thresholds depend on study design, imputation quality, ancestry composition, and downstream method assumptions.</p>
+<p>The INFO row and the MAF row are <strong>not</strong> mutually exclusive, because rare variants are also the hardest to impute, so many variants fail both filters. This is why the three numbers do not add up, and why you should always report the size of the final analysis set rather than a list of exclusions.</p>
 </div>
 </div>
-<p><strong>Question for students:</strong> what do you lose, scientifically, when you remove low-frequency variants? What do you gain?</p>
-<div id="927aa6cf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="6">
+<section id="look-at-what-you-are-filtering-on" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="look-at-what-you-are-filtering-on"><span class="header-section-number">1.2.1</span> Look at what you are filtering on</h3>
+<div id="a6b2dce1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MAF =</span> <span class="fu">pmin</span>(FRQ_A_38691, <span class="dv">1</span> <span class="sc">-</span> FRQ_A_38691))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sumstats_qc <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(INFO <span class="sc">&gt;=</span> <span class="fl">0.8</span>, MAF <span class="sc">&gt;=</span> <span class="fl">0.01</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>n_removed_info <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sumstats) <span class="sc">-</span> <span class="fu">nrow</span>(<span class="fu">filter</span>(sumstats, INFO <span class="sc">&gt;=</span> <span class="fl">0.8</span>))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>n_removed_maf <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sumstats) <span class="sc">-</span> <span class="fu">nrow</span>(<span class="fu">filter</span>(sumstats, MAF <span class="sc">&gt;=</span> <span class="fl">0.01</span>))</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>qc_summary <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="fu">c</span>(<span class="st">"Total SNPs before QC"</span>, <span class="st">"Removed: INFO &lt; 0.8"</span>, <span class="st">"Removed: MAF &lt; 0.01"</span>, <span class="st">"SNPs after QC"</span>),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(sumstats), n_removed_info, n_removed_maf, <span class="fu">nrow</span>(sumstats_qc))</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>qc_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sumstats <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(INFO <span class="sc">&lt;=</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> INFO)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">60</span>, <span class="at">fill =</span> <span class="st">"#9B59B6"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">0.78</span>, <span class="at">y =</span> <span class="cn">Inf</span>, <span class="at">label =</span> <span class="st">"cut-off 0.8"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">vjust =</span> <span class="dv">2</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">3.6</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Imputation quality (INFO)"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Most variants are well imputed; the left tail is what the filter removes"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"INFO score"</span>, <span class="at">y =</span> <span class="st">"Variants"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small">
-<caption>A tibble: 4 × 2</caption>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" scope="col">metric</th>
-<th data-quarto-table-cell-role="th" scope="col">value</th>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Total SNPs before QC</td>
-<td>6774224</td>
-</tr>
-<tr class="even">
-<td>Removed: INFO &lt; 0.8</td>
-<td><span style="white-space:pre-wrap"> 0</span></td>
-</tr>
-<tr class="odd">
-<td>Removed: MAF &lt; 0.01</td>
-<td><span style="white-space:pre-wrap"> 99</span></td>
-</tr>
-<tr class="even">
-<td>SNPs after QC</td>
-<td>6774125</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-8-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
 </div>
 </div>
-<div id="f824741e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="7">
+</div>
+<p>That was the last plot that needs the pre-QC data. Holding both the full file and the QC-passing subset in memory costs several gigabytes, so we drop the larger one now. Everything below works from <code>sumstats_qc</code>.</p>
+<div id="8f6a4ee0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sumstats_qc <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(P, OR, SE, INFO, MAF) <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(sumstats)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">gc</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="8f44578b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> MAF)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>, <span class="at">fill =</span> <span class="st">"#5BAD72"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Minor allele frequency, after QC"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Rising towards MAF = 0 is expected: rare variants are simply more numerous"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"MAF"</span>, <span class="at">y =</span> <span class="st">"Variants"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-10-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>INFO:</strong> a tall spike at 1.0 (directly genotyped or perfectly imputed variants) with a thin tail towards 0. A file where the <em>bulk</em> of the mass sits below 0.8 was imputed against the wrong or an under-powered reference panel and should be sent back to whoever produced it.</p>
+<p><strong>MAF:</strong> the counts rise steeply as MAF approaches the 0.01 boundary. This is the site frequency spectrum (most variation in the genome is rare), not a problem. What <em>would</em> be a problem is a gap or a spike at a particular frequency, which signals a merge of two panels with different variant sets.</p>
+</div>
+</div>
+</section>
+<section id="distributions-of-the-key-columns" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="distributions-of-the-key-columns"><span class="header-section-number">1.2.2</span> Distributions of the key columns</h3>
+<div id="3265969d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sumstats_qc <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(P, OR, SE, INFO, MAF) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre><code>       P                OR               SE               INFO       
@@ -941,96 +1182,224 @@ Warning
 </div>
 </div>
 </section>
-<section id="genomic-inflation" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Genomic inflation</h1>
-<p>The genomic inflation factor <span class="math inline">\(\lambda\)</span> compares the observed median association statistic with the value expected under the null. Values near 1 suggest little global inflation. In large highly polygenic studies, modest inflation can reflect real signal rather than poor calibration.</p>
-<p><span class="math display">\[
-\lambda = \frac{\mathrm{median}(\chi^2_{obs})}{\chi^2_{0.5, df=1}}
-\]</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
+</section>
+<section id="step-3-is-the-signal-real-λ-and-the-qq-plot" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="step-3-is-the-signal-real-λ-and-the-qq-plot"><span class="header-section-number">1.3</span> Step 3: Is the signal real? λ and the QQ plot</h2>
+<p>Under the null, p-values are uniform on (0,1). The genomic inflation factor <span class="math inline">\(\lambda\)</span> measures how far the observed distribution has shifted.</p>
+<div id="db20dbcc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>chisq_obs <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> sumstats_qc<span class="sc">$</span>P, <span class="at">df =</span> <span class="dv">1</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>lambda_gc  <span class="ot">&lt;-</span> <span class="fu">median</span>(chisq_obs, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">qchisq</span>(<span class="fl">0.5</span>, <span class="at">df =</span> <span class="dv">1</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>N_total    <span class="ot">&lt;-</span> n_cases <span class="sc">+</span> n_controls</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>lambda1000 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> (lambda_gc <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1000</span> <span class="sc">/</span> N_total)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"lambda      : %.4f</span><span class="sc">\n</span><span class="st">"</span>, lambda_gc))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"lambda_1000 : %.4f</span><span class="sc">\n</span><span class="st">"</span>, lambda1000))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>lambda      : 1.3216
+lambda_1000 : 1.0014</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>λ &gt; 1 does not mean your GWAS is broken
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Question:</strong> why is a rescaled measure such as <span class="math inline">\(\lambda_{1000}\)</span> useful when comparing studies with very different sample sizes?</p>
+<p>This is the single most common misreading in the field.</p>
+<p>λ is inflated by <strong>two</strong> things: technical artefacts (population stratification, cryptic relatedness, batch effects) <strong>and</strong> genuine polygenicity. For a highly polygenic trait measured in 225,000 people, thousands of true small effects push the <em>whole</em> p-value distribution left, and λ rises for entirely legitimate reasons.</p>
+<p><strong>λ<sub>1000</sub></strong> removes the sample-size component by rescaling to N = 1000 per group. Look at the two numbers printed above: a clearly elevated λ sitting alongside a λ<sub>1000</sub> of essentially 1 is the signature of polygenic signal, not stratification.</p>
+<p>The definitive test is <strong>LD Score regression</strong>: it splits inflation into a polygenic slope and a confounding intercept. An intercept near 1 clears the study. You will do this later in the course.</p>
 </div>
 </div>
-<div id="6da7075b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="8">
+<p>The QQ plot itself takes a couple of minutes to draw over 5 million points, so the version below was generated once with exactly this code and is read back in. Run the chunk yourself if you want to regenerate it.</p>
+<div id="8c65e691" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>chisq_obs <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> sumstats_qc<span class="sc">$</span>P, <span class="at">df =</span> <span class="dv">1</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>lambda_gc <span class="ot">&lt;-</span> <span class="fu">median</span>(chisq_obs, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">qchisq</span>(<span class="fl">0.5</span>, <span class="at">df =</span> <span class="dv">1</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>N_total <span class="ot">&lt;-</span> n_cases <span class="sc">+</span> n_controls</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>lambda1000 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> (lambda_gc <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="dv">1000</span> <span class="sc">/</span> N_total)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">metric =</span> <span class="fu">c</span>(<span class="st">"lambda_GC"</span>, <span class="st">"lambda_1000"</span>), <span class="at">value =</span> <span class="fu">c</span>(lambda_gc, lambda1000))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(sumstats_qc<span class="sc">$</span>P,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">main =</span> <span class="st">"QQ plot: ADHD 2022"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">col  =</span> <span class="st">"#4682B4"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">cex  =</span> <span class="fl">0.4</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">sub  =</span> <span class="fu">sprintf</span>(<span class="st">"lambda = %.3f   |   lambda_1000 = %.3f"</span>, lambda_gc, lambda1000))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"saved in output/figures/</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>saved in output/figures/</code></pre>
+</div>
 <div class="cell-output cell-output-display">
-<table class="dataframe caption-top table table-sm table-striped small">
-<caption>A tibble: 2 × 2</caption>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" scope="col">metric</th>
-<th data-quarto-table-cell-role="th" scope="col">value</th>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
-<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>lambda_GC</td>
-<td>1.321622</td>
-</tr>
-<tr class="even">
-<td>lambda_1000</td>
-<td>1.001426</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-13-output-2.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Read a QQ plot from <strong>left to right</strong>:</p>
+<ul>
+<li><strong>Left end (small −log10 P):</strong> points sit <em>on</em> the diagonal. This is the overwhelming majority of variants, and it is what tells you there is no gross technical inflation. If the points lift off the line immediately at the left end, you have a systematic problem.</li>
+<li><strong>Right end (large −log10 P):</strong> points peel sharply <strong>above</strong> the diagonal. These are the true associations. In a well-powered polygenic GWAS the departure is large and starts early; that early departure is signal, not artefact.</li>
+</ul>
 </div>
 </div>
 </section>
-<section id="genome-wide-significant-hits" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Genome-wide significant hits</h1>
-<p>The conventional genome-wide threshold is <code>5e-8</code>. This is a rough Bonferroni-style standard for the large number of common-variant tests performed across the genome.</p>
+<section id="step-4-the-manhattan-plot" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="step-4-the-manhattan-plot"><span class="header-section-number">1.4</span> Step 4: The Manhattan plot</h2>
+<p>The histogram tells you that there is signal. The Manhattan plot tells you where it is.</p>
+<div id="81b40294" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-fig-height="4.5" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> P)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill =</span> <span class="st">"#4682B4"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of p-values"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Flat across most of the range, with an excess piled up near zero"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"P-value"</span>, <span class="at">y =</span> <span class="st">"Variants"</span>) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-14-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="d00b5dc8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>GW_THRESH <span class="ot">&lt;-</span> <span class="fl">5e-8</span>   <span class="co"># 0.05 / 1,000,000 independent common variants</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Like the QQ plot, this one is slow to draw and is read back in from a previous run of the same code.</p>
+<div id="ec80970a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="15">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>manhattan_data <span class="ot">&lt;-</span> sumstats_qc <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CHR <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CHR, BP, P, SNP)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(manhattan_data,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">chr =</span> <span class="st">"CHR"</span>, <span class="at">bp =</span> <span class="st">"BP"</span>, <span class="at">p =</span> <span class="st">"P"</span>, <span class="at">snp =</span> <span class="st">"SNP"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"ADHD 2022: genome-wide association"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">col  =</span> <span class="fu">c</span>(<span class="st">"#4682B4"</span>, <span class="st">"#B0C4DE"</span>),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">suggestiveline =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">1e-5</span>),</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">genomewideline =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">5e-8</span>),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">cex =</span> <span class="fl">0.3</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-16-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Where 5 × 10⁻⁸ comes from
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Finding significant SNPs is only the start. The rest of this course pipeline moves from SNPs to genes and then from genes to tissues or pathways.</p>
+<p>It is a Bonferroni correction: <code>0.05 / 1,000,000</code>. The million is not the number of variants tested (6.7 million here) but the approximate number of <strong>independent</strong> common variants in a European genome, because variants in tight LD are not independent tests. The threshold is therefore a fixed convention rather than a per-study calculation, which is what makes it comparable across GWAS.</p>
 </div>
 </div>
-<div id="aaac8cd1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="9">
+<section id="count-loci-not-snps" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="count-loci-not-snps"><span class="header-section-number">1.4.1</span> Count loci, not SNPs</h3>
+<p>A single association signal produces hundreds of significant SNPs, because everything in LD with the causal variant is also significant. Reporting the raw SNP count massively overstates the number of findings.</p>
+<p>Proper LD-based clumping needs an LD reference panel. A good approximation, and the one used to report locus counts in most papers, is <strong>distance-based collapsing</strong>: take the most significant SNP, remove everything within ±250 kb, repeat.</p>
+<div id="5a20cdcb-f553-4a35-92ed-179af5abf5f1" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>GW_THRESH <span class="ot">&lt;-</span> <span class="fl">5e-8</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> sumstats_qc <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(P <span class="sc">&lt;</span> GW_THRESH) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P) <span class="sc">%&gt;%</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CHR, SNP, BP, A1, A2, MAF, OR, SE, P, INFO)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Genome-wide significant SNPs: %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(hits)))</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hits, <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">gc</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+</div>
+<div id="f9fb41a8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="17">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> sumstats_qc <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(P <span class="sc">&lt;</span> GW_THRESH) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(P)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>collapse_to_loci <span class="ot">&lt;-</span> <span class="cf">function</span>(hits, <span class="at">window =</span> <span class="dv">250000</span>) {</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  dt <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(hits)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  keep <span class="ot">&lt;-</span> <span class="fu">logical</span>(<span class="fu">nrow</span>(dt))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (chr <span class="cf">in</span> <span class="fu">unique</span>(dt<span class="sc">$</span>CHR)) {</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    idx <span class="ot">&lt;-</span> <span class="fu">which</span>(dt<span class="sc">$</span>CHR <span class="sc">==</span> chr)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    bp <span class="ot">&lt;-</span> dt<span class="sc">$</span>BP[idx]</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    active <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="fu">length</span>(idx))</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq_along</span>(idx)) {</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="sc">!</span>active[j]) <span class="cf">next</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>      keep[idx[j]] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>      active <span class="ot">&lt;-</span> active <span class="sc">&amp;</span> <span class="fu">abs</span>(bp <span class="sc">-</span> bp[j]) <span class="sc">&gt;</span> window</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  dt[keep]</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>lead_snps <span class="ot">&lt;-</span> <span class="fu">collapse_to_loci</span>(hits)</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Genome-wide significant SNPs : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">nrow</span>(hits), <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Independent loci (+/-250 kb) : %d</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">nrow</span>(lead_snps)))</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>lead_snps <span class="sc">%&gt;%</span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(CHR, SNP, BP,</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>            A1, A2,</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>            <span class="at">MAF  =</span> <span class="fu">round</span>(MAF, <span class="dv">3</span>),</span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">OR   =</span> <span class="fu">round</span>(OR, <span class="dv">4</span>),</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">SE   =</span> <span class="fu">round</span>(SE, <span class="dv">4</span>),</span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>            <span class="at">P    =</span> <span class="fu">signif</span>(P, <span class="dv">3</span>),</span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>            <span class="at">INFO =</span> <span class="fu">round</span>(INFO, <span class="dv">3</span>),</span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>            Direction) <span class="sc">%&gt;%</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(P)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: ‘data.table’
+
+
+The following objects are masked from ‘package:dplyr’:
+
+    between, first, last
+
+</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Genome-wide significant SNPs: 1428</code></pre>
+<pre><code>Genome-wide significant SNPs : 1,428
+Independent loci (+/-250 kb) : 34</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
-<caption>A spec_tbl_df: 20 × 10</caption>
+<caption>A data.table: 34 × 11</caption>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" scope="col">CHR</th>
@@ -1043,6 +1412,7 @@ Note
 <th data-quarto-table-cell-role="th" scope="col">SE</th>
 <th data-quarto-table-cell-role="th" scope="col">P</th>
 <th data-quarto-table-cell-role="th" scope="col">INFO</th>
+<th data-quarto-table-cell-role="th" scope="col">Direction</th>
 </tr>
 <tr class="even">
 <th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
@@ -1055,6 +1425,7 @@ Note
 <th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
 <th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
 <th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
 </tr>
 </thead>
 <tbody>
@@ -1065,70 +1436,24 @@ Note
 <td>G</td>
 <td>A</td>
 <td>0.321</td>
-<td>1.08199</td>
+<td>1.0820</td>
 <td>0.0102</td>
-<td>9.033e-15</td>
+<td>9.03e-15</td>
 <td>0.999</td>
+<td>---+-----+---</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>rs11210887</td>
-<td>44076019</td>
-<td>G</td>
-<td>A</td>
-<td>0.321</td>
-<td>1.08188</td>
-<td>0.0102</td>
-<td>9.195e-15</td>
-<td>0.999</td>
-</tr>
-<tr class="odd">
 <td>5</td>
 <td>rs4916723</td>
 <td>87854395</td>
 <td>A</td>
 <td>C</td>
 <td>0.447</td>
-<td>0.91824</td>
+<td>0.9182</td>
 <td>0.0110</td>
-<td>9.477e-15</td>
+<td>9.48e-15</td>
 <td>0.957</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>rs3001723</td>
-<td>44037685</td>
-<td>G</td>
-<td>A</td>
-<td>0.317</td>
-<td>0.92422</td>
-<td>0.0102</td>
-<td>9.899e-15</td>
-<td>1.000</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>rs12653396</td>
-<td>87847273</td>
-<td>T</td>
-<td>A</td>
-<td>0.425</td>
-<td>0.92951</td>
-<td>0.0095</td>
-<td>1.293e-14</td>
-<td>0.993</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>rs631248</td>
-<td>44071221</td>
-<td>G</td>
-<td>A</td>
-<td>0.239</td>
-<td>1.09024</td>
-<td>0.0114</td>
-<td>2.781e-14</td>
-<td>0.999</td>
+<td>--?-++--+-+++</td>
 </tr>
 <tr class="odd">
 <td>11</td>
@@ -1137,432 +1462,789 @@ Note
 <td>C</td>
 <td>A</td>
 <td>0.366</td>
-<td>1.07519</td>
+<td>1.0752</td>
 <td>0.0096</td>
-<td>4.094e-14</td>
+<td>4.09e-14</td>
 <td>1.000</td>
+<td>--------+----</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>rs3791138</td>
-<td>44050027</td>
+<td>5</td>
+<td>rs77960</td>
+<td>103964585</td>
+<td>G</td>
 <td>A</td>
+<td>0.335</td>
+<td>0.9294</td>
+<td>0.0100</td>
+<td>2.46e-13</td>
+<td>0.996</td>
+<td>++++--+++++--</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>rs6082363</td>
+<td>21250843</td>
+<td>T</td>
 <td>C</td>
-<td>0.232</td>
-<td>1.09013</td>
-<td>0.0114</td>
-<td>4.162e-14</td>
-<td>1.000</td>
+<td>0.296</td>
+<td>1.0728</td>
+<td>0.0101</td>
+<td>4.38e-12</td>
+<td>0.999</td>
+<td>++++---+--+-+</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>rs9969232</td>
+<td>114158954</td>
+<td>G</td>
+<td>A</td>
+<td>0.344</td>
+<td>0.9340</td>
+<td>0.0100</td>
+<td>9.98e-12</td>
+<td>0.997</td>
+<td>++++++-+?+-+-</td>
 </tr>
 <tr class="odd">
 <td>1</td>
-<td>rs2004899</td>
-<td>44045465</td>
-<td>A</td>
+<td>rs2527776</td>
+<td>44345292</td>
 <td>G</td>
-<td>0.232</td>
-<td>1.08992</td>
-<td>0.0114</td>
-<td>4.238e-14</td>
+<td>A</td>
+<td>0.274</td>
+<td>1.0718</td>
+<td>0.0106</td>
+<td>6.02e-11</td>
 <td>1.000</td>
+<td>---------+--+</td>
 </tr>
 <tr class="even">
-<td>11</td>
-<td>rs2585817</td>
-<td>28602221</td>
-<td>A</td>
+<td>5</td>
+<td>rs188582</td>
+<td>88167740</td>
 <td>G</td>
+<td>C</td>
+<td>0.465</td>
+<td>1.0613</td>
+<td>0.0093</td>
+<td>1.62e-10</td>
+<td>0.999</td>
+<td>-------------</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>rs17576773</td>
+<td>112217523</td>
+<td>C</td>
+<td>T</td>
+<td>0.112</td>
+<td>1.1011</td>
+<td>0.0151</td>
+<td>1.62e-10</td>
+<td>0.999</td>
+<td>----+---?-++-</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>rs114142727</td>
+<td>87015142</td>
+<td>C</td>
+<td>G</td>
+<td>0.012</td>
+<td>1.2848</td>
+<td>0.0403</td>
+<td>5.13e-10</td>
+<td>0.982</td>
+<td>+++++?--++??-</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>rs2886697</td>
+<td>20724204</td>
+<td>G</td>
+<td>A</td>
 <td>0.366</td>
-<td>1.07509</td>
+<td>1.0606</td>
 <td>0.0096</td>
-<td>4.349e-14</td>
-<td>1.000</td>
-</tr>
-<tr class="odd">
-<td>1</td>
-<td>rs3791137</td>
-<td>44050004</td>
-<td>G</td>
-<td>A</td>
-<td>0.232</td>
-<td>1.08992</td>
-<td>0.0114</td>
-<td>4.421e-14</td>
-<td>1.000</td>
+<td>7.90e-10</td>
+<td>0.999</td>
+<td>-------+-+-+-</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>rs10890261</td>
-<td>44052377</td>
-<td>T</td>
+<td>4</td>
+<td>rs11729080</td>
+<td>112503872</td>
 <td>G</td>
-<td>0.232</td>
-<td>1.08981</td>
-<td>0.0114</td>
-<td>4.550e-14</td>
-<td>1.000</td>
+<td>A</td>
+<td>0.155</td>
+<td>1.0883</td>
+<td>0.0138</td>
+<td>8.22e-10</td>
+<td>0.967</td>
+<td>----+?--?-++-</td>
 </tr>
 <tr class="odd">
-<td>11</td>
-<td>rs4471400</td>
-<td>28650096</td>
-<td>C</td>
+<td>14</td>
+<td>rs76284431</td>
+<td>98690923</td>
 <td>T</td>
-<td>0.358</td>
-<td>1.07562</td>
-<td>0.0097</td>
-<td>4.691e-14</td>
+<td>A</td>
+<td>0.153</td>
+<td>0.9216</td>
+<td>0.0134</td>
+<td>1.19e-09</td>
 <td>0.998</td>
+<td>++++++-++-++-</td>
 </tr>
 <tr class="even">
-<td>11</td>
-<td>rs4923546</td>
-<td>28607774</td>
-<td>G</td>
-<td>A</td>
-<td>0.366</td>
-<td>1.07487</td>
-<td>0.0096</td>
-<td>5.019e-14</td>
-<td>0.999</td>
+<td>16</td>
+<td>rs1162202</td>
+<td>61966703</td>
+<td>C</td>
+<td>T</td>
+<td>0.370</td>
+<td>1.0633</td>
+<td>0.0102</td>
+<td>1.92e-09</td>
+<td>0.968</td>
+<td>----?-+---+--</td>
 </tr>
 <tr class="odd">
-<td>11</td>
-<td>rs7952220</td>
-<td>28607245</td>
+<td>12</td>
+<td>rs704061</td>
+<td>89771903</td>
 <td>T</td>
 <td>C</td>
-<td>0.366</td>
-<td>1.07487</td>
-<td>0.0096</td>
-<td>5.045e-14</td>
-<td>0.999</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>rs2819340</td>
-<td>44039710</td>
-<td>T</td>
-<td>C</td>
-<td>0.231</td>
-<td>1.08970</td>
-<td>0.0114</td>
-<td>5.257e-14</td>
+<td>0.446</td>
+<td>0.9456</td>
+<td>0.0094</td>
+<td>2.30e-09</td>
 <td>1.000</td>
+<td>---------+-+-</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>rs17718444</td>
+<td>71499401</td>
+<td>C</td>
+<td>T</td>
+<td>0.305</td>
+<td>1.0631</td>
+<td>0.0103</td>
+<td>2.87e-09</td>
+<td>0.996</td>
+<td>------+-+---+</td>
 </tr>
 <tr class="odd">
-<td>11</td>
-<td>rs4378371</td>
-<td>28608730</td>
+<td>6</td>
+<td>rs2025286</td>
+<td>70858701</td>
+<td>A</td>
 <td>C</td>
+<td>0.447</td>
+<td>0.9466</td>
+<td>0.0093</td>
+<td>4.00e-09</td>
+<td>0.999</td>
+<td>---------+--+</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>rs1438898</td>
+<td>145714354</td>
+<td>A</td>
+<td>C</td>
+<td>0.238</td>
+<td>1.0649</td>
+<td>0.0108</td>
+<td>4.88e-09</td>
+<td>0.999</td>
+<td>+++++++++++++</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>rs6082445</td>
+<td>21517405</td>
+<td>T</td>
+<td>C</td>
+<td>0.220</td>
+<td>0.9363</td>
+<td>0.0113</td>
+<td>5.58e-09</td>
+<td>0.999</td>
+<td>---++---?-+++</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>rs10875612</td>
+<td>144474779</td>
+<td>C</td>
+<td>T</td>
+<td>0.483</td>
+<td>0.9472</td>
+<td>0.0093</td>
+<td>5.62e-09</td>
+<td>0.998</td>
+<td>++++-+++-++++</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>rs9877066</td>
+<td>43691501</td>
 <td>G</td>
-<td>0.366</td>
-<td>1.07487</td>
-<td>0.0096</td>
-<td>5.276e-14</td>
-<td>0.999</td>
+<td>A</td>
+<td>0.056</td>
+<td>0.8884</td>
+<td>0.0204</td>
+<td>6.60e-09</td>
+<td>0.997</td>
+<td>++++-+++++--+</td>
 </tr>
 <tr class="even">
-<td>11</td>
-<td>rs10835360</td>
-<td>28606699</td>
+<td>8</td>
+<td>rs7844069</td>
+<td>93277087</td>
 <td>T</td>
-<td>C</td>
-<td>0.366</td>
-<td>1.07487</td>
-<td>0.0096</td>
-<td>5.320e-14</td>
-<td>0.999</td>
+<td>G</td>
+<td>0.428</td>
+<td>1.0568</td>
+<td>0.0095</td>
+<td>6.74e-09</td>
+<td>0.991</td>
+<td>+++++-++--+-+</td>
 </tr>
 <tr class="odd">
-<td>11</td>
-<td>rs11030382</td>
-<td>28604477</td>
-<td>C</td>
+<td>8</td>
+<td>rs4925811</td>
+<td>145802447</td>
 <td>T</td>
-<td>0.366</td>
-<td>1.07487</td>
-<td>0.0096</td>
-<td>5.328e-14</td>
-<td>0.999</td>
+<td>G</td>
+<td>0.485</td>
+<td>0.9436</td>
+<td>0.0101</td>
+<td>8.30e-09</td>
+<td>0.963</td>
+<td>-----?-?-+-++</td>
 </tr>
 <tr class="even">
-<td>11</td>
-<td>rs4244537</td>
-<td>28617622</td>
+<td>18</td>
+<td>rs76857496</td>
+<td>5871800</td>
 <td>C</td>
 <td>A</td>
-<td>0.366</td>
-<td>1.07466</td>
-<td>0.0096</td>
-<td>5.657e-14</td>
-<td>0.999</td>
+<td>0.130</td>
+<td>1.0833</td>
+<td>0.0140</td>
+<td>1.24e-08</td>
+<td>0.988</td>
+<td>---+++---+-++</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>rs7506904</td>
+<td>50625779</td>
+<td>G</td>
+<td>A</td>
+<td>0.343</td>
+<td>0.9456</td>
+<td>0.0098</td>
+<td>1.24e-08</td>
+<td>1.000</td>
+<td>+++-+-+-+-+++</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>rs6537401</td>
+<td>147099654</td>
+<td>G</td>
+<td>A</td>
+<td>0.340</td>
+<td>0.9448</td>
+<td>0.0100</td>
+<td>1.40e-08</td>
+<td>0.995</td>
+<td>+++++-+++++++</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>rs3099438</td>
+<td>87557207</td>
+<td>A</td>
+<td>G</td>
+<td>0.452</td>
+<td>0.9488</td>
+<td>0.0093</td>
+<td>1.46e-08</td>
+<td>0.997</td>
+<td>-----------++</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>rs13237149</td>
+<td>113871993</td>
+<td>T</td>
+<td>A</td>
+<td>0.307</td>
+<td>1.0616</td>
+<td>0.0106</td>
+<td>1.75e-08</td>
+<td>0.981</td>
+<td>----+-+-??---</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>rs1198982</td>
+<td>43782846</td>
+<td>G</td>
+<td>A</td>
+<td>0.376</td>
+<td>0.9486</td>
+<td>0.0095</td>
+<td>3.13e-08</td>
+<td>0.996</td>
+<td>+++++-+++++++</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>rs2311059</td>
+<td>51884072</td>
+<td>G</td>
+<td>A</td>
+<td>0.314</td>
+<td>0.9436</td>
+<td>0.0105</td>
+<td>3.16e-08</td>
+<td>0.981</td>
+<td>+++++--+?+???</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>rs11596214</td>
+<td>106453832</td>
+<td>G</td>
+<td>A</td>
+<td>0.403</td>
+<td>1.0542</td>
+<td>0.0095</td>
+<td>3.17e-08</td>
+<td>0.997</td>
+<td>----+++-+---+</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>rs7613360</td>
+<td>49916710</td>
+<td>C</td>
+<td>T</td>
+<td>0.402</td>
+<td>0.9480</td>
+<td>0.0097</td>
+<td>3.18e-08</td>
+<td>0.995</td>
+<td>++++--+-?--+-</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>rs73145587</td>
+<td>67685754</td>
+<td>A</td>
+<td>T</td>
+<td>0.090</td>
+<td>1.1066</td>
+<td>0.0184</td>
+<td>3.66e-08</td>
+<td>0.984</td>
+<td>++?++++-+++-+</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>rs11255890</td>
+<td>8784773</td>
+<td>C</td>
+<td>A</td>
+<td>0.389</td>
+<td>1.0544</td>
+<td>0.0097</td>
+<td>4.14e-08</td>
+<td>0.996</td>
+<td>-----+---+-+-</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-</section>
-<section id="visual-checks" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Visual checks</h1>
-<p>The next cells reproduce the classic exploratory plots. Save them because they are often useful later in teaching slides, lab reports, and QC summaries.</p>
-<p><strong>Questions for students:</strong> 1. Which plot is best for spotting broad inflation? 2. Which plot is best for locating associated regions in the genome? 3. What is the practical difference between an excess of tiny p-values caused by true biology and one caused by confounding?</p>
-<div id="5f11f3af" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="10">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> P)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill =</span> <span class="st">"#4682B4"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">label_scientific</span>()) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of GWAS P-values"</span>,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Most SNPs should have large p-values;</span><span class="sc">\n</span><span class="st">a spike near zero suggests true signal"</span>,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"P-value"</span>,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of SNPs"</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.1_pvalue_histogram.png"</span>), p1, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-11-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="873147b7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="11">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.2_qqplot.png"</span>), <span class="at">width =</span> <span class="dv">700</span>, <span class="at">height =</span> <span class="dv">700</span>, <span class="at">res =</span> <span class="dv">120</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(sumstats_qc<span class="sc">$</span>P,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">main =</span> <span class="st">"QQ Plot - ADHD GWAS"</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">col =</span> <span class="st">"#4682B4"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">cex =</span> <span class="fl">0.4</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>),</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">sub =</span> <span class="fu">sprintf</span>(<span class="st">"lambda = %.3f | lambda_1000 = %.3f"</span>, lambda_gc, lambda1000))</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Saved QQ plot to output/figures/1.2_qqplot.png</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display">
-<strong>pdf:</strong> 2
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Saved QQ plot to output/figures/1.2_qqplot.png</code></pre>
-</div>
-</div>
-<div id="5a26d4de" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="12">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>manhattan_data <span class="ot">&lt;-</span> sumstats_qc <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CHR <span class="sc">%in%</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">22</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CHR, BP, P, SNP)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.3_manhattan.png"</span>), <span class="at">width =</span> <span class="dv">1400</span>, <span class="at">height =</span> <span class="dv">600</span>, <span class="at">res =</span> <span class="dv">120</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  manhattan_data,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">chr =</span> <span class="st">"CHR"</span>,</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">bp =</span> <span class="st">"BP"</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="st">"P"</span>,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">snp =</span> <span class="st">"SNP"</span>,</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Manhattan Plot - ADHD GWAS 2023"</span>,</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#4682B4"</span>, <span class="st">"#B0C4DE"</span>),</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">suggestiveline =</span> <span class="fl">1e-5</span>,</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">genomewideline =</span> <span class="fl">5e-8</span>,</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="fl">0.3</span>,</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex.axis =</span> <span class="fl">0.8</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Saved Manhattan plot to output/figures/1.3_manhattan.png</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display">
-<strong>pdf:</strong> 2
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Saved Manhattan plot to output/figures/1.3_manhattan.png</code></pre>
-</div>
-</div>
-<div id="3a3432a3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="13">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> OR)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill =</span> <span class="st">"#E07B54"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.85</span>, <span class="fl">1.15</span>)) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of odds ratios"</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Most common-variant effects in complex traits are very small"</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Odds ratio"</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of SNPs"</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> MAF)) <span class="sc">+</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>, <span class="at">fill =</span> <span class="st">"#5BAD72"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Minor allele frequency distribution"</span>,</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Common-variant GWAS usually has broad coverage across the common-frequency range"</span>,</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Minor allele frequency"</span>,</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of SNPs"</span></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> sumstats <span class="sc">%&gt;%</span></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(INFO <span class="sc">&lt;=</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> INFO)) <span class="sc">+</span></span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">60</span>, <span class="at">fill =</span> <span class="st">"#9B59B6"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">0.77</span>, <span class="at">y =</span> <span class="cn">Inf</span>, <span class="at">label =</span> <span class="st">"QC cut-off (0.8)"</span>, <span class="at">vjust =</span> <span class="dv">2</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"INFO score distribution"</span>,</span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Variants below 0.8 are removed in this teaching workflow"</span>,</span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"INFO score"</span>,</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of SNPs"</span></span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.4_or_distribution.png"</span>), p4, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.5_maf_distribution.png"</span>), p5, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(figures_dir, <span class="st">"1.6_info_distribution.png"</span>), p6, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span>
-<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>p4</span>
-<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>p5</span>
-<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>p6</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<div class="ansi-escaped-output">
-<pre>Warning message:
-
-“Removed 1718 rows containing non-finite outside the scale range
-
-(`stat_bin()`).”
-
-Warning message:
-
-“Removed 2 rows containing missing values or values outside the scale range
-
-(`geom_bar()`).”
-
-Warning message:
-
-“Removed 1718 rows containing non-finite outside the scale range
-
-(`stat_bin()`).”
-
-Warning message:
-
-“Removed 2 rows containing missing values or values outside the scale range
-
-(`geom_bar()`).”
-</pre>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-14-output-2.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-14-output-3.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-14-output-4.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="wrap-up" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Wrap-up</h1>
-<p>At this point you have an explored and lightly QC-filtered summary-statistics dataset. The next notebook converts these SNP-level results into the two MAGMA input files needed for annotation and gene analysis.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Reflection prompts
+<span class="screen-reader-only">Tip</span>Read the output
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li>Which of the generated plots would you include in a short QC report, and why?</li>
-<li>If lambda were much larger, what additional checks would you perform before trusting the signal?</li>
-<li>What information is still missing if your goal is biological interpretation rather than variant discovery?</li>
-</ol>
+<p>Three things to check in this table before you trust a locus:</p>
+<ul>
+<li><strong><code>Direction</code></strong>: all <code>+</code> or all <code>-</code> means every contributing cohort agrees. A top hit with mixed signs is heterogeneous and deserves scrutiny.</li>
+<li><strong><code>INFO</code></strong>: a genome-wide significant hit with INFO near 0.8 is imputed, not genotyped, and is a weaker candidate than one at INFO ≈ 1.</li>
+<li><strong><code>OR</code></strong>: for a common psychiatric trait these sit close to 1 (roughly 0.94-1.07). An OR of 1.5 at MAF 0.3 in a sample this size would be extraordinary, and in practice usually means a strand or allele-coding error.</li>
+</ul>
 </div>
 </div>
-<div id="788cf2c5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="14">
+</section>
+</section>
+<section id="step-5-effect-sizes-frequency-and-power" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="step-5-effect-sizes-frequency-and-power"><span class="header-section-number">1.5</span> Step 5: Effect Sizes, Frequency, and Power</h2>
+<div id="87fd21c5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="fu">c</span>(<span class="st">"Total SNPs"</span>, <span class="st">"After QC"</span>, <span class="st">"Cases"</span>, <span class="st">"Controls"</span>, <span class="st">"Genome-wide significant SNPs"</span>, <span class="st">"lambda_GC"</span>, <span class="st">"lambda_1000"</span>),</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">nrow</span>(sumstats), <span class="fu">nrow</span>(sumstats_qc), n_cases, n_controls, <span class="fu">nrow</span>(hits), lambda_gc, lambda1000)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>summary_table</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sumstats_qc, <span class="fu">aes</span>(<span class="at">x =</span> OR)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">100</span>, <span class="at">fill =</span> <span class="st">"#E07B54"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.85</span>, <span class="fl">1.15</span>)) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Odds ratios across all QC-passing variants"</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Tightly centred on 1; individually tiny effects are the norm for complex traits"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Odds ratio (per copy of A1)"</span>, <span class="at">y =</span> <span class="st">"Variants"</span>) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre>Warning message:
+
+“Removed 1718 rows containing non-finite outside the scale range (`stat_bin()`).”
+
+Warning message:
+
+“Removed 2 rows containing missing values or values outside the scale range (`geom_bar()`).”
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-19-output-2.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The distribution above is <em>symmetric</em> around 1 because most variants have no effect. The interesting question is what the <em>significant</em> variants look like as a function of frequency.</p>
+<div id="b3dbf1c1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="19">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hits, <span class="fu">aes</span>(<span class="at">x =</span> MAF, <span class="at">y =</span> <span class="fu">abs</span>(<span class="fu">log</span>(OR)))) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.35</span>, <span class="at">colour =</span> <span class="st">"#B3541E"</span>) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">colour =</span> <span class="st">"#2c5d8f"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Detected effect size against allele frequency"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Genome-wide significant variants only"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Minor allele frequency"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"|log(OR)|, absolute effect size"</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<div class="ansi-escaped-output">
+<pre>`geom_smooth()` using formula = 'y ~ x'
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="00_explore_gwas_sumstats_files/figure-html/cell-20-output-2.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The fitted line slopes <strong>downward</strong>: among the variants we detected, the rarer ones have larger effects. This is not biology; it is a <strong>power boundary</strong>. Power depends on MAF and effect size jointly, so a rare variant only clears 5 × 10⁻⁸ if its effect is large, while a common variant can clear it with a small one. Everything below the detection boundary is invisible to us, so the plot shows the edge of what this sample size could find, not the true relationship between frequency and effect.</p>
+<p>This is exactly why gene-level methods such as MAGMA exist: they aggregate the many sub-threshold common variants inside a gene into a single test, recovering signal that no individual variant here is powered to show.</p>
+</div>
+</div>
+</section>
+<section id="step-6-one-last-check-on-duplicate-identifiers" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="step-6-one-last-check-on-duplicate-identifiers"><span class="header-section-number">1.6</span> Step 6: One Last Check on Duplicate Identifiers</h2>
+<p>Every downstream tool matches variants by rsID. Meta-analysed files routinely contain repeated identifiers: multi-allelic sites, and rsIDs that dbSNP merged after the study was run. Depending on the tool, duplicates cause an outright failure or, worse, silent double-counting.</p>
+<div id="92bb11a1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>n_dup <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">duplicated</span>(sumstats_qc<span class="sc">$</span>SNP))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"QC-passing variants : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(<span class="fu">nrow</span>(sumstats_qc), <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Duplicated rsIDs    : %s</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">format</span>(n_dup, <span class="at">big.mark =</span> <span class="st">","</span>)))</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>sumstats_qc <span class="sc">%&gt;%</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SNP <span class="sc">%in%</span> SNP[<span class="fu">duplicated</span>(SNP)]) <span class="sc">%&gt;%</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(SNP) <span class="sc">%&gt;%</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(CHR, SNP, BP, A1, A2, OR, P) <span class="sc">%&gt;%</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>QC-passing variants : 6,774,125
+Duplicated rsIDs    : 6</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <table class="dataframe caption-top table table-sm table-striped small">
-<caption>A tibble: 7 × 2</caption>
+<caption>A spec_tbl_df: 6 × 7</caption>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" scope="col">metric</th>
-<th data-quarto-table-cell-role="th" scope="col">value</th>
+<th data-quarto-table-cell-role="th" scope="col">CHR</th>
+<th data-quarto-table-cell-role="th" scope="col">SNP</th>
+<th data-quarto-table-cell-role="th" scope="col">BP</th>
+<th data-quarto-table-cell-role="th" scope="col">A1</th>
+<th data-quarto-table-cell-role="th" scope="col">A2</th>
+<th data-quarto-table-cell-role="th" scope="col">OR</th>
+<th data-quarto-table-cell-role="th" scope="col">P</th>
 </tr>
 <tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
 <th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
 <th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Total SNPs</td>
-<td>6.774224e+06</td>
+<td>8</td>
+<td>.</td>
+<td>114316970</td>
+<td>T</td>
+<td>A</td>
+<td>1.03800</td>
+<td>0.5096</td>
 </tr>
 <tr class="even">
-<td>After QC</td>
-<td>6.774125e+06</td>
+<td>13</td>
+<td>.</td>
+<td>40934898</td>
+<td>T</td>
+<td>C</td>
+<td>0.99203</td>
+<td>0.9152</td>
 </tr>
 <tr class="odd">
-<td>Cases</td>
-<td>3.869100e+04</td>
+<td>5</td>
+<td>.</td>
+<td>3443528</td>
+<td>T</td>
+<td>C</td>
+<td>0.99501</td>
+<td>0.9015</td>
 </tr>
 <tr class="even">
-<td>Controls</td>
-<td>1.868430e+05</td>
+<td>7</td>
+<td>.</td>
+<td>110198508</td>
+<td>A</td>
+<td>G</td>
+<td>0.97297</td>
+<td>0.3930</td>
 </tr>
 <tr class="odd">
-<td>Genome-wide significant SNPs</td>
-<td>1.428000e+03</td>
+<td>5</td>
+<td>.</td>
+<td>66547525</td>
+<td>A</td>
+<td>G</td>
+<td>1.02603</td>
+<td>0.5645</td>
 </tr>
 <tr class="even">
-<td>lambda_GC</td>
-<td>1.321622e+00</td>
-</tr>
-<tr class="odd">
-<td>lambda_1000</td>
-<td>1.001426e+00</td>
+<td>14</td>
+<td>.</td>
+<td>30833762</td>
+<td>T</td>
+<td>C</td>
+<td>1.01096</td>
+<td>0.8974</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Read the output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look at the duplicated rows: same rsID, same position, <strong>different alleles</strong>. These are multi-allelic sites where more than one alternative allele was tested, each written as its own row under the same identifier.</p>
+<p>There is no universally right fix. Keeping the first row, keeping the most significant, or dropping duplicates entirely are all defensible. What is <em>not</em> defensible is not checking. Whatever you choose, apply it before the analysis and state it in your Methods.</p>
+</div>
+</div>
+<section id="session-summary" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="session-summary"><span class="header-section-number">1.6.1</span> Session summary</h3>
+<div id="609ea5b4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;vscode&quot;,&quot;value&quot;:{&quot;languageId&quot;:&quot;r&quot;}}" data-execution_count="21">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"Dataset"</span>, <span class="st">"Genome build"</span>, <span class="st">"Variants in file"</span>, <span class="st">"Variants after QC"</span>,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Cases"</span>, <span class="st">"Controls"</span>, <span class="st">"Genome-wide significant SNPs"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Independent loci"</span>, <span class="st">"lambda"</span>, <span class="st">"lambda_1000"</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Median OR"</span>, <span class="st">"Median MAF"</span>, <span class="st">"Median INFO"</span>),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ADHD 2022 (iPSYCH + deCODE + PGC)"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"hg19 / GRCh37"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(n_variants_raw,    <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(<span class="fu">nrow</span>(sumstats_qc), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(n_cases,           <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(n_controls,        <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">format</span>(<span class="fu">nrow</span>(hits),        <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.character</span>(<span class="fu">nrow</span>(lead_snps)),</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.4f"</span>, lambda_gc),</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.4f"</span>, lambda1000),</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.4f"</span>, <span class="fu">median</span>(sumstats_qc<span class="sc">$</span>OR,   <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.4f"</span>, <span class="fu">median</span>(sumstats_qc<span class="sc">$</span>MAF,  <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.4f"</span>, <span class="fu">median</span>(sumstats_qc<span class="sc">$</span>INFO, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small">
+<caption>A tibble: 13 × 2</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">Item</th>
+<th data-quarto-table-cell-role="th" scope="col">Value</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dataset</td>
+<td>ADHD 2022 (iPSYCH + deCODE + PGC)</td>
+</tr>
+<tr class="even">
+<td>Genome build</td>
+<td>hg19 / GRCh37</td>
+</tr>
+<tr class="odd">
+<td>Variants in file</td>
+<td>6,774,224</td>
+</tr>
+<tr class="even">
+<td>Variants after QC</td>
+<td>6,774,125</td>
+</tr>
+<tr class="odd">
+<td>Cases</td>
+<td>38,691</td>
+</tr>
+<tr class="even">
+<td>Controls</td>
+<td>186,843</td>
+</tr>
+<tr class="odd">
+<td>Genome-wide significant SNPs</td>
+<td>1,428</td>
+</tr>
+<tr class="even">
+<td>Independent loci</td>
+<td>34</td>
+</tr>
+<tr class="odd">
+<td>lambda</td>
+<td>1.3216</td>
+</tr>
+<tr class="even">
+<td>lambda_1000</td>
+<td>1.0014</td>
+</tr>
+<tr class="odd">
+<td>Median OR</td>
+<td>0.9999</td>
+</tr>
+<tr class="even">
+<td>Median MAF</td>
+<td>0.1490</td>
+</tr>
+<tr class="odd">
+<td>Median INFO</td>
+<td>0.9950</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="what-can-go-wrong" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="what-can-go-wrong"><span class="header-section-number">1.7</span> What can go wrong</h2>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Genome build mismatch
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The single most damaging and silent error. <code>BP</code> positions here are hg19.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Effect allele confusion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>A1</code> is the effect allele in this file. Harmonising by rsID without checking the alleles flips effect directions for roughly half the variants.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Ancestry mismatch with the LD reference
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a European-ancestry meta-analysis, so the LD reference should match ancestry.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Treating λ as a pass/fail test
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A high λ in a large polygenic GWAS is not automatically a problem. Use <span class="math inline">\(\lambda_{1000}\)</span> and LD score regression before concluding anything about stratification.</p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
