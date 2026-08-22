@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/index.html</loc>
-    <lastmod>2026-08-12T11:52:31.569Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/07_genetic_correlation.html</loc>
-    <lastmod>2026-08-12T11:52:31.566Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/00_explore_gwas_sumstats.html</loc>
-    <lastmod>2026-08-12T11:52:31.526Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/06_SNP_based_heritability.html</loc>
-    <lastmod>2026-08-12T11:52:31.565Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/04_run_scdrs.html</loc>
-    <lastmod>2026-08-12T11:52:31.536Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/LICENSE.html</loc>
-    <lastmod>2026-08-12T11:52:31.568Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/05_analyse_results_scdrs.html</loc>
-    <lastmod>2026-08-12T11:52:31.565Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/03_flames.html</loc>
-    <lastmod>2026-08-12T11:52:31.536Z</lastmod>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/people.html</loc>
+    <lastmod>2026-08-22T15:05:00.687Z</lastmod>
   </url>
   <url>
     <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/01_finemapping.html</loc>
-    <lastmod>2026-08-12T11:52:31.529Z</lastmod>
+    <lastmod>2026-08-22T15:05:00.637Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/03_flames.html</loc>
+    <lastmod>2026-08-22T15:05:00.645Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/00_explore_gwas_sumstats.html</loc>
+    <lastmod>2026-08-22T15:05:00.633Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/05_analyse_results_scdrs.html</loc>
+    <lastmod>2026-08-22T15:05:00.682Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/LICENSE.html</loc>
+    <lastmod>2026-08-22T15:05:00.687Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/index.html</loc>
+    <lastmod>2026-08-22T15:05:00.687Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/07_genetic_correlation.html</loc>
+    <lastmod>2026-08-22T15:05:00.683Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/04_run_scdrs.html</loc>
+    <lastmod>2026-08-22T15:05:00.645Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/06_SNP_based_heritability.html</loc>
+    <lastmod>2026-08-22T15:05:00.683Z</lastmod>
   </url>
   <url>
     <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/Notebooks/02_magma_workflow.html</loc>
-    <lastmod>2026-08-12T11:52:31.535Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SamueleSoraggi.github.io/post-gwas-analysis_course/people.html</loc>
-    <lastmod>2026-08-12T11:52:31.569Z</lastmod>
+    <lastmod>2026-08-22T15:05:00.645Z</lastmod>
   </url>
 </urlset>
