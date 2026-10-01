@@ -34,7 +34,7 @@ jobs:
 
       - name: Load Python and R packages used by notebooks
         run: |
-          python - <<'PY'
+          pixi run python - <<'PY'
           import importlib
           import json
           import re
@@ -59,8 +59,6 @@ jobs:
                   data.get("metadata", {}).get("language_info", {}).get("name")
                   or data.get("metadata", {}).get("kernelspec", {}).get("language", "")
               ).lower()
-              if language not in {"python", "python3"}:
-                  continue
               for cell in data.get("cells", []):
                   if cell.get("cell_type") != "code":
                       continue
