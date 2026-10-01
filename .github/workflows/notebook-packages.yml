@@ -1,0 +1,95 @@
+name: Notebook package smoke test
+
+on:
+  push:
+    paths:
+      - 'Notebooks/**/*.ipynb'
+      - 'Environments/pixi.toml'
+      - '.github/workflows/notebook-packages.yml'
+  pull_request:
+    paths:
+      - 'Notebooks/**/*.ipynb'
+      - 'Environments/pixi.toml'
+      - '.github/workflows/notebook-packages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-smoke-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Environments
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Pixi environment
+        uses: prefix-dev/setup-pixi@v0.9.0
+        with:
+          manifest-path: Environments/pixi.toml
+          cache: true
+
+      - name: Load Python and R packages used by notebooks
+        run: |
+          python - <<'PY'
+          import importlib
+          import json
+          import re
+          import subprocess
+          from pathlib import Path
+
+          notebooks = Path("../Notebooks").rglob("*.ipynb")
+          python_modules = set()
+          r_packages = set()
+          import_pattern = re.compile(
+              r"^\s*(?:import\s+([^#\n]+)|from\s+([A-Za-z_][\w.]*)\s+import\b)",
+              re.MULTILINE,
+          )
+          r_package_pattern = re.compile(
+              r"\b(?:library|require)\s*\(\s*['\"]?([A-Za-z][\w.]*)"
+              r"|([A-Za-z][\w.]*)\s*::"
+          )
+
+          for notebook in notebooks:
+              data = json.loads(notebook.read_text())
+              language = (
+                  data.get("metadata", {}).get("language_info", {}).get("name")
+                  or data.get("metadata", {}).get("kernelspec", {}).get("language", "")
+              ).lower()
+              if language not in {"python", "python3"}:
+                  continue
+              for cell in data.get("cells", []):
+                  if cell.get("cell_type") != "code":
+                      continue
+                  source = "".join(cell.get("source", []))
+                  if language in {"python", "python3"}:
+                      for match in import_pattern.finditer(source):
+                          if match.group(2):
+                              python_modules.add(match.group(2))
+                          else:
+                              for imported in match.group(1).split(","):
+                                  module = imported.strip().split(" as ")[0].strip()
+                                  if re.fullmatch(r"[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*", module):
+                                      python_modules.add(module)
+                  elif language == "r":
+                      for match in r_package_pattern.finditer(source):
+                          r_packages.add(match.group(1) or match.group(2))
+
+          for module in sorted(python_modules):
+              print(f"Importing {module}")
+              importlib.import_module(module)
+          if r_packages:
+              r_code = (
+                  "packages <- commandArgs(TRUE); "
+                  "for (package in packages) { "
+                  "message('Loading ', package); "
+                  "library(package, character.only = TRUE) }"
+              )
+              subprocess.run(
+                  ["Rscript", "-e", r_code, *sorted(r_packages)],
+                  check=True,
+              )
+          PY
