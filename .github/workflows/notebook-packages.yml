@@ -75,6 +75,13 @@ jobs:
                   elif language == "r":
                       for match in r_package_pattern.finditer(source):
                           r_packages.add(match.group(1) or match.group(2))
+                      for match in re.finditer(
+                          r"\bp_load(?:_if_needed)?\s*\(([^)]*)\)", source
+                      ):
+                          for argument in match.group(1).split(","):
+                              package = argument.strip().strip("'\"")
+                              if re.fullmatch(r"[A-Za-z][\w.]*", package):
+                                  r_packages.add(package)
 
           for module in sorted(python_modules):
               print(f"Importing {module}")
