@@ -21,7 +21,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
       - name: Install Apptainer
-        uses: eWaterCycle/setup-apptainer@v2
+        uses: eWaterCycle/setup-apptainer@v3
       - name: Show Apptainer version
         run: apptainer --version
 
